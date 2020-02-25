@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2019 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -111,8 +111,10 @@ class RecommenderGrpcTransport(object):
     def list_recommendations(self):
         """Return the gRPC stub for :meth:`RecommenderClient.list_recommendations`.
 
-        Lists recommendations for a Cloud project. Requires the
-        recommender.*.list IAM permission for the specified recommender.
+        Value for the ``path`` field. Will be set for
+        actions:'add'/'replace'. Maybe set for action: 'test'. Either this or
+        ``value_matcher`` will be set for 'test' operation. An exact match must
+        be performed.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -125,8 +127,15 @@ class RecommenderGrpcTransport(object):
     def get_recommendation(self):
         """Return the gRPC stub for :meth:`RecommenderClient.get_recommendation`.
 
-        Gets the requested recommendation. Requires the recommender.*.get
-        IAM permission for the specified recommender.
+        The resource type of a child collection that the annotated field
+        references. This is useful for annotating the ``parent`` field that
+        doesn't have a fixed resource type.
+
+        Example:
+
+        message ListLogEntriesRequest { string parent = 1
+        [(google.api.resource_reference) = { child_type:
+        "logging.googleapis.com/LogEntry" }; }
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -139,17 +148,9 @@ class RecommenderGrpcTransport(object):
     def mark_recommendation_claimed(self):
         """Return the gRPC stub for :meth:`RecommenderClient.mark_recommendation_claimed`.
 
-        Marks the Recommendation State as Claimed. Users can use this method
-        to indicate to the Recommender API that they are starting to apply the
-        recommendation themselves. This stops the recommendation content from
-        being updated. Associated insights are frozen and placed in the ACCEPTED
-        state.
-
-        MarkRecommendationClaimed can be applied to recommendations in CLAIMED
-        or ACTIVE state.
-
-        Requires the recommender.*.update IAM permission for the specified
-        recommender.
+        Denotes a field as required. This indicates that the field **must**
+        be provided as part of the request, and failure to do so will cause an
+        error (usually ``INVALID_ARGUMENT``).
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -162,17 +163,45 @@ class RecommenderGrpcTransport(object):
     def mark_recommendation_succeeded(self):
         """Return the gRPC stub for :meth:`RecommenderClient.mark_recommendation_succeeded`.
 
-        Marks the Recommendation State as Succeeded. Users can use this
-        method to indicate to the Recommender API that they have applied the
-        recommendation themselves, and the operation was successful. This stops
-        the recommendation content from being updated. Associated insights are
-        frozen and placed in the ACCEPTED state.
+        If this SourceCodeInfo represents a complete declaration, these are
+        any comments appearing before and after the declaration which appear to
+        be attached to the declaration.
 
-        MarkRecommendationSucceeded can be applied to recommendations in ACTIVE,
-        CLAIMED, SUCCEEDED, or FAILED state.
+        A series of line comments appearing on consecutive lines, with no other
+        tokens appearing on those lines, will be treated as a single comment.
 
-        Requires the recommender.*.update IAM permission for the specified
-        recommender.
+        leading_detached_comments will keep paragraphs of comments that appear
+        before (but not connected to) the current element. Each paragraph,
+        separated by empty lines, will be one comment element in the repeated
+        field.
+
+        Only the comment content is provided; comment markers (e.g. //) are
+        stripped out. For block comments, leading whitespace and an asterisk
+        will be stripped from the beginning of each line other than the first.
+        Newlines are included in the output.
+
+        Examples:
+
+        optional int32 foo = 1; // Comment attached to foo. // Comment attached
+        to bar. optional int32 bar = 2;
+
+        optional string baz = 3; // Comment attached to baz. // Another line
+        attached to baz.
+
+        // Comment attached to qux. // // Another line attached to qux. optional
+        double qux = 4;
+
+        // Detached comment for corge. This is not leading or trailing comments
+        // to qux or corge because there are blank lines separating it from //
+        both.
+
+        // Detached comment for corge paragraph 2.
+
+        optional string corge = 5; /\* Block comment attached \* to corge.
+        Leading asterisks \* will be removed. */ /* Block comment attached to \*
+        grault. \*/ optional int32 grault = 6;
+
+        // ignored detached comments.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -185,17 +214,8 @@ class RecommenderGrpcTransport(object):
     def mark_recommendation_failed(self):
         """Return the gRPC stub for :meth:`RecommenderClient.mark_recommendation_failed`.
 
-        Marks the Recommendation State as Failed. Users can use this method
-        to indicate to the Recommender API that they have applied the
-        recommendation themselves, and the operation failed. This stops the
-        recommendation content from being updated. Associated insights are
-        frozen and placed in the ACCEPTED state.
-
-        MarkRecommendationFailed can be applied to recommendations in ACTIVE,
-        CLAIMED, SUCCEEDED, or FAILED state.
-
-        Requires the recommender.*.update IAM permission for the specified
-        recommender.
+        Can be set for action 'test' for advanced matching for the value of
+        'path' field. Either this or ``value`` will be set for 'test' operation.
 
         Returns:
             Callable: A callable which accepts the appropriate

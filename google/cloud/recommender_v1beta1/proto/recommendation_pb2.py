@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+
+# Copyright 2019 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -1071,8 +1072,9 @@ Recommendation = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _RECOMMENDATION,
         "__module__": "google.cloud.recommender_v1beta1.proto.recommendation_pb2",
-        "__doc__": """A recommendation along with a suggested action. E.g., a rightsizing
-  recommendation for an underutilized VM, IAM role recommendations, etc
+        "__doc__": """A recommendation along with a suggested action. E.g., a
+  rightsizing recommendation for an underutilized VM, IAM role
+  recommendations, etc
   
   
   Attributes:
@@ -1298,7 +1300,8 @@ CostProjection = _reflection.GeneratedProtocolMessageType(
           units indicate increase. See google.type.Money documentation
           for positive/negative units.
       duration:
-          Duration for which this cost applies.
+          Duration for which this cost applies.  .. [1]    a-z0-9  ..
+          [2]    a-z0-9  .. [3]    a-z0-9
   """,
         # @@protoc_insertion_point(class_scope:google.cloud.recommender.v1beta1.CostProjection)
     },
