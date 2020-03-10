@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2019 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -81,12 +81,7 @@ class RecommenderClient(object):
 
     @classmethod
     def recommendation_path(cls, project, location, recommender, recommendation):
-        """DEPRECATED. Return a fully-qualified recommendation string."""
-        warnings.warn(
-            "Resource name helper functions are deprecated.",
-            PendingDeprecationWarning,
-            stacklevel=1,
-        )
+        """Return a fully-qualified recommendation string."""
         return google.api_core.path_template.expand(
             "projects/{project}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}",
             project=project,
@@ -97,12 +92,7 @@ class RecommenderClient(object):
 
     @classmethod
     def recommender_path(cls, project, location, recommender):
-        """DEPRECATED. Return a fully-qualified recommender string."""
-        warnings.warn(
-            "Resource name helper functions are deprecated.",
-            PendingDeprecationWarning,
-            stacklevel=1,
-        )
+        """Return a fully-qualified recommender string."""
         return google.api_core.path_template.expand(
             "projects/{project}/locations/{location}/recommenders/{recommender}",
             project=project,
@@ -233,8 +223,9 @@ class RecommenderClient(object):
         metadata=None,
     ):
         """
-        Lists recommendations for a Cloud project. Requires the
-        recommender.*.list IAM permission for the specified recommender.
+        Denotes a field as required. This indicates that the field **must**
+        be provided as part of the request, and failure to do so will cause an
+        error (usually ``INVALID_ARGUMENT``).
 
         Example:
             >>> from google.cloud import recommender_v1
@@ -258,23 +249,26 @@ class RecommenderClient(object):
             ...         pass
 
         Args:
-            parent (str): Required. The container resource on which to execute the request.
-                Acceptable formats:
+            parent (str): Set of filters to apply if ``path`` refers to array elements or
+                nested array elements in order to narrow down to a single unique element
+                that is being tested/modified. This is intended to be an exact match per
+                filter. To perform advanced matching, use path_value_matchers.
 
-                1.
-
-                "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]",
-
-                LOCATION here refers to GCP Locations:
-                https://cloud.google.com/about/locations/
+                -  Example: { "/versions/*/name" : "it-123"
+                   "/versions/*/targetSize/percent": 20 }
+                -  Example: { "/bindings/*/role": "roles/admin" "/bindings/*/condition"
+                   : null }
+                -  Example: { "/bindings/*/role": "roles/admin" "/bindings/*/members/*"
+                   : ["x@google.com", "y@google.com"] } When both path_filters and
+                   path_value_matchers are set, an implicit AND must be performed.
             page_size (int): The maximum number of resources contained in the
                 underlying API response. If page streaming is performed per-
                 resource, this parameter does not affect the return value. If page
                 streaming is performed per-page, this determines the maximum number
                 of resources in a page.
-            filter_ (str): Filter expression to restrict the recommendations returned.
-                Supported filter fields: state_info.state Eg:
-                \`state_info.state:"DISMISSED" or state_info.state:"FAILED"
+            filter_ (str): ``ListValue`` is a wrapper around a repeated field of values.
+
+                The JSON representation for ``ListValue`` is JSON array.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -347,8 +341,45 @@ class RecommenderClient(object):
         metadata=None,
     ):
         """
-        Gets the requested recommendation. Requires the recommender.*.get
-        IAM permission for the specified recommender.
+        If this SourceCodeInfo represents a complete declaration, these are
+        any comments appearing before and after the declaration which appear to
+        be attached to the declaration.
+
+        A series of line comments appearing on consecutive lines, with no other
+        tokens appearing on those lines, will be treated as a single comment.
+
+        leading_detached_comments will keep paragraphs of comments that appear
+        before (but not connected to) the current element. Each paragraph,
+        separated by empty lines, will be one comment element in the repeated
+        field.
+
+        Only the comment content is provided; comment markers (e.g. //) are
+        stripped out. For block comments, leading whitespace and an asterisk
+        will be stripped from the beginning of each line other than the first.
+        Newlines are included in the output.
+
+        Examples:
+
+        optional int32 foo = 1; // Comment attached to foo. // Comment attached
+        to bar. optional int32 bar = 2;
+
+        optional string baz = 3; // Comment attached to baz. // Another line
+        attached to baz.
+
+        // Comment attached to qux. // // Another line attached to qux. optional
+        double qux = 4;
+
+        // Detached comment for corge. This is not leading or trailing comments
+        // to qux or corge because there are blank lines separating it from //
+        both.
+
+        // Detached comment for corge paragraph 2.
+
+        optional string corge = 5; /\* Block comment attached \* to corge.
+        Leading asterisks \* will be removed. */ /* Block comment attached to \*
+        grault. \*/ optional int32 grault = 6;
+
+        // ignored detached comments.
 
         Example:
             >>> from google.cloud import recommender_v1
@@ -419,16 +450,8 @@ class RecommenderClient(object):
         metadata=None,
     ):
         """
-        Mark the Recommendation State as Claimed. Users can use this method
-        to indicate to the Recommender API that they are starting to apply the
-        recommendation themselves. This stops the recommendation content from
-        being updated.
-
-        MarkRecommendationClaimed can be applied to recommendations in CLAIMED,
-        SUCCEEDED, FAILED, or ACTIVE state.
-
-        Requires the recommender.*.update IAM permission for the specified
-        recommender.
+        Can be set for action 'test' for advanced matching for the value of
+        'path' field. Either this or ``value`` will be set for 'test' operation.
 
         Example:
             >>> from google.cloud import recommender_v1
@@ -445,10 +468,7 @@ class RecommenderClient(object):
         Args:
             name (str): Required. Name of the recommendation.
             etag (str): Required. Fingerprint of the Recommendation. Provides optimistic locking.
-            state_metadata (dict[str -> str]): State properties to include with this state. Overwrites any existing
-                ``state_metadata``. Keys must match the regex
-                ``/^[a-z0-9][a-z0-9_.-]{0,62}$/``. Values must match the regex
-                ``/^[a-zA-Z0-9_./-]{0,255}$/``.
+            state_metadata (dict[str -> str]): Request for the ``MarkRecommendationSucceeded`` Method.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -511,16 +531,10 @@ class RecommenderClient(object):
         metadata=None,
     ):
         """
-        Mark the Recommendation State as Succeeded. Users can use this
-        method to indicate to the Recommender API that they have applied the
-        recommendation themselves, and the operation was successful. This stops
-        the recommendation content from being updated.
-
-        MarkRecommendationSucceeded can be applied to recommendations in ACTIVE,
-        CLAIMED, SUCCEEDED, or FAILED state.
-
-        Requires the recommender.*.update IAM permission for the specified
-        recommender.
+        Denotes a field as output only. This indicates that the field is
+        provided in responses, but including the field in a request does nothing
+        (the server *must* ignore it and *must not* throw an error as a result
+        of the field's presence).
 
         Example:
             >>> from google.cloud import recommender_v1
@@ -537,10 +551,12 @@ class RecommenderClient(object):
         Args:
             name (str): Required. Name of the recommendation.
             etag (str): Required. Fingerprint of the Recommendation. Provides optimistic locking.
-            state_metadata (dict[str -> str]): State properties to include with this state. Overwrites any existing
-                ``state_metadata``. Keys must match the regex
-                ``/^[a-z0-9][a-z0-9_.-]{0,62}$/``. Values must match the regex
-                ``/^[a-zA-Z0-9_./-]{0,255}$/``.
+            state_metadata (dict[str -> str]): Number of nano (10^-9) units of the amount. The value must be
+                between -999,999,999 and +999,999,999 inclusive. If ``units`` is
+                positive, ``nanos`` must be positive or zero. If ``units`` is zero,
+                ``nanos`` can be positive, zero, or negative. If ``units`` is negative,
+                ``nanos`` must be negative or zero. For example $-1.75 is represented as
+                ``units``\ =-1 and ``nanos``\ =-750,000,000.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -603,12 +619,12 @@ class RecommenderClient(object):
         metadata=None,
     ):
         """
-        Mark the Recommendation State as Failed. Users can use this method
-        to indicate to the Recommender API that they have applied the
-        recommendation themselves, and the operation failed. This stops the
-        recommendation content from being updated.
+        Mark the Recommendation State as Succeeded. Users can use this
+        method to indicate to the Recommender API that they have applied the
+        recommendation themselves, and the operation was successful. This stops
+        the recommendation content from being updated.
 
-        MarkRecommendationFailed can be applied to recommendations in ACTIVE,
+        MarkRecommendationSucceeded can be applied to recommendations in ACTIVE,
         CLAIMED, SUCCEEDED, or FAILED state.
 
         Requires the recommender.*.update IAM permission for the specified
@@ -629,10 +645,9 @@ class RecommenderClient(object):
         Args:
             name (str): Required. Name of the recommendation.
             etag (str): Required. Fingerprint of the Recommendation. Provides optimistic locking.
-            state_metadata (dict[str -> str]): State properties to include with this state. Overwrites any existing
-                ``state_metadata``. Keys must match the regex
-                ``/^[a-z0-9][a-z0-9_.-]{0,62}$/``. Values must match the regex
-                ``/^[a-zA-Z0-9_./-]{0,255}$/``.
+            state_metadata (dict[str -> str]): Signed seconds of the span of time. Must be from -315,576,000,000 to
+                +315,576,000,000 inclusive. Note: these bounds are computed from: 60
+                sec/min \* 60 min/hr \* 24 hr/day \* 365.25 days/year \* 10000 years
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
