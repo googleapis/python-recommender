@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2019 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,10 +21,39 @@ import enum
 
 class NullValue(enum.IntEnum):
     """
-    ``NullValue`` is a singleton enumeration to represent the null value
-    for the ``Value`` type union.
+    A definition of a client library method signature.
 
-    The JSON representation for ``NullValue`` is JSON ``null``.
+    In client libraries, each proto RPC corresponds to one or more methods
+    which the end user is able to call, and calls the underlying RPC.
+    Normally, this method receives a single argument (a struct or instance
+    corresponding to the RPC request object). Defining this field will add
+    one or more overloads providing flattened or simpler method signatures
+    in some languages.
+
+    The fields on the method signature are provided as a comma-separated
+    string.
+
+    For example, the proto RPC and annotation:
+
+    rpc CreateSubscription(CreateSubscriptionRequest) returns (Subscription)
+    { option (google.api.method_signature) = "name,topic"; }
+
+    Would add the following Java overload (in addition to the method
+    accepting the request object):
+
+    public final Subscription createSubscription(String name, String topic)
+
+    The following backwards-compatibility guidelines apply:
+
+    -  Adding this annotation to an unannotated method is backwards
+       compatible.
+    -  Adding this annotation to a method which already has existing method
+       signature annotations is backwards compatible if and only if the new
+       method signature annotation is last in the sequence.
+    -  Modifying or removing an existing method signature annotation is a
+       breaking change.
+    -  Re-ordering existing method signature annotations is a breaking
+       change.
 
     Attributes:
       NULL_VALUE (int): Null value.
@@ -51,6 +80,50 @@ class Impact(object):
         SECURITY = 2
         PERFORMANCE = 3
         MANAGEABILITY = 4
+
+
+class Insight(object):
+    class Category(enum.IntEnum):
+        """
+        Insight category.
+
+        Attributes:
+          CATEGORY_UNSPECIFIED (int): Unspecified category.
+          COST (int): The insight is related to cost.
+          SECURITY (int): The insight is related to security.
+          PERFORMANCE (int): The insight is related to performance.
+          MANAGEABILITY (int): This insight is related to manageability.
+        """
+
+        CATEGORY_UNSPECIFIED = 0
+        COST = 1
+        SECURITY = 2
+        PERFORMANCE = 3
+        MANAGEABILITY = 4
+
+
+class InsightStateInfo(object):
+    class State(enum.IntEnum):
+        """
+        Represents insight state.
+
+        Attributes:
+          STATE_UNSPECIFIED (int): Unspecified state.
+          ACTIVE (int): Insight is active. Content for ACTIVE insights can be updated by Google.
+          ACTIVE insights can be marked DISMISSED OR ACCEPTED.
+          ACCEPTED (int): Some action has been taken based on this insight. Insights become
+          accepted when a recommendation derived from the insight has been marked
+          CLAIMED, SUCCEEDED, or FAILED. ACTIVE insights can also be marked
+          ACCEPTED explicitly. Content for ACCEPTED insights is immutable. ACCEPTED
+          insights can only be marked ACCEPTED (which may update state metadata).
+          DISMISSED (int): Insight is dismissed. Content for DISMISSED insights can be updated by
+          Google. DISMISSED insights can be marked as ACTIVE.
+        """
+
+        STATE_UNSPECIFIED = 0
+        ACTIVE = 1
+        ACCEPTED = 2
+        DISMISSED = 3
 
 
 class RecommendationStateInfo(object):
