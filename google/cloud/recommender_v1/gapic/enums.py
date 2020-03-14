@@ -21,10 +21,10 @@ import enum
 
 class NullValue(enum.IntEnum):
     """
-    ``NullValue`` is a singleton enumeration to represent the null value
-    for the ``Value`` type union.
-
-    The JSON representation for ``NullValue`` is JSON ``null``.
+    Optional. If present, retrieves the next batch of results from the
+    preceding call to this method. ``page_token`` must be the value of
+    ``next_page_token`` from the previous response. The values of other
+    method parameters must be identical to those in the previous call.
 
     Attributes:
       NULL_VALUE (int): Null value.
