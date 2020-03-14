@@ -1,12 +1,19 @@
 {
-  "updateTime": "2020-03-13T12:17:59.665819Z",
+  "updateTime": "2020-03-14T00:25:36.917796Z",
   "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "git@github.com:googleapis/python-recommender.git",
+        "sha": "b8f198ecb1d36afa16d9054653ebbb811e7dbd91"
+      }
+    },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "7d569be2928dbd72b4e261bf9e468f23afd2b950",
-        "internalRef": "300718800"
+        "sha": "8386761d09819b665b6a6e1e6d6ff884bc8ff781",
+        "internalRef": "300843960"
       }
     },
     {

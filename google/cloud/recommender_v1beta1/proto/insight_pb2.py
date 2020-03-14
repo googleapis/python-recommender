@@ -579,8 +579,7 @@ InsightStateInfo = _reflection.GeneratedProtocolMessageType(
           Insight state.
       state_metadata:
           A map of metadata for the state, provided by user or
-          automations systems.  .. [1]    a-z0-9  .. [2]    a-z0-9  ..
-          [3]    a-z0-9
+          automations systems.
   """,
         # @@protoc_insertion_point(class_scope:google.cloud.recommender.v1beta1.InsightStateInfo)
     },

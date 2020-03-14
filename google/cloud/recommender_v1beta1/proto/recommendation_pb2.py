@@ -1117,9 +1117,7 @@ Recommendation = _reflection.GeneratedProtocolMessageType(
     
     Attributes:
         insight:
-            Insight resource name, e.g. projects/[PROJECT_NUMBER]/location
-            s/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/insights/[INSIGHT_
-            ID]
+            Insight resource name, e.g. ``projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/insights/[INSIGHT_ID]``
     """,
                 # @@protoc_insertion_point(class_scope:google.cloud.recommender.v1beta1.Recommendation.InsightReference)
             },

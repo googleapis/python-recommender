@@ -1228,8 +1228,7 @@ Operation = _reflection.GeneratedProtocolMessageType(
           support value matching beyond exact match. To perform exact
           match, use path_filters. When both path_filters and
           path_value_matchers are set, an implicit AND must be
-          performed.  .. [1]    a-z0-9  .. [2]    a-z0-9  .. [3]
-          a-z0-9
+          performed.
   """,
         # @@protoc_insertion_point(class_scope:google.cloud.recommender.v1.Operation)
     },
@@ -1244,8 +1243,7 @@ ValueMatcher = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _VALUEMATCHER,
         "__module__": "google.cloud.recommender_v1.proto.recommendation_pb2",
-        "__doc__": """Contains various matching options for values for a GCP
-  resource field.
+        "__doc__": """Contains various matching options for values for a GCP resource field.
   
   
   Attributes:
