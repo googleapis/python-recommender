@@ -1186,7 +1186,8 @@ RecommendationContent = _reflection.GeneratedProtocolMessageType(
       operation_groups:
           Operations to one or more Google Cloud resources grouped in
           such a way that, all operations within one group are expected
-          to be performed atomically and in an order.
+          to be performed atomically and in an order.  .. [1]    a-z0-9
+          .. [2]    a-z0-9  .. [3]    a-z0-9
   """,
         # @@protoc_insertion_point(class_scope:google.cloud.recommender.v1beta1.RecommendationContent)
     },
