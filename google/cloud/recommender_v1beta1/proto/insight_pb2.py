@@ -531,8 +531,8 @@ Insight = _reflection.GeneratedProtocolMessageType(
         ),
         "DESCRIPTOR": _INSIGHT,
         "__module__": "google.cloud.recommender_v1beta1.proto.insight_pb2",
-        "__doc__": """An insight along with the information used to derive the insight. The
-  insight may have associated recomendations as well.
+        "__doc__": """An insight along with the information used to derive the
+  insight. The insight may have associated recomendations as well.
   
   
   Attributes:
@@ -594,7 +594,8 @@ InsightStateInfo = _reflection.GeneratedProtocolMessageType(
           Insight state.
       state_metadata:
           A map of metadata for the state, provided by user or
-          automations systems.
+          automations systems.  .. [1]    a-z0-9  .. [2]    a-z0-9  ..
+          [3]    a-z0-9
   """,
         # @@protoc_insertion_point(class_scope:google.cloud.recommender.v1beta1.InsightStateInfo)
     },

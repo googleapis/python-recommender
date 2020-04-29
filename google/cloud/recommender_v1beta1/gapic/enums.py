@@ -21,10 +21,39 @@ import enum
 
 class NullValue(enum.IntEnum):
     """
-    ``NullValue`` is a singleton enumeration to represent the null value
-    for the ``Value`` type union.
+    A definition of a client library method signature.
 
-    The JSON representation for ``NullValue`` is JSON ``null``.
+    In client libraries, each proto RPC corresponds to one or more methods
+    which the end user is able to call, and calls the underlying RPC.
+    Normally, this method receives a single argument (a struct or instance
+    corresponding to the RPC request object). Defining this field will add
+    one or more overloads providing flattened or simpler method signatures
+    in some languages.
+
+    The fields on the method signature are provided as a comma-separated
+    string.
+
+    For example, the proto RPC and annotation:
+
+    rpc CreateSubscription(CreateSubscriptionRequest) returns (Subscription)
+    { option (google.api.method_signature) = "name,topic"; }
+
+    Would add the following Java overload (in addition to the method
+    accepting the request object):
+
+    public final Subscription createSubscription(String name, String topic)
+
+    The following backwards-compatibility guidelines apply:
+
+    -  Adding this annotation to an unannotated method is backwards
+       compatible.
+    -  Adding this annotation to a method which already has existing method
+       signature annotations is backwards compatible if and only if the new
+       method signature annotation is last in the sequence.
+    -  Modifying or removing an existing method signature annotation is a
+       breaking change.
+    -  Re-ordering existing method signature annotations is a breaking
+       change.
 
     Attributes:
       NULL_VALUE (int): Null value.

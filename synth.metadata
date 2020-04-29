@@ -3,16 +3,16 @@
     {
       "git": {
         "name": ".",
-        "remote": "git@github.com:googleapis/python-recommender.git",
-        "sha": "b42c8a8b81666c14ae19d8487748788eae27326c"
+        "remote": "https://github.com/googleapis/python-recommender.git",
+        "sha": "754b32927208eb775c9d3774fc3c389e22039910"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "756b174de4a122461993c1c583345533d819936d",
-        "internalRef": "308824110"
+        "sha": "3f5f8a2258c6a41f9fbf7b80acbca631dda0a952",
+        "internalRef": "308922843"
       }
     },
     {
