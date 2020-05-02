@@ -1063,9 +1063,8 @@ Recommendation = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _RECOMMENDATION,
         "__module__": "google.cloud.recommender_v1.proto.recommendation_pb2",
-        "__doc__": """A recommendation along with a suggested action. E.g., a
-  rightsizing recommendation for an underutilized VM, IAM role
-  recommendations, etc
+        "__doc__": """A recommendation along with a suggested action. E.g., a rightsizing
+  recommendation for an underutilized VM, IAM role recommendations, etc
   
   
   Attributes:

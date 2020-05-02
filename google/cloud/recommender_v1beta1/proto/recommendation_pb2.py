@@ -1179,7 +1179,8 @@ Recommendation = _reflection.GeneratedProtocolMessageType(
           Fingerprint of the Recommendation. Provides optimistic locking
           when updating states.
       associated_insights:
-          Insights that led to this recommendation.
+          Insights that led to this recommendation.  .. [1]    a-z0-9
+          .. [2]    a-z0-9  .. [3]    a-z0-9
   """,
         # @@protoc_insertion_point(class_scope:google.cloud.recommender.v1beta1.Recommendation)
     },
