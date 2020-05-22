@@ -4,22 +4,22 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-recommender.git",
-        "sha": "754b32927208eb775c9d3774fc3c389e22039910"
+        "sha": "5e00996548efe5680e45a56e64e808a570d430c1"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "89e89786896d256c70f43e68a975470c4f4f220e",
-        "internalRef": "311239362"
+        "sha": "cd43cbb44dd0b33324e45b9c9396a4a665721451",
+        "internalRef": "312788012"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "84c4156c49be9dcabacc8fd7b0585b6fd789ae47"
+        "sha": "65f8c647c0bc0c6b38211b969a2a003e271a5ef1"
       }
     }
   ],
