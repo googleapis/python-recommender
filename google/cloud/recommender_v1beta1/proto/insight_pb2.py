@@ -518,8 +518,6 @@ Insight = _reflection.GeneratedProtocolMessageType(
                 "DESCRIPTOR": _INSIGHT_RECOMMENDATIONREFERENCE,
                 "__module__": "google.cloud.recommender_v1beta1.proto.insight_pb2",
                 "__doc__": """Reference to an associated recommendation.
-    
-    
     Attributes:
         recommendation:
             Recommendation resource name, e.g. projects/[PROJECT_NUMBER]/l
@@ -531,10 +529,8 @@ Insight = _reflection.GeneratedProtocolMessageType(
         ),
         "DESCRIPTOR": _INSIGHT,
         "__module__": "google.cloud.recommender_v1beta1.proto.insight_pb2",
-        "__doc__": """An insight along with the information used to derive the
-  insight. The insight may have associated recomendations as well.
-  
-  
+        "__doc__": """An insight along with the information used to derive the insight. The
+  insight may have associated recomendations as well.
   Attributes:
       name:
           Name of the insight.
@@ -587,8 +583,6 @@ InsightStateInfo = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _INSIGHTSTATEINFO,
         "__module__": "google.cloud.recommender_v1beta1.proto.insight_pb2",
         "__doc__": """Information related to insight state.
-  
-  
   Attributes:
       state:
           Insight state.
