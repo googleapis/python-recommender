@@ -1173,8 +1173,8 @@ Operation = _reflection.GeneratedProtocolMessageType(
         ),
         "DESCRIPTOR": _OPERATION,
         "__module__": "google.cloud.recommender_v1.proto.recommendation_pb2",
-        "__doc__": """Contains an operation for a resource loosely based on the
-  JSON-PATCH format with support for:
+        "__doc__": """Contains an operation for a resource loosely based on the JSON-PATCH
+  format with support for:
   
   -  Custom filters for describing partial array patch.
   -  Extended path values for describing nested arrays.
@@ -1280,8 +1280,8 @@ CostProjection = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _COSTPROJECTION,
         "__module__": "google.cloud.recommender_v1.proto.recommendation_pb2",
-        "__doc__": """Contains metadata about how much money a recommendation can save or
-  incur.
+        "__doc__": """Contains metadata about how much money a recommendation
+  can save or incur.
   
   
   Attributes:
