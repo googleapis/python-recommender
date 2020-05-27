@@ -1279,8 +1279,8 @@ CostProjection = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _COSTPROJECTION,
         "__module__": "google.cloud.recommender_v1.proto.recommendation_pb2",
-        "__doc__": """Contains metadata about how much money a recommendation
-  can save or incur.
+        "__doc__": """Contains metadata about how much money a recommendation can save or
+  incur.
   
   
   Attributes:
