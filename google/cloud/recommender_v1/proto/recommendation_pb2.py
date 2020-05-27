@@ -1266,6 +1266,7 @@ CostProjection = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.recommender_v1.proto.recommendation_pb2",
         "__doc__": """Contains metadata about how much money a recommendation can save or
   incur.
+
   Attributes:
       cost:
           An approximate projection on amount saved or amount incurred.
