@@ -681,8 +681,6 @@ ListRecommendationsRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _LISTRECOMMENDATIONSREQUEST,
         "__module__": "google.cloud.recommender_v1.proto.recommender_service_pb2",
         "__doc__": """Request for the ``ListRecommendations`` method.
-  
-  
   Attributes:
       parent:
           Required. The container resource on which to execute the
@@ -717,8 +715,6 @@ ListRecommendationsResponse = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _LISTRECOMMENDATIONSRESPONSE,
         "__module__": "google.cloud.recommender_v1.proto.recommender_service_pb2",
         "__doc__": """Response to the ``ListRecommendations`` method.
-  
-  
   Attributes:
       recommendations:
           The set of recommendations for the ``parent`` resource.
@@ -739,8 +735,6 @@ GetRecommendationRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _GETRECOMMENDATIONREQUEST,
         "__module__": "google.cloud.recommender_v1.proto.recommender_service_pb2",
         "__doc__": """Request to the ``GetRecommendation`` method.
-  
-  
   Attributes:
       name:
           Required. Name of the recommendation.
@@ -766,8 +760,6 @@ MarkRecommendationClaimedRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _MARKRECOMMENDATIONCLAIMEDREQUEST,
         "__module__": "google.cloud.recommender_v1.proto.recommender_service_pb2",
         "__doc__": """Request for the ``MarkRecommendationClaimed`` Method.
-  
-  
   Attributes:
       name:
           Required. Name of the recommendation.
@@ -802,8 +794,6 @@ MarkRecommendationSucceededRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _MARKRECOMMENDATIONSUCCEEDEDREQUEST,
         "__module__": "google.cloud.recommender_v1.proto.recommender_service_pb2",
         "__doc__": """Request for the ``MarkRecommendationSucceeded`` Method.
-  
-  
   Attributes:
       name:
           Required. Name of the recommendation.
@@ -838,8 +828,6 @@ MarkRecommendationFailedRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _MARKRECOMMENDATIONFAILEDREQUEST,
         "__module__": "google.cloud.recommender_v1.proto.recommender_service_pb2",
         "__doc__": """Request for the ``MarkRecommendationFailed`` Method.
-  
-  
   Attributes:
       name:
           Required. Name of the recommendation.
