@@ -531,7 +531,6 @@ Insight = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.recommender_v1beta1.proto.insight_pb2",
         "__doc__": """An insight along with the information used to derive the insight. The
   insight may have associated recomendations as well.
-
   Attributes:
       name:
           Name of the insight.
