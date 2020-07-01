@@ -713,6 +713,7 @@ ListRecommendationsRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _LISTRECOMMENDATIONSREQUEST,
         "__module__": "google.cloud.recommender_v1.proto.recommender_service_pb2",
         "__doc__": """Request for the ``ListRecommendations`` method.
+  
   Attributes:
       parent:
           Required. The container resource on which to execute the
@@ -734,6 +735,7 @@ ListRecommendationsRequest = _reflection.GeneratedProtocolMessageType(
           Filter expression to restrict the recommendations returned.
           Supported filter fields: state_info.state Eg:
           \`state_info.state:“DISMISSED” or state_info.state:“FAILED”
+          .. [1]    a-z0-9  .. [2]    a-z0-9  .. [3]    a-z0-9
   """,
         # @@protoc_insertion_point(class_scope:google.cloud.recommender.v1.ListRecommendationsRequest)
     },
@@ -747,13 +749,13 @@ ListRecommendationsResponse = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _LISTRECOMMENDATIONSRESPONSE,
         "__module__": "google.cloud.recommender_v1.proto.recommender_service_pb2",
         "__doc__": """Response to the ``ListRecommendations`` method.
+  
   Attributes:
       recommendations:
           The set of recommendations for the ``parent`` resource.
       next_page_token:
           A token that can be used to request the next page of results.
-          This field is empty if there are no additional results.  ..
-          [1]    a-z0-9  .. [2]    a-z0-9  .. [3]    a-z0-9
+          This field is empty if there are no additional results.
   """,
         # @@protoc_insertion_point(class_scope:google.cloud.recommender.v1.ListRecommendationsResponse)
     },
@@ -767,6 +769,7 @@ GetRecommendationRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _GETRECOMMENDATIONREQUEST,
         "__module__": "google.cloud.recommender_v1.proto.recommender_service_pb2",
         "__doc__": """Request to the ``GetRecommendation`` method.
+  
   Attributes:
       name:
           Required. Name of the recommendation.
@@ -792,13 +795,14 @@ MarkRecommendationClaimedRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _MARKRECOMMENDATIONCLAIMEDREQUEST,
         "__module__": "google.cloud.recommender_v1.proto.recommender_service_pb2",
         "__doc__": """Request for the ``MarkRecommendationClaimed`` Method.
+  
   Attributes:
       name:
           Required. Name of the recommendation.
       state_metadata:
           State properties to include with this state. Overwrites any
           existing ``state_metadata``. Keys must match the regex ``/
-          [3]_[a-z0-9_.-]{0,62}/``. Values must match the regex
+          [1]_[a-z0-9_.-]{0,62}/``. Values must match the regex
           ``/^[a-zA-Z0-9_./-]{0,255}/``.
       etag:
           Required. Fingerprint of the Recommendation. Provides
@@ -826,13 +830,14 @@ MarkRecommendationSucceededRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _MARKRECOMMENDATIONSUCCEEDEDREQUEST,
         "__module__": "google.cloud.recommender_v1.proto.recommender_service_pb2",
         "__doc__": """Request for the ``MarkRecommendationSucceeded`` Method.
+  
   Attributes:
       name:
           Required. Name of the recommendation.
       state_metadata:
           State properties to include with this state. Overwrites any
           existing ``state_metadata``. Keys must match the regex ``/
-          [1]_[a-z0-9_.-]{0,62}/``. Values must match the regex
+          [3]_[a-z0-9_.-]{0,62}/``. Values must match the regex
           ``/^[a-zA-Z0-9_./-]{0,255}/``.
       etag:
           Required. Fingerprint of the Recommendation. Provides
@@ -860,6 +865,7 @@ MarkRecommendationFailedRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _MARKRECOMMENDATIONFAILEDREQUEST,
         "__module__": "google.cloud.recommender_v1.proto.recommender_service_pb2",
         "__doc__": """Request for the ``MarkRecommendationFailed`` Method.
+  
   Attributes:
       name:
           Required. Name of the recommendation.
