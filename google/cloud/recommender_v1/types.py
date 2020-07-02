@@ -28,9 +28,17 @@ from google.protobuf import timestamp_pb2
 from google.type import money_pb2
 
 
-_shared_modules = [duration_pb2, struct_pb2, timestamp_pb2, money_pb2]
+_shared_modules = [
+    duration_pb2,
+    struct_pb2,
+    timestamp_pb2,
+    money_pb2,
+]
 
-_local_modules = [recommendation_pb2, recommender_service_pb2]
+_local_modules = [
+    recommendation_pb2,
+    recommender_service_pb2,
+]
 
 names = []
 
