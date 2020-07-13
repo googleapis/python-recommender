@@ -4,6 +4,13 @@
 
 [1]: https://pypi.org/project/google-cloud-recommender/#history
 
+### [1.0.1](https://www.github.com/googleapis/python-recommender/compare/v1.0.0...v1.0.1) (2020-07-13)
+
+
+### Bug Fixes
+
+* update retry config ([#31](https://www.github.com/googleapis/python-recommender/issues/31)) ([5c497e2](https://www.github.com/googleapis/python-recommender/commit/5c497e29d65d288a4b8b24a7b5aa487a5804e880))
+
 ## [1.0.0](https://www.github.com/googleapis/python-recommender/compare/v0.3.0...v1.0.0) (2020-05-21)
 
 
