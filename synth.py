@@ -67,7 +67,7 @@ python.fix_pb2_grpc_headers()
 # ----------------------------------------------------------------------------
 # Add templated files
 # ----------------------------------------------------------------------------
-templated_files = common.py_library(microgenerator=True)
+templated_files = common.py_library(microgenerator=True, cov_level=80)
 s.move(templated_files)
 
 # TODO(busunkim): Use latest sphinx after microgenerator transition
