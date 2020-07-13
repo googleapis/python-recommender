@@ -20,6 +20,7 @@ import sys
 
 from google.api_core.protobuf_helpers import get_messages
 
+from google.cloud.recommender_v1.proto import insight_pb2
 from google.cloud.recommender_v1.proto import recommendation_pb2
 from google.cloud.recommender_v1.proto import recommender_service_pb2
 from google.protobuf import duration_pb2
@@ -36,9 +37,11 @@ _shared_modules = [
 ]
 
 _local_modules = [
+    insight_pb2,
     recommendation_pb2,
     recommender_service_pb2,
 ]
+
 
 names = []
 
