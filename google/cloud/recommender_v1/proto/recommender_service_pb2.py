@@ -1161,7 +1161,7 @@ MarkInsightAcceptedRequest = _reflection.GeneratedProtocolMessageType(
           state. Full replace of the current state_metadata.
       etag:
           Required. Fingerprint of the Insight. Provides optimistic
-          locking.
+          locking.  .. [1]    a-z0-9  .. [2]    a-z0-9  .. [3]    a-z0-9
   """,
         # @@protoc_insertion_point(class_scope:google.cloud.recommender.v1.MarkInsightAcceptedRequest)
     },
@@ -1268,8 +1268,7 @@ MarkRecommendationClaimedRequest = _reflection.GeneratedProtocolMessageType(
           ``/^[a-zA-Z0-9_./-]{0,255}/``.
       etag:
           Required. Fingerprint of the Recommendation. Provides
-          optimistic locking.  .. [1]    a-z0-9  .. [2]    a-z0-9  ..
-          [3]    a-z0-9
+          optimistic locking.
   """,
         # @@protoc_insertion_point(class_scope:google.cloud.recommender.v1.MarkRecommendationClaimedRequest)
     },
