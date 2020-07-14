@@ -4,7 +4,7 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-recommender.git",
-        "sha": "5c497e29d65d288a4b8b24a7b5aa487a5804e880"
+        "sha": "fe4970d7bd7cfe529ad16aa6faac658447915921"
       }
     },
     {
