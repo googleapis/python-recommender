@@ -1234,8 +1234,7 @@ GetRecommendationRequest = _reflection.GeneratedProtocolMessageType(
   
   Attributes:
       name:
-          Required. Name of the recommendation.  .. [1]    a-z0-9  ..
-          [2]    a-z0-9  .. [3]    a-z0-9
+          Required. Name of the recommendation.
   """,
         # @@protoc_insertion_point(class_scope:google.cloud.recommender.v1.GetRecommendationRequest)
     },
@@ -1339,7 +1338,8 @@ MarkRecommendationFailedRequest = _reflection.GeneratedProtocolMessageType(
           ``/^[a-zA-Z0-9_./-]{0,255}/``.
       etag:
           Required. Fingerprint of the Recommendation. Provides
-          optimistic locking.
+          optimistic locking.  .. [1]    a-z0-9  .. [2]    a-z0-9  ..
+          [3]    a-z0-9
   """,
         # @@protoc_insertion_point(class_scope:google.cloud.recommender.v1.MarkRecommendationFailedRequest)
     },
