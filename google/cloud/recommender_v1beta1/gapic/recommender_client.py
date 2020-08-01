@@ -40,9 +40,8 @@ from google.cloud.recommender_v1beta1.proto import recommender_service_pb2
 from google.cloud.recommender_v1beta1.proto import recommender_service_pb2_grpc
 
 
-
 _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution(
-    'google-cloud-recommender',
+    "google-cloud-recommender",
 ).version
 
 
@@ -54,13 +53,12 @@ class RecommenderClient(object):
     based on analysis of user resources, configuration and monitoring metrics.
     """
 
-    SERVICE_ADDRESS = 'recommender.googleapis.com:443'
+    SERVICE_ADDRESS = "recommender.googleapis.com:443"
     """The default address of the service."""
 
     # The name of the interface for this client. This is the key used to
     # find the method configuration in the client_config dictionary.
-    _INTERFACE_NAME = 'google.cloud.recommender.v1beta1.Recommender'
-
+    _INTERFACE_NAME = "google.cloud.recommender.v1beta1.Recommender"
 
     @classmethod
     def from_service_account_file(cls, filename, *args, **kwargs):
@@ -76,19 +74,17 @@ class RecommenderClient(object):
         Returns:
             RecommenderClient: The constructed client.
         """
-        credentials = service_account.Credentials.from_service_account_file(
-            filename)
-        kwargs['credentials'] = credentials
+        credentials = service_account.Credentials.from_service_account_file(filename)
+        kwargs["credentials"] = credentials
         return cls(*args, **kwargs)
 
     from_service_account_json = from_service_account_file
-
 
     @classmethod
     def insight_path(cls, project, location, insight_type, insight):
         """Return a fully-qualified insight string."""
         return google.api_core.path_template.expand(
-            'projects/{project}/locations/{location}/insightTypes/{insight_type}/insights/{insight}',
+            "projects/{project}/locations/{location}/insightTypes/{insight_type}/insights/{insight}",
             project=project,
             location=location,
             insight_type=insight_type,
@@ -99,7 +95,7 @@ class RecommenderClient(object):
     def insight_type_path(cls, project, location, insight_type):
         """Return a fully-qualified insight_type string."""
         return google.api_core.path_template.expand(
-            'projects/{project}/locations/{location}/insightTypes/{insight_type}',
+            "projects/{project}/locations/{location}/insightTypes/{insight_type}",
             project=project,
             location=location,
             insight_type=insight_type,
@@ -109,7 +105,7 @@ class RecommenderClient(object):
     def recommendation_path(cls, project, location, recommender, recommendation):
         """Return a fully-qualified recommendation string."""
         return google.api_core.path_template.expand(
-            'projects/{project}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}',
+            "projects/{project}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}",
             project=project,
             location=location,
             recommender=recommender,
@@ -120,14 +116,21 @@ class RecommenderClient(object):
     def recommender_path(cls, project, location, recommender):
         """Return a fully-qualified recommender string."""
         return google.api_core.path_template.expand(
-            'projects/{project}/locations/{location}/recommenders/{recommender}',
+            "projects/{project}/locations/{location}/recommenders/{recommender}",
             project=project,
             location=location,
             recommender=recommender,
         )
 
-    def __init__(self, transport=None, channel=None, credentials=None,
-            client_config=None, client_info=None, client_options=None):
+    def __init__(
+        self,
+        transport=None,
+        channel=None,
+        credentials=None,
+        client_config=None,
+        client_info=None,
+        client_options=None,
+    ):
         """Constructor.
 
         Args:
@@ -163,20 +166,27 @@ class RecommenderClient(object):
         """
         # Raise deprecation warnings for things we want to go away.
         if client_config is not None:
-            warnings.warn('The `client_config` argument is deprecated.',
-                          PendingDeprecationWarning, stacklevel=2)
+            warnings.warn(
+                "The `client_config` argument is deprecated.",
+                PendingDeprecationWarning,
+                stacklevel=2,
+            )
         else:
             client_config = recommender_client_config.config
 
         if channel:
-            warnings.warn('The `channel` argument is deprecated; use '
-                          '`transport` instead.',
-                          PendingDeprecationWarning, stacklevel=2)
+            warnings.warn(
+                "The `channel` argument is deprecated; use " "`transport` instead.",
+                PendingDeprecationWarning,
+                stacklevel=2,
+            )
 
         api_endpoint = self.SERVICE_ADDRESS
         if client_options:
             if type(client_options) == dict:
-                client_options = google.api_core.client_options.from_dict(client_options)
+                client_options = google.api_core.client_options.from_dict(
+                    client_options
+                )
             if client_options.api_endpoint:
                 api_endpoint = client_options.api_endpoint
 
@@ -193,15 +203,13 @@ class RecommenderClient(object):
             else:
                 if credentials:
                     raise ValueError(
-                        'Received both a transport instance and '
-                        'credentials; these are mutually exclusive.'
+                        "Received both a transport instance and "
+                        "credentials; these are mutually exclusive."
                     )
                 self.transport = transport
         else:
             self.transport = recommender_grpc_transport.RecommenderGrpcTransport(
-                address=api_endpoint,
-                channel=channel,
-                credentials=credentials,
+                address=api_endpoint, channel=channel, credentials=credentials,
             )
 
         if client_info is None:
@@ -217,7 +225,7 @@ class RecommenderClient(object):
         # (Ordinarily, these are the defaults specified in the `*_config.py`
         # file next to this one.)
         self._method_configs = google.api_core.gapic_v1.config.parse_method_configs(
-            client_config['interfaces'][self._INTERFACE_NAME],
+            client_config["interfaces"][self._INTERFACE_NAME],
         )
 
         # Save a dictionary of cached API call functions.
@@ -228,13 +236,14 @@ class RecommenderClient(object):
 
     # Service calls
     def list_insights(
-            self,
-            parent,
-            page_size=None,
-            filter_=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        parent,
+        page_size=None,
+        filter_=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Lists insights for a Cloud project. Requires the recommender.*.list
         IAM permission for the specified insight type.
@@ -300,46 +309,54 @@ class RecommenderClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'list_insights' not in self._inner_api_calls:
-            self._inner_api_calls['list_insights'] = google.api_core.gapic_v1.method.wrap_method(
+        if "list_insights" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "list_insights"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.list_insights,
-                default_retry=self._method_configs['ListInsights'].retry,
-                default_timeout=self._method_configs['ListInsights'].timeout,
+                default_retry=self._method_configs["ListInsights"].retry,
+                default_timeout=self._method_configs["ListInsights"].timeout,
                 client_info=self._client_info,
             )
 
         request = recommender_service_pb2.ListInsightsRequest(
-            parent=parent,
-            page_size=page_size,
-            filter=filter_,
+            parent=parent, page_size=page_size, filter=filter_,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('parent', parent)]
+            routing_header = [("parent", parent)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
         iterator = google.api_core.page_iterator.GRPCIterator(
             client=None,
-            method=functools.partial(self._inner_api_calls['list_insights'], retry=retry, timeout=timeout, metadata=metadata),
+            method=functools.partial(
+                self._inner_api_calls["list_insights"],
+                retry=retry,
+                timeout=timeout,
+                metadata=metadata,
+            ),
             request=request,
-            items_field='insights',
-            request_token_field='page_token',
-            response_token_field='next_page_token',
+            items_field="insights",
+            request_token_field="page_token",
+            response_token_field="next_page_token",
         )
         return iterator
 
     def get_insight(
-            self,
-            name,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        name,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Gets the requested insight. Requires the recommender.*.get IAM
         permission for the specified insight type.
@@ -375,38 +392,43 @@ class RecommenderClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'get_insight' not in self._inner_api_calls:
-            self._inner_api_calls['get_insight'] = google.api_core.gapic_v1.method.wrap_method(
+        if "get_insight" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "get_insight"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.get_insight,
-                default_retry=self._method_configs['GetInsight'].retry,
-                default_timeout=self._method_configs['GetInsight'].timeout,
+                default_retry=self._method_configs["GetInsight"].retry,
+                default_timeout=self._method_configs["GetInsight"].timeout,
                 client_info=self._client_info,
             )
 
-        request = recommender_service_pb2.GetInsightRequest(
-            name=name,
-        )
+        request = recommender_service_pb2.GetInsightRequest(name=name,)
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('name', name)]
+            routing_header = [("name", name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['get_insight'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["get_insight"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def mark_insight_accepted(
-            self,
-            name,
-            etag,
-            state_metadata=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        name,
+        etag,
+        state_metadata=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Marks the Insight State as Accepted. Users can use this method to
         indicate to the Recommender API that they have applied some action based
@@ -452,40 +474,45 @@ class RecommenderClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'mark_insight_accepted' not in self._inner_api_calls:
-            self._inner_api_calls['mark_insight_accepted'] = google.api_core.gapic_v1.method.wrap_method(
+        if "mark_insight_accepted" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "mark_insight_accepted"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.mark_insight_accepted,
-                default_retry=self._method_configs['MarkInsightAccepted'].retry,
-                default_timeout=self._method_configs['MarkInsightAccepted'].timeout,
+                default_retry=self._method_configs["MarkInsightAccepted"].retry,
+                default_timeout=self._method_configs["MarkInsightAccepted"].timeout,
                 client_info=self._client_info,
             )
 
         request = recommender_service_pb2.MarkInsightAcceptedRequest(
-            name=name,
-            etag=etag,
-            state_metadata=state_metadata,
+            name=name, etag=etag, state_metadata=state_metadata,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('name', name)]
+            routing_header = [("name", name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['mark_insight_accepted'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["mark_insight_accepted"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def list_recommendations(
-            self,
-            parent,
-            page_size=None,
-            filter_=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        parent,
+        page_size=None,
+        filter_=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Lists recommendations for a Cloud project. Requires the
         recommender.*.list IAM permission for the specified recommender.
@@ -552,46 +579,54 @@ class RecommenderClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'list_recommendations' not in self._inner_api_calls:
-            self._inner_api_calls['list_recommendations'] = google.api_core.gapic_v1.method.wrap_method(
+        if "list_recommendations" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "list_recommendations"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.list_recommendations,
-                default_retry=self._method_configs['ListRecommendations'].retry,
-                default_timeout=self._method_configs['ListRecommendations'].timeout,
+                default_retry=self._method_configs["ListRecommendations"].retry,
+                default_timeout=self._method_configs["ListRecommendations"].timeout,
                 client_info=self._client_info,
             )
 
         request = recommender_service_pb2.ListRecommendationsRequest(
-            parent=parent,
-            page_size=page_size,
-            filter=filter_,
+            parent=parent, page_size=page_size, filter=filter_,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('parent', parent)]
+            routing_header = [("parent", parent)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
         iterator = google.api_core.page_iterator.GRPCIterator(
             client=None,
-            method=functools.partial(self._inner_api_calls['list_recommendations'], retry=retry, timeout=timeout, metadata=metadata),
+            method=functools.partial(
+                self._inner_api_calls["list_recommendations"],
+                retry=retry,
+                timeout=timeout,
+                metadata=metadata,
+            ),
             request=request,
-            items_field='recommendations',
-            request_token_field='page_token',
-            response_token_field='next_page_token',
+            items_field="recommendations",
+            request_token_field="page_token",
+            response_token_field="next_page_token",
         )
         return iterator
 
     def get_recommendation(
-            self,
-            name,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        name,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Gets the requested recommendation. Requires the recommender.*.get
         IAM permission for the specified recommender.
@@ -627,38 +662,43 @@ class RecommenderClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'get_recommendation' not in self._inner_api_calls:
-            self._inner_api_calls['get_recommendation'] = google.api_core.gapic_v1.method.wrap_method(
+        if "get_recommendation" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "get_recommendation"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.get_recommendation,
-                default_retry=self._method_configs['GetRecommendation'].retry,
-                default_timeout=self._method_configs['GetRecommendation'].timeout,
+                default_retry=self._method_configs["GetRecommendation"].retry,
+                default_timeout=self._method_configs["GetRecommendation"].timeout,
                 client_info=self._client_info,
             )
 
-        request = recommender_service_pb2.GetRecommendationRequest(
-            name=name,
-        )
+        request = recommender_service_pb2.GetRecommendationRequest(name=name,)
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('name', name)]
+            routing_header = [("name", name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['get_recommendation'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["get_recommendation"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def mark_recommendation_claimed(
-            self,
-            name,
-            etag,
-            state_metadata=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        name,
+        etag,
+        state_metadata=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Marks the Recommendation State as Claimed. Users can use this method
         to indicate to the Recommender API that they are starting to apply the
@@ -711,40 +751,47 @@ class RecommenderClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'mark_recommendation_claimed' not in self._inner_api_calls:
-            self._inner_api_calls['mark_recommendation_claimed'] = google.api_core.gapic_v1.method.wrap_method(
+        if "mark_recommendation_claimed" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "mark_recommendation_claimed"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.mark_recommendation_claimed,
-                default_retry=self._method_configs['MarkRecommendationClaimed'].retry,
-                default_timeout=self._method_configs['MarkRecommendationClaimed'].timeout,
+                default_retry=self._method_configs["MarkRecommendationClaimed"].retry,
+                default_timeout=self._method_configs[
+                    "MarkRecommendationClaimed"
+                ].timeout,
                 client_info=self._client_info,
             )
 
         request = recommender_service_pb2.MarkRecommendationClaimedRequest(
-            name=name,
-            etag=etag,
-            state_metadata=state_metadata,
+            name=name, etag=etag, state_metadata=state_metadata,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('name', name)]
+            routing_header = [("name", name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['mark_recommendation_claimed'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["mark_recommendation_claimed"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def mark_recommendation_succeeded(
-            self,
-            name,
-            etag,
-            state_metadata=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        name,
+        etag,
+        state_metadata=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Marks the Recommendation State as Succeeded. Users can use this
         method to indicate to the Recommender API that they have applied the
@@ -797,40 +844,47 @@ class RecommenderClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'mark_recommendation_succeeded' not in self._inner_api_calls:
-            self._inner_api_calls['mark_recommendation_succeeded'] = google.api_core.gapic_v1.method.wrap_method(
+        if "mark_recommendation_succeeded" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "mark_recommendation_succeeded"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.mark_recommendation_succeeded,
-                default_retry=self._method_configs['MarkRecommendationSucceeded'].retry,
-                default_timeout=self._method_configs['MarkRecommendationSucceeded'].timeout,
+                default_retry=self._method_configs["MarkRecommendationSucceeded"].retry,
+                default_timeout=self._method_configs[
+                    "MarkRecommendationSucceeded"
+                ].timeout,
                 client_info=self._client_info,
             )
 
         request = recommender_service_pb2.MarkRecommendationSucceededRequest(
-            name=name,
-            etag=etag,
-            state_metadata=state_metadata,
+            name=name, etag=etag, state_metadata=state_metadata,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('name', name)]
+            routing_header = [("name", name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['mark_recommendation_succeeded'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["mark_recommendation_succeeded"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
 
     def mark_recommendation_failed(
-            self,
-            name,
-            etag,
-            state_metadata=None,
-            retry=google.api_core.gapic_v1.method.DEFAULT,
-            timeout=google.api_core.gapic_v1.method.DEFAULT,
-            metadata=None):
+        self,
+        name,
+        etag,
+        state_metadata=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
         """
         Marks the Recommendation State as Failed. Users can use this method
         to indicate to the Recommender API that they have applied the
@@ -883,28 +937,34 @@ class RecommenderClient(object):
             ValueError: If the parameters are invalid.
         """
         # Wrap the transport method to add retry and timeout logic.
-        if 'mark_recommendation_failed' not in self._inner_api_calls:
-            self._inner_api_calls['mark_recommendation_failed'] = google.api_core.gapic_v1.method.wrap_method(
+        if "mark_recommendation_failed" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "mark_recommendation_failed"
+            ] = google.api_core.gapic_v1.method.wrap_method(
                 self.transport.mark_recommendation_failed,
-                default_retry=self._method_configs['MarkRecommendationFailed'].retry,
-                default_timeout=self._method_configs['MarkRecommendationFailed'].timeout,
+                default_retry=self._method_configs["MarkRecommendationFailed"].retry,
+                default_timeout=self._method_configs[
+                    "MarkRecommendationFailed"
+                ].timeout,
                 client_info=self._client_info,
             )
 
         request = recommender_service_pb2.MarkRecommendationFailedRequest(
-            name=name,
-            etag=etag,
-            state_metadata=state_metadata,
+            name=name, etag=etag, state_metadata=state_metadata,
         )
         if metadata is None:
             metadata = []
         metadata = list(metadata)
         try:
-            routing_header = [('name', name)]
+            routing_header = [("name", name)]
         except AttributeError:
             pass
         else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(routing_header)
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
             metadata.append(routing_metadata)
 
-        return self._inner_api_calls['mark_recommendation_failed'](request, retry=retry, timeout=timeout, metadata=metadata)
+        return self._inner_api_calls["mark_recommendation_failed"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )

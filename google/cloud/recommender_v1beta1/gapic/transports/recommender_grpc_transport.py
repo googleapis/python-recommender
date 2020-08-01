@@ -28,14 +28,14 @@ class RecommenderGrpcTransport(object):
     which can be used to take advantage of advanced
     features of gRPC.
     """
+
     # The scopes needed to make gRPC calls to all of the methods defined
     # in this service.
-    _OAUTH_SCOPES = (
-        'https://www.googleapis.com/auth/cloud-platform',
-    )
+    _OAUTH_SCOPES = ("https://www.googleapis.com/auth/cloud-platform",)
 
-    def __init__(self, channel=None, credentials=None,
-                 address='recommender.googleapis.com:443'):
+    def __init__(
+        self, channel=None, credentials=None, address="recommender.googleapis.com:443"
+    ):
         """Instantiate the transport class.
 
         Args:
@@ -53,8 +53,7 @@ class RecommenderGrpcTransport(object):
         # exception (channels come with credentials baked in already).
         if channel is not None and credentials is not None:
             raise ValueError(
-                'The `channel` and `credentials` arguments are mutually '
-                'exclusive.',
+                "The `channel` and `credentials` arguments are mutually " "exclusive.",
             )
 
         # Create the channel.
@@ -63,8 +62,8 @@ class RecommenderGrpcTransport(object):
                 address=address,
                 credentials=credentials,
                 options={
-                    'grpc.max_send_message_length': -1,
-                    'grpc.max_receive_message_length': -1,
+                    "grpc.max_send_message_length": -1,
+                    "grpc.max_receive_message_length": -1,
                 }.items(),
             )
 
@@ -73,16 +72,13 @@ class RecommenderGrpcTransport(object):
         # gRPC uses objects called "stubs" that are bound to the
         # channel and provide a basic method for each RPC.
         self._stubs = {
-            'recommender_stub': recommender_service_pb2_grpc.RecommenderStub(channel),
+            "recommender_stub": recommender_service_pb2_grpc.RecommenderStub(channel),
         }
-
 
     @classmethod
     def create_channel(
-                cls,
-                address='recommender.googleapis.com:443',
-                credentials=None,
-                **kwargs):
+        cls, address="recommender.googleapis.com:443", credentials=None, **kwargs
+    ):
         """Create and return a gRPC channel object.
 
         Args:
@@ -99,10 +95,7 @@ class RecommenderGrpcTransport(object):
             grpc.Channel: A gRPC channel object.
         """
         return google.api_core.grpc_helpers.create_channel(
-            address,
-            credentials=credentials,
-            scopes=cls._OAUTH_SCOPES,
-            **kwargs
+            address, credentials=credentials, scopes=cls._OAUTH_SCOPES, **kwargs
         )
 
     @property
@@ -126,7 +119,7 @@ class RecommenderGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['recommender_stub'].ListInsights
+        return self._stubs["recommender_stub"].ListInsights
 
     @property
     def get_insight(self):
@@ -140,7 +133,7 @@ class RecommenderGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['recommender_stub'].GetInsight
+        return self._stubs["recommender_stub"].GetInsight
 
     @property
     def mark_insight_accepted(self):
@@ -158,7 +151,7 @@ class RecommenderGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['recommender_stub'].MarkInsightAccepted
+        return self._stubs["recommender_stub"].MarkInsightAccepted
 
     @property
     def list_recommendations(self):
@@ -172,7 +165,7 @@ class RecommenderGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['recommender_stub'].ListRecommendations
+        return self._stubs["recommender_stub"].ListRecommendations
 
     @property
     def get_recommendation(self):
@@ -186,7 +179,7 @@ class RecommenderGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['recommender_stub'].GetRecommendation
+        return self._stubs["recommender_stub"].GetRecommendation
 
     @property
     def mark_recommendation_claimed(self):
@@ -209,7 +202,7 @@ class RecommenderGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['recommender_stub'].MarkRecommendationClaimed
+        return self._stubs["recommender_stub"].MarkRecommendationClaimed
 
     @property
     def mark_recommendation_succeeded(self):
@@ -232,7 +225,7 @@ class RecommenderGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['recommender_stub'].MarkRecommendationSucceeded
+        return self._stubs["recommender_stub"].MarkRecommendationSucceeded
 
     @property
     def mark_recommendation_failed(self):
@@ -255,4 +248,4 @@ class RecommenderGrpcTransport(object):
                 deserialized request object and returns a
                 deserialized response object.
         """
-        return self._stubs['recommender_stub'].MarkRecommendationFailed
+        return self._stubs["recommender_stub"].MarkRecommendationFailed
