@@ -1198,6 +1198,7 @@ ListRecommendationsRequest = _reflection.GeneratedProtocolMessageType(
           Filter expression to restrict the recommendations returned.
           Supported filter fields: state_info.state Eg:
           \`state_info.state:“DISMISSED” or state_info.state:“FAILED”
+          .. [1]    a-z0-9  .. [2]    a-z0-9  .. [3]    a-z0-9
   """,
         # @@protoc_insertion_point(class_scope:google.cloud.recommender.v1beta1.ListRecommendationsRequest)
     },
@@ -1234,8 +1235,7 @@ GetRecommendationRequest = _reflection.GeneratedProtocolMessageType(
   
   Attributes:
       name:
-          Required. Name of the recommendation.  .. [1]    a-z0-9  ..
-          [2]    a-z0-9  .. [3]    a-z0-9
+          Required. Name of the recommendation.
   """,
         # @@protoc_insertion_point(class_scope:google.cloud.recommender.v1beta1.GetRecommendationRequest)
     },
