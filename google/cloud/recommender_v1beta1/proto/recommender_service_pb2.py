@@ -1217,7 +1217,8 @@ ListRecommendationsResponse = _reflection.GeneratedProtocolMessageType(
           The set of recommendations for the ``parent`` resource.
       next_page_token:
           A token that can be used to request the next page of results.
-          This field is empty if there are no additional results.
+          This field is empty if there are no additional results.  ..
+          [1]    a-z0-9  .. [2]    a-z0-9  .. [3]    a-z0-9
   """,
         # @@protoc_insertion_point(class_scope:google.cloud.recommender.v1beta1.ListRecommendationsResponse)
     },
@@ -1264,12 +1265,11 @@ MarkRecommendationClaimedRequest = _reflection.GeneratedProtocolMessageType(
       state_metadata:
           State properties to include with this state. Overwrites any
           existing ``state_metadata``. Keys must match the regex ``/
-          [3]_[a-z0-9_.-]{0,62}/``. Values must match the regex
+          [2]_[a-z0-9_.-]{0,62}/``. Values must match the regex
           ``/^[a-zA-Z0-9_./-]{0,255}/``.
       etag:
           Required. Fingerprint of the Recommendation. Provides
-          optimistic locking.  .. [1]    a-z0-9  .. [2]    a-z0-9  ..
-          [3]    a-z0-9
+          optimistic locking.
   """,
         # @@protoc_insertion_point(class_scope:google.cloud.recommender.v1beta1.MarkRecommendationClaimedRequest)
     },
@@ -1300,7 +1300,7 @@ MarkRecommendationSucceededRequest = _reflection.GeneratedProtocolMessageType(
       state_metadata:
           State properties to include with this state. Overwrites any
           existing ``state_metadata``. Keys must match the regex ``/
-          [2]_[a-z0-9_.-]{0,62}/``. Values must match the regex
+          [1]_[a-z0-9_.-]{0,62}/``. Values must match the regex
           ``/^[a-zA-Z0-9_./-]{0,255}/``.
       etag:
           Required. Fingerprint of the Recommendation. Provides
@@ -1335,7 +1335,7 @@ MarkRecommendationFailedRequest = _reflection.GeneratedProtocolMessageType(
       state_metadata:
           State properties to include with this state. Overwrites any
           existing ``state_metadata``. Keys must match the regex ``/
-          [1]_[a-z0-9_.-]{0,62}/``. Values must match the regex
+          [3]_[a-z0-9_.-]{0,62}/``. Values must match the regex
           ``/^[a-zA-Z0-9_./-]{0,255}/``.
       etag:
           Required. Fingerprint of the Recommendation. Provides
