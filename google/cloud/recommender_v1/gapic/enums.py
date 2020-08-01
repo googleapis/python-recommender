@@ -29,7 +29,6 @@ class NullValue(enum.IntEnum):
     Attributes:
       NULL_VALUE (int): Null value.
     """
-
     NULL_VALUE = 0
 
 
@@ -45,7 +44,6 @@ class Impact(object):
           PERFORMANCE (int): Indicates a potential increase or decrease in performance.
           MANAGEABILITY (int): Indicates a potential increase or decrease in manageability.
         """
-
         CATEGORY_UNSPECIFIED = 0
         COST = 1
         SECURITY = 2
@@ -65,7 +63,6 @@ class Insight(object):
           PERFORMANCE (int): The insight is related to performance.
           MANAGEABILITY (int): This insight is related to manageability.
         """
-
         CATEGORY_UNSPECIFIED = 0
         COST = 1
         SECURITY = 2
@@ -90,7 +87,6 @@ class InsightStateInfo(object):
           DISMISSED (int): Insight is dismissed. Content for DISMISSED insights can be updated by
           Google. DISMISSED insights can be marked as ACTIVE.
         """
-
         STATE_UNSPECIFIED = 0
         ACTIVE = 1
         ACCEPTED = 2
@@ -125,10 +121,10 @@ class RecommendationStateInfo(object):
 
           DISMISSED recommendations can be marked as ACTIVE.
         """
-
         STATE_UNSPECIFIED = 0
         ACTIVE = 1
         CLAIMED = 6
         SUCCEEDED = 3
         FAILED = 4
         DISMISSED = 5
+    

@@ -26,12 +26,11 @@ from google.cloud.recommender_v1beta1.gapic import recommender_client
 
 if sys.version_info[:2] == (2, 7):
     message = (
-        "A future version of this library will drop support for Python 2.7. "
-        "More details about Python 2 support for Google Cloud Client Libraries "
-        "can be found at https://cloud.google.com/python/docs/python2-sunset/"
+        'A future version of this library will drop support for Python 2.7. '
+        'More details about Python 2 support for Google Cloud Client Libraries '
+        'can be found at https://cloud.google.com/python/docs/python2-sunset/'
     )
     warnings.warn(message, DeprecationWarning)
-
 
 class RecommenderClient(recommender_client.RecommenderClient):
     __doc__ = recommender_client.RecommenderClient.__doc__
@@ -39,7 +38,7 @@ class RecommenderClient(recommender_client.RecommenderClient):
 
 
 __all__ = (
-    "enums",
-    "types",
-    "RecommenderClient",
+    'enums',
+    'types',
+    'RecommenderClient',
 )

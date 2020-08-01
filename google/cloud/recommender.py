@@ -23,7 +23,7 @@ from google.cloud.recommender_v1 import types
 
 
 __all__ = (
-    "enums",
-    "types",
-    "RecommenderClient",
+    'enums',
+    'types',
+    'RecommenderClient',
 )
