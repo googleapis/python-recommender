@@ -112,7 +112,7 @@ response = client.mark_insight_accepted(
 )
 ```
 
-This call is invalid because it mixes `request` with a keyword argument `audio_config`. Executing this code
+This call is invalid because it mixes `request` with a keyword argument `etag`. Executing this code
 will result in an error.
 
 ```py
