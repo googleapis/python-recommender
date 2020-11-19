@@ -37,9 +37,8 @@ for version in versions:
 
 # Fix docstring with regex pattern that breaks docgen
 s.replace("google/**/*client.py", "(/\^.*\$/)", "``\g<1>``")
+
 # Fix more regex in docstrings
-# s.replace("google/**/*_pb2.py", ":math:`(/)", "\g<1>")
-# s.replace("google/**/*_pb2.py", "`/\.", "/.")
 s.replace(
     "google/**/types/*.py",
     "(regex\s+)(/.*?/)\.",
