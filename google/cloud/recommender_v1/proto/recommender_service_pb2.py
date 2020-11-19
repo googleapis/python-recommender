@@ -1198,6 +1198,7 @@ ListRecommendationsRequest = _reflection.GeneratedProtocolMessageType(
           Filter expression to restrict the recommendations returned.
           Supported filter fields: state_info.state Eg:
           \`state_info.state:“DISMISSED” or state_info.state:“FAILED”
+          .. [1]    a-z0-9  .. [2]    a-z0-9  .. [3]    a-z0-9
   """,
         # @@protoc_insertion_point(class_scope:google.cloud.recommender.v1.ListRecommendationsRequest)
     },
@@ -1264,12 +1265,11 @@ MarkRecommendationClaimedRequest = _reflection.GeneratedProtocolMessageType(
       state_metadata:
           State properties to include with this state. Overwrites any
           existing ``state_metadata``. Keys must match the regex ``/
-          [3]_[a-z0-9_.-]{0,62}/``. Values must match the regex
+          [1]_[a-z0-9_.-]{0,62}/``. Values must match the regex
           ``/^[a-zA-Z0-9_./-]{0,255}/``.
       etag:
           Required. Fingerprint of the Recommendation. Provides
-          optimistic locking.  .. [1]    a-z0-9  .. [2]    a-z0-9  ..
-          [3]    a-z0-9
+          optimistic locking.
   """,
         # @@protoc_insertion_point(class_scope:google.cloud.recommender.v1.MarkRecommendationClaimedRequest)
     },
@@ -1335,7 +1335,7 @@ MarkRecommendationFailedRequest = _reflection.GeneratedProtocolMessageType(
       state_metadata:
           State properties to include with this state. Overwrites any
           existing ``state_metadata``. Keys must match the regex ``/
-          [1]_[a-z0-9_.-]{0,62}/``. Values must match the regex
+          [3]_[a-z0-9_.-]{0,62}/``. Values must match the regex
           ``/^[a-zA-Z0-9_./-]{0,255}/``.
       etag:
           Required. Fingerprint of the Recommendation. Provides
