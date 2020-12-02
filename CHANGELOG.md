@@ -13,7 +13,7 @@
 
 ### Features
 
-* use microgenerator ([#54](https://www.github.com/googleapis/python-recommender/issues/54)) ([63b8a43](https://www.github.com/googleapis/python-recommender/commit/63b8a43ce25a5305664424fa247ad82595c4342f))
+* use microgenerator ([#54](https://www.github.com/googleapis/python-recommender/issues/54)) ([63b8a43](https://www.github.com/googleapis/python-recommender/commit/63b8a43ce25a5305664424fa247ad82595c4342f)). See [Migration Guide](https://github.com/googleapis/python-recommender/blob/release-v2.0.0/UPGRADING.md).
 
 ### [1.1.1](https://www.github.com/googleapis/python-recommender/compare/v1.1.0...v1.1.1) (2020-10-29)
 
