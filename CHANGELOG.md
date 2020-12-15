@@ -4,6 +4,13 @@
 
 [1]: https://pypi.org/project/google-cloud-recommender/#history
 
+### [2.0.1](https://www.github.com/googleapis/python-recommender/compare/v2.0.0...v2.0.1) (2020-12-15)
+
+
+### Bug Fixes
+
+* remove client side gRPC receive limit ([#56](https://www.github.com/googleapis/python-recommender/issues/56)) ([10043cc](https://www.github.com/googleapis/python-recommender/commit/10043cc32d9c13ab92da62e214a972918336e88d))
+
 ## [2.0.0](https://www.github.com/googleapis/python-recommender/compare/v1.1.1...v2.0.0) (2020-11-19)
 
 
