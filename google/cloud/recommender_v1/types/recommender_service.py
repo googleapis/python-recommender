@@ -52,9 +52,7 @@ class ListInsightsRequest(proto.Message):
             "projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]",
 
             LOCATION here refers to GCP Locations:
-            https://cloud.google.com/about/locations/ INSIGHT_TYPE_ID
-            refers to supported insight types:
-            https://cloud.google.com/recommender/docs/insights/insight-types.)
+            https://cloud.google.com/about/locations/
         page_size (int):
             Optional. The maximum number of results to
             return from this request.  Non-positive values
@@ -147,9 +145,7 @@ class ListRecommendationsRequest(proto.Message):
             "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]",
 
             LOCATION here refers to GCP Locations:
-            https://cloud.google.com/about/locations/ RECOMMENDER_ID
-            refers to supported recommenders:
-            https://cloud.google.com/recommender/docs/recommenders.
+            https://cloud.google.com/about/locations/
         page_size (int):
             Optional. The maximum number of results to
             return from this request.  Non-positive values
