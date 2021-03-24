@@ -217,11 +217,11 @@ class Operation(proto.Message):
 
             -  Example: ``{ "/versions/*/name" : "it-123"
                "/versions/*/targetSize/percent": 20 }``
-            -  Example: ``{ "/bindings/*/role": "roles/owner"
+            -  Example: ``{ "/bindings/*/role": "roles/admin"
                "/bindings/*/condition" : null }``
-            -  Example: ``{ "/bindings/*/role": "roles/owner"
-               "/bindings/*/members/*" : ["x@example.com",
-               "y@example.com"] }`` When both path_filters and
+            -  Example: ``{ "/bindings/*/role": "roles/admin"
+               "/bindings/*/members/*" : ["x@google.com",
+               "y@google.com"] }`` When both path_filters and
                path_value_matchers are set, an implicit AND must be
                performed.
         path_value_matchers (Sequence[~.recommendation.Operation.PathValueMatchersEntry]):

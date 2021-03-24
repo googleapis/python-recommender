@@ -181,8 +181,6 @@ class RecommenderAsyncClient:
 
                 LOCATION here refers to GCP Locations:
                 https://cloud.google.com/about/locations/
-                INSIGHT_TYPE_ID refers to supported insight types:
-                https://cloud.google.com/recommender/docs/insights/insight-types.)
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -461,9 +459,7 @@ class RecommenderAsyncClient:
                 "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]",
 
                 LOCATION here refers to GCP Locations:
-                https://cloud.google.com/about/locations/ RECOMMENDER_ID
-                refers to supported recommenders:
-                https://cloud.google.com/recommender/docs/recommenders.
+                https://cloud.google.com/about/locations/
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
