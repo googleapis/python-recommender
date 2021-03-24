@@ -90,7 +90,6 @@ class RecommenderAsyncClient:
         RecommenderClient.parse_common_location_path
     )
 
-    from_service_account_info = RecommenderClient.from_service_account_info
     from_service_account_file = RecommenderClient.from_service_account_file
     from_service_account_json = from_service_account_file
 
@@ -169,7 +168,7 @@ class RecommenderAsyncClient:
         type.
 
         Args:
-            request (:class:`google.cloud.recommender_v1.types.ListInsightsRequest`):
+            request (:class:`~.recommender_service.ListInsightsRequest`):
                 The request object. Request for the `ListInsights`
                 method.
             parent (:class:`str`):
@@ -182,7 +181,8 @@ class RecommenderAsyncClient:
 
                 LOCATION here refers to GCP Locations:
                 https://cloud.google.com/about/locations/
-
+                INSIGHT_TYPE_ID refers to supported insight types:
+                https://cloud.google.com/recommender/docs/insights/insight-types.)
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -194,8 +194,8 @@ class RecommenderAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.recommender_v1.services.recommender.pagers.ListInsightsAsyncPager:
-                Response to the ListInsights method.
+            ~.pagers.ListInsightsAsyncPager:
+                Response to the ``ListInsights`` method.
 
                 Iterating over this object will yield results and
                 resolve additional pages automatically.
@@ -266,7 +266,7 @@ class RecommenderAsyncClient:
         permission for the specified insight type.
 
         Args:
-            request (:class:`google.cloud.recommender_v1.types.GetInsightRequest`):
+            request (:class:`~.recommender_service.GetInsightRequest`):
                 The request object. Request to the `GetInsight` method.
             name (:class:`str`):
                 Required. Name of the insight.
@@ -281,7 +281,7 @@ class RecommenderAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.recommender_v1.types.Insight:
+            ~.insight.Insight:
                 An insight along with the information
                 used to derive the insight. The insight
                 may have associated recomendations as
@@ -357,7 +357,7 @@ class RecommenderAsyncClient:
         specified insight.
 
         Args:
-            request (:class:`google.cloud.recommender_v1.types.MarkInsightAcceptedRequest`):
+            request (:class:`~.recommender_service.MarkInsightAcceptedRequest`):
                 The request object. Request for the
                 `MarkInsightAccepted` method.
             name (:class:`str`):
@@ -365,17 +365,15 @@ class RecommenderAsyncClient:
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            state_metadata (:class:`Sequence[google.cloud.recommender_v1.types.MarkInsightAcceptedRequest.StateMetadataEntry]`):
+            state_metadata (:class:`Sequence[~.recommender_service.MarkInsightAcceptedRequest.StateMetadataEntry]`):
                 Optional. State properties user wish to include with
                 this state. Full replace of the current state_metadata.
-
                 This corresponds to the ``state_metadata`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
             etag (:class:`str`):
                 Required. Fingerprint of the Insight.
                 Provides optimistic locking.
-
                 This corresponds to the ``etag`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -387,7 +385,7 @@ class RecommenderAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.recommender_v1.types.Insight:
+            ~.insight.Insight:
                 An insight along with the information
                 used to derive the insight. The insight
                 may have associated recomendations as
@@ -451,7 +449,7 @@ class RecommenderAsyncClient:
         recommender.*.list IAM permission for the specified recommender.
 
         Args:
-            request (:class:`google.cloud.recommender_v1.types.ListRecommendationsRequest`):
+            request (:class:`~.recommender_service.ListRecommendationsRequest`):
                 The request object. Request for the
                 `ListRecommendations` method.
             parent (:class:`str`):
@@ -463,8 +461,9 @@ class RecommenderAsyncClient:
                 "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]",
 
                 LOCATION here refers to GCP Locations:
-                https://cloud.google.com/about/locations/
-
+                https://cloud.google.com/about/locations/ RECOMMENDER_ID
+                refers to supported recommenders:
+                https://cloud.google.com/recommender/docs/recommenders.
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -472,8 +471,7 @@ class RecommenderAsyncClient:
                 Filter expression to restrict the recommendations
                 returned. Supported filter fields: state_info.state Eg:
                 \`state_info.state:"DISMISSED" or
-                state_info.state:"FAILED"
-
+                state_info.state:"FAILED".
                 This corresponds to the ``filter`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -485,8 +483,8 @@ class RecommenderAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.recommender_v1.services.recommender.pagers.ListRecommendationsAsyncPager:
-                Response to the ListRecommendations method.
+            ~.pagers.ListRecommendationsAsyncPager:
+                Response to the ``ListRecommendations`` method.
 
                 Iterating over this object will yield results and
                 resolve additional pages automatically.
@@ -559,7 +557,7 @@ class RecommenderAsyncClient:
         recommender.*.get IAM permission for the specified recommender.
 
         Args:
-            request (:class:`google.cloud.recommender_v1.types.GetRecommendationRequest`):
+            request (:class:`~.recommender_service.GetRecommendationRequest`):
                 The request object. Request to the `GetRecommendation`
                 method.
             name (:class:`str`):
@@ -575,7 +573,7 @@ class RecommenderAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.recommender_v1.types.Recommendation:
+            ~.recommendation.Recommendation:
                 A recommendation along with a
                 suggested action. E.g., a rightsizing
                 recommendation for an underutilized VM,
@@ -654,7 +652,7 @@ class RecommenderAsyncClient:
         specified recommender.
 
         Args:
-            request (:class:`google.cloud.recommender_v1.types.MarkRecommendationClaimedRequest`):
+            request (:class:`~.recommender_service.MarkRecommendationClaimedRequest`):
                 The request object. Request for the
                 `MarkRecommendationClaimed` Method.
             name (:class:`str`):
@@ -662,12 +660,11 @@ class RecommenderAsyncClient:
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            state_metadata (:class:`Sequence[google.cloud.recommender_v1.types.MarkRecommendationClaimedRequest.StateMetadataEntry]`):
+            state_metadata (:class:`Sequence[~.recommender_service.MarkRecommendationClaimedRequest.StateMetadataEntry]`):
                 State properties to include with this state. Overwrites
                 any existing ``state_metadata``. Keys must match the
                 regex ``/^[a-z0-9][a-z0-9_.-]{0,62}$/``. Values must match
                 the regex ``/^[a-zA-Z0-9_./-]{0,255}$/``.
-
                 This corresponds to the ``state_metadata`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -675,7 +672,6 @@ class RecommenderAsyncClient:
                 Required. Fingerprint of the
                 Recommendation. Provides optimistic
                 locking.
-
                 This corresponds to the ``etag`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -687,7 +683,7 @@ class RecommenderAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.recommender_v1.types.Recommendation:
+            ~.recommendation.Recommendation:
                 A recommendation along with a
                 suggested action. E.g., a rightsizing
                 recommendation for an underutilized VM,
@@ -763,7 +759,7 @@ class RecommenderAsyncClient:
         specified recommender.
 
         Args:
-            request (:class:`google.cloud.recommender_v1.types.MarkRecommendationSucceededRequest`):
+            request (:class:`~.recommender_service.MarkRecommendationSucceededRequest`):
                 The request object. Request for the
                 `MarkRecommendationSucceeded` Method.
             name (:class:`str`):
@@ -771,12 +767,11 @@ class RecommenderAsyncClient:
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            state_metadata (:class:`Sequence[google.cloud.recommender_v1.types.MarkRecommendationSucceededRequest.StateMetadataEntry]`):
+            state_metadata (:class:`Sequence[~.recommender_service.MarkRecommendationSucceededRequest.StateMetadataEntry]`):
                 State properties to include with this state. Overwrites
                 any existing ``state_metadata``. Keys must match the
                 regex ``/^[a-z0-9][a-z0-9_.-]{0,62}$/``. Values must match
                 the regex ``/^[a-zA-Z0-9_./-]{0,255}$/``.
-
                 This corresponds to the ``state_metadata`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -784,7 +779,6 @@ class RecommenderAsyncClient:
                 Required. Fingerprint of the
                 Recommendation. Provides optimistic
                 locking.
-
                 This corresponds to the ``etag`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -796,7 +790,7 @@ class RecommenderAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.recommender_v1.types.Recommendation:
+            ~.recommendation.Recommendation:
                 A recommendation along with a
                 suggested action. E.g., a rightsizing
                 recommendation for an underutilized VM,
@@ -872,7 +866,7 @@ class RecommenderAsyncClient:
         specified recommender.
 
         Args:
-            request (:class:`google.cloud.recommender_v1.types.MarkRecommendationFailedRequest`):
+            request (:class:`~.recommender_service.MarkRecommendationFailedRequest`):
                 The request object. Request for the
                 `MarkRecommendationFailed` Method.
             name (:class:`str`):
@@ -880,12 +874,11 @@ class RecommenderAsyncClient:
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            state_metadata (:class:`Sequence[google.cloud.recommender_v1.types.MarkRecommendationFailedRequest.StateMetadataEntry]`):
+            state_metadata (:class:`Sequence[~.recommender_service.MarkRecommendationFailedRequest.StateMetadataEntry]`):
                 State properties to include with this state. Overwrites
                 any existing ``state_metadata``. Keys must match the
                 regex ``/^[a-z0-9][a-z0-9_.-]{0,62}$/``. Values must match
                 the regex ``/^[a-zA-Z0-9_./-]{0,255}$/``.
-
                 This corresponds to the ``state_metadata`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -893,7 +886,6 @@ class RecommenderAsyncClient:
                 Required. Fingerprint of the
                 Recommendation. Provides optimistic
                 locking.
-
                 This corresponds to the ``etag`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -905,7 +897,7 @@ class RecommenderAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.recommender_v1.types.Recommendation:
+            ~.recommendation.Recommendation:
                 A recommendation along with a
                 suggested action. E.g., a rightsizing
                 recommendation for an underutilized VM,

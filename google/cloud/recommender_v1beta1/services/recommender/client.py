@@ -119,22 +119,6 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
     )
 
     @classmethod
-    def from_service_account_info(cls, info: dict, *args, **kwargs):
-        """Creates an instance of this client using the provided credentials info.
-
-        Args:
-            info (dict): The service account private key info.
-            args: Additional arguments to pass to the constructor.
-            kwargs: Additional arguments to pass to the constructor.
-
-        Returns:
-            RecommenderClient: The constructed client.
-        """
-        credentials = service_account.Credentials.from_service_account_info(info)
-        kwargs["credentials"] = credentials
-        return cls(*args, **kwargs)
-
-    @classmethod
     def from_service_account_file(cls, filename: str, *args, **kwargs):
         """Creates an instance of this client using the provided credentials
         file.
@@ -146,7 +130,7 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
             kwargs: Additional arguments to pass to the constructor.
 
         Returns:
-            RecommenderClient: The constructed client.
+            {@api.name}: The constructed client.
         """
         credentials = service_account.Credentials.from_service_account_file(filename)
         kwargs["credentials"] = credentials
@@ -312,10 +296,10 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
                 credentials identify the application to the service; if none
                 are specified, the client will attempt to ascertain the
                 credentials from the environment.
-            transport (Union[str, RecommenderTransport]): The
+            transport (Union[str, ~.RecommenderTransport]): The
                 transport to use. If set to None, a transport is chosen
                 automatically.
-            client_options (google.api_core.client_options.ClientOptions): Custom options for the
+            client_options (client_options_lib.ClientOptions): Custom options for the
                 client. It won't take effect if a ``transport`` instance is provided.
                 (1) The ``api_endpoint`` property can be used to override the
                 default endpoint provided by the client. GOOGLE_API_USE_MTLS_ENDPOINT
@@ -427,10 +411,10 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
         type.
 
         Args:
-            request (google.cloud.recommender_v1beta1.types.ListInsightsRequest):
+            request (:class:`~.recommender_service.ListInsightsRequest`):
                 The request object. Request for the `ListInsights`
                 method.
-            parent (str):
+            parent (:class:`str`):
                 Required. The container resource on which to execute the
                 request. Acceptable formats:
 
@@ -442,7 +426,6 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
                 https://cloud.google.com/about/locations/
                 INSIGHT_TYPE_ID refers to supported insight types:
                 https://cloud.google.com/recommender/docs/insights/insight-types.
-
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -454,8 +437,8 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.recommender_v1beta1.services.recommender.pagers.ListInsightsPager:
-                Response to the ListInsights method.
+            ~.pagers.ListInsightsPager:
+                Response to the ``ListInsights`` method.
 
                 Iterating over this object will yield results and
                 resolve additional pages automatically.
@@ -519,9 +502,9 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
         permission for the specified insight type.
 
         Args:
-            request (google.cloud.recommender_v1beta1.types.GetInsightRequest):
+            request (:class:`~.recommender_service.GetInsightRequest`):
                 The request object. Request to the `GetInsight` method.
-            name (str):
+            name (:class:`str`):
                 Required. Name of the insight.
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -534,7 +517,7 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.recommender_v1beta1.types.Insight:
+            ~.insight.Insight:
                 An insight along with the information
                 used to derive the insight. The insight
                 may have associated recomendations as
@@ -603,25 +586,23 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
         specified insight.
 
         Args:
-            request (google.cloud.recommender_v1beta1.types.MarkInsightAcceptedRequest):
+            request (:class:`~.recommender_service.MarkInsightAcceptedRequest`):
                 The request object. Request for the
                 `MarkInsightAccepted` method.
-            name (str):
+            name (:class:`str`):
                 Required. Name of the insight.
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            state_metadata (Sequence[google.cloud.recommender_v1beta1.types.MarkInsightAcceptedRequest.StateMetadataEntry]):
+            state_metadata (:class:`Sequence[~.recommender_service.MarkInsightAcceptedRequest.StateMetadataEntry]`):
                 Optional. State properties user wish to include with
                 this state. Full replace of the current state_metadata.
-
                 This corresponds to the ``state_metadata`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            etag (str):
+            etag (:class:`str`):
                 Required. Fingerprint of the Insight.
                 Provides optimistic locking.
-
                 This corresponds to the ``etag`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -633,7 +614,7 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.recommender_v1beta1.types.Insight:
+            ~.insight.Insight:
                 An insight along with the information
                 used to derive the insight. The insight
                 may have associated recomendations as
@@ -698,10 +679,10 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
         recommender.*.list IAM permission for the specified recommender.
 
         Args:
-            request (google.cloud.recommender_v1beta1.types.ListRecommendationsRequest):
+            request (:class:`~.recommender_service.ListRecommendationsRequest`):
                 The request object. Request for the
                 `ListRecommendations` method.
-            parent (str):
+            parent (:class:`str`):
                 Required. The container resource on which to execute the
                 request. Acceptable formats:
 
@@ -713,16 +694,14 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
                 https://cloud.google.com/about/locations/ RECOMMENDER_ID
                 refers to supported recommenders:
                 https://cloud.google.com/recommender/docs/recommenders.
-
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            filter (str):
+            filter (:class:`str`):
                 Filter expression to restrict the recommendations
                 returned. Supported filter fields: state_info.state Eg:
                 \`state_info.state:"DISMISSED" or
-                state_info.state:"FAILED"
-
+                state_info.state:"FAILED".
                 This corresponds to the ``filter`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -734,8 +713,8 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.recommender_v1beta1.services.recommender.pagers.ListRecommendationsPager:
-                Response to the ListRecommendations method.
+            ~.pagers.ListRecommendationsPager:
+                Response to the ``ListRecommendations`` method.
 
                 Iterating over this object will yield results and
                 resolve additional pages automatically.
@@ -801,10 +780,10 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
         recommender.*.get IAM permission for the specified recommender.
 
         Args:
-            request (google.cloud.recommender_v1beta1.types.GetRecommendationRequest):
+            request (:class:`~.recommender_service.GetRecommendationRequest`):
                 The request object. Request to the `GetRecommendation`
                 method.
-            name (str):
+            name (:class:`str`):
                 Required. Name of the recommendation.
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -817,7 +796,7 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.recommender_v1beta1.types.Recommendation:
+            ~.recommendation.Recommendation:
                 A recommendation along with a
                 suggested action. E.g., a rightsizing
                 recommendation for an underutilized VM,
@@ -889,28 +868,26 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
         specified recommender.
 
         Args:
-            request (google.cloud.recommender_v1beta1.types.MarkRecommendationClaimedRequest):
+            request (:class:`~.recommender_service.MarkRecommendationClaimedRequest`):
                 The request object. Request for the
                 `MarkRecommendationClaimed` Method.
-            name (str):
+            name (:class:`str`):
                 Required. Name of the recommendation.
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            state_metadata (Sequence[google.cloud.recommender_v1beta1.types.MarkRecommendationClaimedRequest.StateMetadataEntry]):
+            state_metadata (:class:`Sequence[~.recommender_service.MarkRecommendationClaimedRequest.StateMetadataEntry]`):
                 State properties to include with this state. Overwrites
                 any existing ``state_metadata``. Keys must match the
                 regex ``/^[a-z0-9][a-z0-9_.-]{0,62}$/``. Values must match
                 the regex ``/^[a-zA-Z0-9_./-]{0,255}$/``.
-
                 This corresponds to the ``state_metadata`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            etag (str):
+            etag (:class:`str`):
                 Required. Fingerprint of the
                 Recommendation. Provides optimistic
                 locking.
-
                 This corresponds to the ``etag`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -922,7 +899,7 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.recommender_v1beta1.types.Recommendation:
+            ~.recommendation.Recommendation:
                 A recommendation along with a
                 suggested action. E.g., a rightsizing
                 recommendation for an underutilized VM,
@@ -1003,28 +980,26 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
         specified recommender.
 
         Args:
-            request (google.cloud.recommender_v1beta1.types.MarkRecommendationSucceededRequest):
+            request (:class:`~.recommender_service.MarkRecommendationSucceededRequest`):
                 The request object. Request for the
                 `MarkRecommendationSucceeded` Method.
-            name (str):
+            name (:class:`str`):
                 Required. Name of the recommendation.
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            state_metadata (Sequence[google.cloud.recommender_v1beta1.types.MarkRecommendationSucceededRequest.StateMetadataEntry]):
+            state_metadata (:class:`Sequence[~.recommender_service.MarkRecommendationSucceededRequest.StateMetadataEntry]`):
                 State properties to include with this state. Overwrites
                 any existing ``state_metadata``. Keys must match the
                 regex ``/^[a-z0-9][a-z0-9_.-]{0,62}$/``. Values must match
                 the regex ``/^[a-zA-Z0-9_./-]{0,255}$/``.
-
                 This corresponds to the ``state_metadata`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            etag (str):
+            etag (:class:`str`):
                 Required. Fingerprint of the
                 Recommendation. Provides optimistic
                 locking.
-
                 This corresponds to the ``etag`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1036,7 +1011,7 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.recommender_v1beta1.types.Recommendation:
+            ~.recommendation.Recommendation:
                 A recommendation along with a
                 suggested action. E.g., a rightsizing
                 recommendation for an underutilized VM,
@@ -1117,28 +1092,26 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
         specified recommender.
 
         Args:
-            request (google.cloud.recommender_v1beta1.types.MarkRecommendationFailedRequest):
+            request (:class:`~.recommender_service.MarkRecommendationFailedRequest`):
                 The request object. Request for the
                 `MarkRecommendationFailed` Method.
-            name (str):
+            name (:class:`str`):
                 Required. Name of the recommendation.
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            state_metadata (Sequence[google.cloud.recommender_v1beta1.types.MarkRecommendationFailedRequest.StateMetadataEntry]):
+            state_metadata (:class:`Sequence[~.recommender_service.MarkRecommendationFailedRequest.StateMetadataEntry]`):
                 State properties to include with this state. Overwrites
                 any existing ``state_metadata``. Keys must match the
                 regex ``/^[a-z0-9][a-z0-9_.-]{0,62}$/``. Values must match
                 the regex ``/^[a-zA-Z0-9_./-]{0,255}$/``.
-
                 This corresponds to the ``state_metadata`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            etag (str):
+            etag (:class:`str`):
                 Required. Fingerprint of the
                 Recommendation. Provides optimistic
                 locking.
-
                 This corresponds to the ``etag`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1150,7 +1123,7 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.recommender_v1beta1.types.Recommendation:
+            ~.recommendation.Recommendation:
                 A recommendation along with a
                 suggested action. E.g., a rightsizing
                 recommendation for an underutilized VM,
