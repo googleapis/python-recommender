@@ -658,11 +658,10 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
             if name is not None:
                 request.name = name
+            if state_metadata is not None:
+                request.state_metadata = state_metadata
             if etag is not None:
                 request.etag = etag
-
-            if state_metadata:
-                request.state_metadata.update(state_metadata)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -949,11 +948,10 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
             if name is not None:
                 request.name = name
+            if state_metadata is not None:
+                request.state_metadata = state_metadata
             if etag is not None:
                 request.etag = etag
-
-            if state_metadata:
-                request.state_metadata.update(state_metadata)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -1063,11 +1061,10 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
             if name is not None:
                 request.name = name
+            if state_metadata is not None:
+                request.state_metadata = state_metadata
             if etag is not None:
                 request.etag = etag
-
-            if state_metadata:
-                request.state_metadata.update(state_metadata)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -1175,11 +1172,10 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
             if name is not None:
                 request.name = name
+            if state_metadata is not None:
+                request.state_metadata = state_metadata
             if etag is not None:
                 request.etag = etag
-
-            if state_metadata:
-                request.state_metadata.update(state_metadata)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
