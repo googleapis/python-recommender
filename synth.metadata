@@ -11,8 +11,8 @@
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "be40b52d80a2131a1b48f4720c4e8024167faad1",
-        "internalRef": "347984439"
+        "sha": "520682435235d9c503983a360a2090025aa47cd1",
+        "internalRef": "350246057"
       }
     },
     {
@@ -51,6 +51,7 @@
     }
   ],
   "generatedFiles": [
+    ".coveragerc",
     ".flake8",
     ".github/CONTRIBUTING.md",
     ".github/ISSUE_TEMPLATE/bug_report.md",
@@ -104,8 +105,10 @@
     "docs/_templates/layout.html",
     "docs/conf.py",
     "docs/multiprocessing.rst",
+    "docs/recommender_v1/recommender.rst",
     "docs/recommender_v1/services.rst",
     "docs/recommender_v1/types.rst",
+    "docs/recommender_v1beta1/recommender.rst",
     "docs/recommender_v1beta1/services.rst",
     "docs/recommender_v1beta1/types.rst",
     "google/cloud/recommender/__init__.py",
