@@ -4,7 +4,7 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-recommender.git",
-        "sha": "b93eb4a6b07cc7d6c20efdb479f34ead22311dbc"
+        "sha": "31eb194440c6d2eca7b2fc73beb7f8e9e483a9c7"
       }
     },
     {
@@ -151,6 +151,7 @@
     "google/cloud/recommender_v1beta1/types/recommender_service.py",
     "mypy.ini",
     "noxfile.py",
+    "recommender-v1beta1-py.tar.gz",
     "renovate.json",
     "samples/AUTHORING_GUIDE.md",
     "samples/CONTRIBUTING.md",
