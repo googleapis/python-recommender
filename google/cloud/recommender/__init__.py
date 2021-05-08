@@ -14,11 +14,10 @@
 # limitations under the License.
 #
 
-from google.cloud.recommender_v1.services.recommender.client import RecommenderClient
 from google.cloud.recommender_v1.services.recommender.async_client import (
     RecommenderAsyncClient,
 )
-
+from google.cloud.recommender_v1.services.recommender.client import RecommenderClient
 from google.cloud.recommender_v1.types.insight import Insight
 from google.cloud.recommender_v1.types.insight import InsightStateInfo
 from google.cloud.recommender_v1.types.recommendation import CostProjection
@@ -55,20 +54,12 @@ from google.cloud.recommender_v1.types.recommender_service import (
 )
 
 __all__ = (
-    "RecommenderClient",
-    "RecommenderAsyncClient",
-    "Insight",
-    "InsightStateInfo",
     "CostProjection",
-    "Impact",
-    "Operation",
-    "OperationGroup",
-    "Recommendation",
-    "RecommendationContent",
-    "RecommendationStateInfo",
-    "ValueMatcher",
     "GetInsightRequest",
     "GetRecommendationRequest",
+    "Impact",
+    "Insight",
+    "InsightStateInfo",
     "ListInsightsRequest",
     "ListInsightsResponse",
     "ListRecommendationsRequest",
@@ -77,4 +68,12 @@ __all__ = (
     "MarkRecommendationClaimedRequest",
     "MarkRecommendationFailedRequest",
     "MarkRecommendationSucceededRequest",
+    "Operation",
+    "OperationGroup",
+    "Recommendation",
+    "RecommendationContent",
+    "RecommendationStateInfo",
+    "RecommenderAsyncClient",
+    "RecommenderClient",
+    "ValueMatcher",
 )

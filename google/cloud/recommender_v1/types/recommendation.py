@@ -22,16 +22,16 @@ from google.type import money_pb2 as money  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package="google.cloud.recommender.v1",
+    package='google.cloud.recommender.v1',
     manifest={
-        "Recommendation",
-        "RecommendationContent",
-        "OperationGroup",
-        "Operation",
-        "ValueMatcher",
-        "CostProjection",
-        "Impact",
-        "RecommendationStateInfo",
+        'Recommendation',
+        'RecommendationContent',
+        'OperationGroup',
+        'Operation',
+        'ValueMatcher',
+        'CostProjection',
+        'Impact',
+        'RecommendationStateInfo',
     },
 )
 
@@ -93,23 +93,56 @@ class Recommendation(proto.Message):
                 projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/insights/[INSIGHT_ID]
         """
 
-        insight = proto.Field(proto.STRING, number=1,)
+        insight = proto.Field(
+            proto.STRING,
+            number=1,
+        )
 
-    name = proto.Field(proto.STRING, number=1,)
-    description = proto.Field(proto.STRING, number=2,)
-    recommender_subtype = proto.Field(proto.STRING, number=12,)
+    name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    description = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    recommender_subtype = proto.Field(
+        proto.STRING,
+        number=12,
+    )
     last_refresh_time = proto.Field(
-        proto.MESSAGE, number=4, message=timestamp.Timestamp,
+        proto.MESSAGE,
+        number=4,
+        message=timestamp.Timestamp,
     )
-    primary_impact = proto.Field(proto.MESSAGE, number=5, message="Impact",)
-    additional_impact = proto.RepeatedField(proto.MESSAGE, number=6, message="Impact",)
-    content = proto.Field(proto.MESSAGE, number=7, message="RecommendationContent",)
+    primary_impact = proto.Field(
+        proto.MESSAGE,
+        number=5,
+        message='Impact',
+    )
+    additional_impact = proto.RepeatedField(
+        proto.MESSAGE,
+        number=6,
+        message='Impact',
+    )
+    content = proto.Field(
+        proto.MESSAGE,
+        number=7,
+        message='RecommendationContent',
+    )
     state_info = proto.Field(
-        proto.MESSAGE, number=10, message="RecommendationStateInfo",
+        proto.MESSAGE,
+        number=10,
+        message='RecommendationStateInfo',
     )
-    etag = proto.Field(proto.STRING, number=11,)
+    etag = proto.Field(
+        proto.STRING,
+        number=11,
+    )
     associated_insights = proto.RepeatedField(
-        proto.MESSAGE, number=14, message=InsightReference,
+        proto.MESSAGE,
+        number=14,
+        message=InsightReference,
     )
 
 
@@ -126,7 +159,9 @@ class RecommendationContent(proto.Message):
     """
 
     operation_groups = proto.RepeatedField(
-        proto.MESSAGE, number=2, message="OperationGroup",
+        proto.MESSAGE,
+        number=2,
+        message='OperationGroup',
     )
 
 
@@ -140,7 +175,11 @@ class OperationGroup(proto.Message):
             order they appear.
     """
 
-    operations = proto.RepeatedField(proto.MESSAGE, number=1, message="Operation",)
+    operations = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
+        message='Operation',
+    )
 
 
 class Operation(proto.Message):
@@ -219,23 +258,53 @@ class Operation(proto.Message):
             AND must be performed.
     """
 
-    action = proto.Field(proto.STRING, number=1,)
-    resource_type = proto.Field(proto.STRING, number=2,)
-    resource = proto.Field(proto.STRING, number=3,)
-    path = proto.Field(proto.STRING, number=4,)
-    source_resource = proto.Field(proto.STRING, number=5,)
-    source_path = proto.Field(proto.STRING, number=6,)
+    action = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    resource_type = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    resource = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    path = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    source_resource = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    source_path = proto.Field(
+        proto.STRING,
+        number=6,
+    )
     value = proto.Field(
-        proto.MESSAGE, number=7, oneof="path_value", message=struct.Value,
+        proto.MESSAGE,
+        number=7,
+        oneof='path_value',
+        message=struct.Value,
     )
     value_matcher = proto.Field(
-        proto.MESSAGE, number=10, oneof="path_value", message="ValueMatcher",
+        proto.MESSAGE,
+        number=10,
+        oneof='path_value',
+        message='ValueMatcher',
     )
     path_filters = proto.MapField(
-        proto.STRING, proto.MESSAGE, number=8, message=struct.Value,
+        proto.STRING,
+        proto.MESSAGE,
+        number=8
+        message=struct.Value,
     )
     path_value_matchers = proto.MapField(
-        proto.STRING, proto.MESSAGE, number=11, message="ValueMatcher",
+        proto.STRING,
+        proto.MESSAGE,
+        number=11
+        message='ValueMatcher',
     )
 
 
@@ -252,7 +321,11 @@ class ValueMatcher(proto.Message):
             to be used with RE2::FullMatch
     """
 
-    matches_pattern = proto.Field(proto.STRING, number=1, oneof="match_variant",)
+    matches_pattern = proto.Field(
+        proto.STRING,
+        number=1,
+        oneof='match_variant',
+    )
 
 
 class CostProjection(proto.Message):
@@ -270,8 +343,16 @@ class CostProjection(proto.Message):
             Duration for which this cost applies.
     """
 
-    cost = proto.Field(proto.MESSAGE, number=1, message=money.Money,)
-    duration = proto.Field(proto.MESSAGE, number=2, message=gp_duration.Duration,)
+    cost = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=money.Money,
+    )
+    duration = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=gp_duration.Duration,
+    )
 
 
 class Impact(proto.Message):
@@ -284,7 +365,6 @@ class Impact(proto.Message):
         cost_projection (google.cloud.recommender_v1.types.CostProjection):
             Use with CategoryType.COST
     """
-
     class Category(proto.Enum):
         r"""The category of the impact."""
         CATEGORY_UNSPECIFIED = 0
@@ -293,9 +373,16 @@ class Impact(proto.Message):
         PERFORMANCE = 3
         MANAGEABILITY = 4
 
-    category = proto.Field(proto.ENUM, number=1, enum=Category,)
+    category = proto.Field(
+        proto.ENUM,
+        number=1,
+        enum=Category,
+    )
     cost_projection = proto.Field(
-        proto.MESSAGE, number=100, oneof="projection", message="CostProjection",
+        proto.MESSAGE,
+        number=100,
+        oneof='projection',
+        message='CostProjection',
     )
 
 
@@ -309,7 +396,6 @@ class RecommendationStateInfo(proto.Message):
             A map of metadata for the state, provided by
             user or automations systems.
     """
-
     class State(proto.Enum):
         r"""Represents Recommendation State."""
         STATE_UNSPECIFIED = 0
@@ -319,8 +405,16 @@ class RecommendationStateInfo(proto.Message):
         FAILED = 4
         DISMISSED = 5
 
-    state = proto.Field(proto.ENUM, number=1, enum=State,)
-    state_metadata = proto.MapField(proto.STRING, proto.STRING, number=2,)
+    state = proto.Field(
+        proto.ENUM,
+        number=1,
+        enum=State,
+    )
+    state_metadata = proto.MapField(
+        proto.STRING,
+        proto.STRING,
+        number=2
+    )
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))
