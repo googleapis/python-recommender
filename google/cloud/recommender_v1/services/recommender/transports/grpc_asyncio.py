@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,15 +13,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import warnings
-from typing import Awaitable, Callable, Dict, Optional, Sequence, Tuple
+from typing import Awaitable, Callable, Dict, Optional, Sequence, Tuple, Union
 
 from google.api_core import gapic_v1  # type: ignore
 from google.api_core import grpc_helpers_async  # type: ignore
 from google import auth  # type: ignore
 from google.auth import credentials  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
+import packaging.version
 
 import grpc  # type: ignore
 from grpc.experimental import aio  # type: ignore
@@ -30,7 +29,6 @@ from grpc.experimental import aio  # type: ignore
 from google.cloud.recommender_v1.types import insight
 from google.cloud.recommender_v1.types import recommendation
 from google.cloud.recommender_v1.types import recommender_service
-
 from .base import RecommenderTransport, DEFAULT_CLIENT_INFO
 from .grpc import RecommenderGrpcTransport
 
@@ -86,13 +84,15 @@ class RecommenderGrpcAsyncIOTransport(RecommenderTransport):
         Returns:
             aio.Channel: A gRPC AsyncIO channel object.
         """
-        scopes = scopes or cls.AUTH_SCOPES
+
+        self_signed_jwt_kwargs = cls._get_self_signed_jwt_kwargs(host, scopes)
+
         return grpc_helpers_async.create_channel(
             host,
             credentials=credentials,
             credentials_file=credentials_file,
-            scopes=scopes,
             quota_project_id=quota_project_id,
+            **self_signed_jwt_kwargs,
             **kwargs,
         )
 
@@ -114,7 +114,8 @@ class RecommenderGrpcAsyncIOTransport(RecommenderTransport):
         """Instantiate the transport.
 
         Args:
-            host (Optional[str]): The hostname to connect to.
+            host (Optional[str]):
+                 The hostname to connect to.
             credentials (Optional[google.auth.credentials.Credentials]): The
                 authorization credentials to attach to requests. These
                 credentials identify the application to the service; if none
@@ -172,7 +173,6 @@ class RecommenderGrpcAsyncIOTransport(RecommenderTransport):
             # If a channel was explicitly provided, set it.
             self._grpc_channel = channel
             self._ssl_channel_credentials = None
-
         else:
             if api_mtls_endpoint:
                 host = api_mtls_endpoint
@@ -238,7 +238,9 @@ class RecommenderGrpcAsyncIOTransport(RecommenderTransport):
         [recommender_service.ListInsightsRequest],
         Awaitable[recommender_service.ListInsightsResponse],
     ]:
-        r"""Return a callable for the list insights method over gRPC.
+        r"""Return a callable for the
+        list insights
+          method over gRPC.
 
         Lists insights for a Cloud project. Requires the
         recommender.*.list IAM permission for the specified insight
@@ -266,7 +268,9 @@ class RecommenderGrpcAsyncIOTransport(RecommenderTransport):
     def get_insight(
         self,
     ) -> Callable[[recommender_service.GetInsightRequest], Awaitable[insight.Insight]]:
-        r"""Return a callable for the get insight method over gRPC.
+        r"""Return a callable for the
+        get insight
+          method over gRPC.
 
         Gets the requested insight. Requires the recommender.*.get IAM
         permission for the specified insight type.
@@ -295,7 +299,9 @@ class RecommenderGrpcAsyncIOTransport(RecommenderTransport):
     ) -> Callable[
         [recommender_service.MarkInsightAcceptedRequest], Awaitable[insight.Insight]
     ]:
-        r"""Return a callable for the mark insight accepted method over gRPC.
+        r"""Return a callable for the
+        mark insight accepted
+          method over gRPC.
 
         Marks the Insight State as Accepted. Users can use this method
         to indicate to the Recommender API that they have applied some
@@ -331,7 +337,9 @@ class RecommenderGrpcAsyncIOTransport(RecommenderTransport):
         [recommender_service.ListRecommendationsRequest],
         Awaitable[recommender_service.ListRecommendationsResponse],
     ]:
-        r"""Return a callable for the list recommendations method over gRPC.
+        r"""Return a callable for the
+        list recommendations
+          method over gRPC.
 
         Lists recommendations for a Cloud project. Requires the
         recommender.*.list IAM permission for the specified recommender.
@@ -361,7 +369,9 @@ class RecommenderGrpcAsyncIOTransport(RecommenderTransport):
         [recommender_service.GetRecommendationRequest],
         Awaitable[recommendation.Recommendation],
     ]:
-        r"""Return a callable for the get recommendation method over gRPC.
+        r"""Return a callable for the
+        get recommendation
+          method over gRPC.
 
         Gets the requested recommendation. Requires the
         recommender.*.get IAM permission for the specified recommender.
@@ -391,7 +401,9 @@ class RecommenderGrpcAsyncIOTransport(RecommenderTransport):
         [recommender_service.MarkRecommendationClaimedRequest],
         Awaitable[recommendation.Recommendation],
     ]:
-        r"""Return a callable for the mark recommendation claimed method over gRPC.
+        r"""Return a callable for the
+        mark recommendation claimed
+          method over gRPC.
 
         Marks the Recommendation State as Claimed. Users can use this
         method to indicate to the Recommender API that they are starting
@@ -430,7 +442,9 @@ class RecommenderGrpcAsyncIOTransport(RecommenderTransport):
         [recommender_service.MarkRecommendationSucceededRequest],
         Awaitable[recommendation.Recommendation],
     ]:
-        r"""Return a callable for the mark recommendation succeeded method over gRPC.
+        r"""Return a callable for the
+        mark recommendation succeeded
+          method over gRPC.
 
         Marks the Recommendation State as Succeeded. Users can use this
         method to indicate to the Recommender API that they have applied
@@ -471,7 +485,9 @@ class RecommenderGrpcAsyncIOTransport(RecommenderTransport):
         [recommender_service.MarkRecommendationFailedRequest],
         Awaitable[recommendation.Recommendation],
     ]:
-        r"""Return a callable for the mark recommendation failed method over gRPC.
+        r"""Return a callable for the
+        mark recommendation failed
+          method over gRPC.
 
         Marks the Recommendation State as Failed. Users can use this
         method to indicate to the Recommender API that they have applied

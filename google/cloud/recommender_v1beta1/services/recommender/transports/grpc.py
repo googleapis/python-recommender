@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,9 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import warnings
-from typing import Callable, Dict, Optional, Sequence, Tuple
+from typing import Callable, Dict, Optional, Sequence, Tuple, Union
 
 from google.api_core import grpc_helpers  # type: ignore
 from google.api_core import gapic_v1  # type: ignore
@@ -29,7 +27,6 @@ import grpc  # type: ignore
 from google.cloud.recommender_v1beta1.types import insight
 from google.cloud.recommender_v1beta1.types import recommendation
 from google.cloud.recommender_v1beta1.types import recommender_service
-
 from .base import RecommenderTransport, DEFAULT_CLIENT_INFO
 
 
@@ -70,7 +67,8 @@ class RecommenderGrpcTransport(RecommenderTransport):
         """Instantiate the transport.
 
         Args:
-            host (Optional[str]): The hostname to connect to.
+            host (Optional[str]):
+                 The hostname to connect to.
             credentials (Optional[google.auth.credentials.Credentials]): The
                 authorization credentials to attach to requests. These
                 credentials identify the application to the service; if none
@@ -211,13 +209,15 @@ class RecommenderGrpcTransport(RecommenderTransport):
             google.api_core.exceptions.DuplicateCredentialArgs: If both ``credentials``
               and ``credentials_file`` are passed.
         """
-        scopes = scopes or cls.AUTH_SCOPES
+
+        self_signed_jwt_kwargs = cls._get_self_signed_jwt_kwargs(host, scopes)
+
         return grpc_helpers.create_channel(
             host,
             credentials=credentials,
             credentials_file=credentials_file,
-            scopes=scopes,
             quota_project_id=quota_project_id,
+            **self_signed_jwt_kwargs,
             **kwargs,
         )
 
@@ -234,7 +234,9 @@ class RecommenderGrpcTransport(RecommenderTransport):
         [recommender_service.ListInsightsRequest],
         recommender_service.ListInsightsResponse,
     ]:
-        r"""Return a callable for the list insights method over gRPC.
+        r"""Return a callable for the
+        list insights
+          method over gRPC.
 
         Lists insights for a Cloud project. Requires the
         recommender.*.list IAM permission for the specified insight
@@ -262,7 +264,9 @@ class RecommenderGrpcTransport(RecommenderTransport):
     def get_insight(
         self,
     ) -> Callable[[recommender_service.GetInsightRequest], insight.Insight]:
-        r"""Return a callable for the get insight method over gRPC.
+        r"""Return a callable for the
+        get insight
+          method over gRPC.
 
         Gets the requested insight. Requires the recommender.*.get IAM
         permission for the specified insight type.
@@ -289,7 +293,9 @@ class RecommenderGrpcTransport(RecommenderTransport):
     def mark_insight_accepted(
         self,
     ) -> Callable[[recommender_service.MarkInsightAcceptedRequest], insight.Insight]:
-        r"""Return a callable for the mark insight accepted method over gRPC.
+        r"""Return a callable for the
+        mark insight accepted
+          method over gRPC.
 
         Marks the Insight State as Accepted. Users can use this method
         to indicate to the Recommender API that they have applied some
@@ -325,7 +331,9 @@ class RecommenderGrpcTransport(RecommenderTransport):
         [recommender_service.ListRecommendationsRequest],
         recommender_service.ListRecommendationsResponse,
     ]:
-        r"""Return a callable for the list recommendations method over gRPC.
+        r"""Return a callable for the
+        list recommendations
+          method over gRPC.
 
         Lists recommendations for a Cloud project. Requires the
         recommender.*.list IAM permission for the specified recommender.
@@ -354,7 +362,9 @@ class RecommenderGrpcTransport(RecommenderTransport):
     ) -> Callable[
         [recommender_service.GetRecommendationRequest], recommendation.Recommendation
     ]:
-        r"""Return a callable for the get recommendation method over gRPC.
+        r"""Return a callable for the
+        get recommendation
+          method over gRPC.
 
         Gets the requested recommendation. Requires the
         recommender.*.get IAM permission for the specified recommender.
@@ -384,7 +394,9 @@ class RecommenderGrpcTransport(RecommenderTransport):
         [recommender_service.MarkRecommendationClaimedRequest],
         recommendation.Recommendation,
     ]:
-        r"""Return a callable for the mark recommendation claimed method over gRPC.
+        r"""Return a callable for the
+        mark recommendation claimed
+          method over gRPC.
 
         Marks the Recommendation State as Claimed. Users can use this
         method to indicate to the Recommender API that they are starting
@@ -423,7 +435,9 @@ class RecommenderGrpcTransport(RecommenderTransport):
         [recommender_service.MarkRecommendationSucceededRequest],
         recommendation.Recommendation,
     ]:
-        r"""Return a callable for the mark recommendation succeeded method over gRPC.
+        r"""Return a callable for the
+        mark recommendation succeeded
+          method over gRPC.
 
         Marks the Recommendation State as Succeeded. Users can use this
         method to indicate to the Recommender API that they have applied
@@ -464,7 +478,9 @@ class RecommenderGrpcTransport(RecommenderTransport):
         [recommender_service.MarkRecommendationFailedRequest],
         recommendation.Recommendation,
     ]:
-        r"""Return a callable for the mark recommendation failed method over gRPC.
+        r"""Return a callable for the
+        mark recommendation failed
+          method over gRPC.
 
         Marks the Recommendation State as Failed. Users can use this
         method to indicate to the Recommender API that they have applied
