@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
 import os
 import mock
-import packaging.version
 
 import grpc
 from grpc.experimental import aio
 import math
 import pytest
 from proto.marshal.rules.dates import DurationRule, TimestampRule
-
 
 from google import auth
 from google.api_core import client_options
@@ -36,12 +36,6 @@ from google.cloud.recommender_v1.services.recommender import RecommenderAsyncCli
 from google.cloud.recommender_v1.services.recommender import RecommenderClient
 from google.cloud.recommender_v1.services.recommender import pagers
 from google.cloud.recommender_v1.services.recommender import transports
-from google.cloud.recommender_v1.services.recommender.transports.base import (
-    _API_CORE_VERSION,
-)
-from google.cloud.recommender_v1.services.recommender.transports.base import (
-    _GOOGLE_AUTH_VERSION,
-)
 from google.cloud.recommender_v1.types import insight
 from google.cloud.recommender_v1.types import recommendation
 from google.cloud.recommender_v1.types import recommender_service
@@ -49,29 +43,6 @@ from google.oauth2 import service_account
 from google.protobuf import duration_pb2 as duration  # type: ignore
 from google.protobuf import struct_pb2 as struct  # type: ignore
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
-
-
-# TODO(busunkim): Once google-api-core >= 1.26.0 is required:
-# - Delete all the api-core and auth "less than" test cases
-# - Delete these pytest markers (Make the "greater than or equal to" tests the default).
-requires_google_auth_lt_1_25_0 = pytest.mark.skipif(
-    packaging.version.parse(_GOOGLE_AUTH_VERSION) >= packaging.version.parse("1.25.0"),
-    reason="This test requires google-auth < 1.25.0",
-)
-requires_google_auth_gte_1_25_0 = pytest.mark.skipif(
-    packaging.version.parse(_GOOGLE_AUTH_VERSION) < packaging.version.parse("1.25.0"),
-    reason="This test requires google-auth >= 1.25.0",
-)
-
-requires_api_core_lt_1_26_0 = pytest.mark.skipif(
-    packaging.version.parse(_API_CORE_VERSION) >= packaging.version.parse("1.26.0"),
-    reason="This test requires google-api-core < 1.26.0",
-)
-
-requires_api_core_gte_1_26_0 = pytest.mark.skipif(
-    packaging.version.parse(_API_CORE_VERSION) < packaging.version.parse("1.26.0"),
-    reason="This test requires google-api-core >= 1.26.0",
-)
 
 
 def client_cert_source_callback():
@@ -480,15 +451,19 @@ def test_list_insights(
         call.return_value = recommender_service.ListInsightsResponse(
             next_page_token="next_page_token_value",
         )
+
         response = client.list_insights(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.ListInsightsRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, pagers.ListInsightsPager)
+
     assert response.next_page_token == "next_page_token_value"
 
 
@@ -508,6 +483,7 @@ def test_list_insights_empty_call():
         client.list_insights()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.ListInsightsRequest()
 
 
@@ -532,15 +508,18 @@ async def test_list_insights_async(
                 next_page_token="next_page_token_value",
             )
         )
+
         response = await client.list_insights(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.ListInsightsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListInsightsAsyncPager)
+
     assert response.next_page_token == "next_page_token_value"
 
 
@@ -555,12 +534,12 @@ def test_list_insights_field_headers():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = recommender_service.ListInsightsRequest()
-
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client.transport.list_insights), "__call__") as call:
         call.return_value = recommender_service.ListInsightsResponse()
+
         client.list_insights(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -580,7 +559,6 @@ async def test_list_insights_field_headers_async():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = recommender_service.ListInsightsRequest()
-
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -588,6 +566,7 @@ async def test_list_insights_field_headers_async():
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             recommender_service.ListInsightsResponse()
         )
+
         await client.list_insights(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -607,6 +586,7 @@ def test_list_insights_flattened():
     with mock.patch.object(type(client.transport.list_insights), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = recommender_service.ListInsightsResponse()
+
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.list_insights(parent="parent_value",)
@@ -615,6 +595,7 @@ def test_list_insights_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].parent == "parent_value"
 
 
@@ -649,6 +630,7 @@ async def test_list_insights_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].parent == "parent_value"
 
 
@@ -816,20 +798,29 @@ def test_get_insight(
             category=insight.Insight.Category.COST,
             etag="etag_value",
         )
+
         response = client.get_insight(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.GetInsightRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, insight.Insight)
+
     assert response.name == "name_value"
+
     assert response.description == "description_value"
+
     assert response.target_resources == ["target_resources_value"]
+
     assert response.insight_subtype == "insight_subtype_value"
+
     assert response.category == insight.Insight.Category.COST
+
     assert response.etag == "etag_value"
 
 
@@ -849,6 +840,7 @@ def test_get_insight_empty_call():
         client.get_insight()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.GetInsightRequest()
 
 
@@ -877,20 +869,28 @@ async def test_get_insight_async(
                 etag="etag_value",
             )
         )
+
         response = await client.get_insight(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.GetInsightRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, insight.Insight)
+
     assert response.name == "name_value"
+
     assert response.description == "description_value"
+
     assert response.target_resources == ["target_resources_value"]
+
     assert response.insight_subtype == "insight_subtype_value"
+
     assert response.category == insight.Insight.Category.COST
+
     assert response.etag == "etag_value"
 
 
@@ -905,12 +905,12 @@ def test_get_insight_field_headers():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = recommender_service.GetInsightRequest()
-
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client.transport.get_insight), "__call__") as call:
         call.return_value = insight.Insight()
+
         client.get_insight(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -930,12 +930,12 @@ async def test_get_insight_field_headers_async():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = recommender_service.GetInsightRequest()
-
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client.transport.get_insight), "__call__") as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(insight.Insight())
+
         await client.get_insight(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -955,6 +955,7 @@ def test_get_insight_flattened():
     with mock.patch.object(type(client.transport.get_insight), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = insight.Insight()
+
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.get_insight(name="name_value",)
@@ -963,6 +964,7 @@ def test_get_insight_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].name == "name_value"
 
 
@@ -995,6 +997,7 @@ async def test_get_insight_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].name == "name_value"
 
 
@@ -1034,20 +1037,29 @@ def test_mark_insight_accepted(
             category=insight.Insight.Category.COST,
             etag="etag_value",
         )
+
         response = client.mark_insight_accepted(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.MarkInsightAcceptedRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, insight.Insight)
+
     assert response.name == "name_value"
+
     assert response.description == "description_value"
+
     assert response.target_resources == ["target_resources_value"]
+
     assert response.insight_subtype == "insight_subtype_value"
+
     assert response.category == insight.Insight.Category.COST
+
     assert response.etag == "etag_value"
 
 
@@ -1069,6 +1081,7 @@ def test_mark_insight_accepted_empty_call():
         client.mark_insight_accepted()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.MarkInsightAcceptedRequest()
 
 
@@ -1100,20 +1113,28 @@ async def test_mark_insight_accepted_async(
                 etag="etag_value",
             )
         )
+
         response = await client.mark_insight_accepted(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.MarkInsightAcceptedRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, insight.Insight)
+
     assert response.name == "name_value"
+
     assert response.description == "description_value"
+
     assert response.target_resources == ["target_resources_value"]
+
     assert response.insight_subtype == "insight_subtype_value"
+
     assert response.category == insight.Insight.Category.COST
+
     assert response.etag == "etag_value"
 
 
@@ -1128,7 +1149,6 @@ def test_mark_insight_accepted_field_headers():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = recommender_service.MarkInsightAcceptedRequest()
-
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -1136,6 +1156,7 @@ def test_mark_insight_accepted_field_headers():
         type(client.transport.mark_insight_accepted), "__call__"
     ) as call:
         call.return_value = insight.Insight()
+
         client.mark_insight_accepted(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1155,7 +1176,6 @@ async def test_mark_insight_accepted_field_headers_async():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = recommender_service.MarkInsightAcceptedRequest()
-
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -1163,6 +1183,7 @@ async def test_mark_insight_accepted_field_headers_async():
         type(client.transport.mark_insight_accepted), "__call__"
     ) as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(insight.Insight())
+
         await client.mark_insight_accepted(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1184,6 +1205,7 @@ def test_mark_insight_accepted_flattened():
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = insight.Insight()
+
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.mark_insight_accepted(
@@ -1196,8 +1218,11 @@ def test_mark_insight_accepted_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].name == "name_value"
+
         assert args[0].state_metadata == {"key_value": "value_value"}
+
         assert args[0].etag == "etag_value"
 
 
@@ -1239,8 +1264,11 @@ async def test_mark_insight_accepted_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].name == "name_value"
+
         assert args[0].state_metadata == {"key_value": "value_value"}
+
         assert args[0].etag == "etag_value"
 
 
@@ -1278,15 +1306,19 @@ def test_list_recommendations(
         call.return_value = recommender_service.ListRecommendationsResponse(
             next_page_token="next_page_token_value",
         )
+
         response = client.list_recommendations(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.ListRecommendationsRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, pagers.ListRecommendationsPager)
+
     assert response.next_page_token == "next_page_token_value"
 
 
@@ -1308,6 +1340,7 @@ def test_list_recommendations_empty_call():
         client.list_recommendations()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.ListRecommendationsRequest()
 
 
@@ -1334,15 +1367,18 @@ async def test_list_recommendations_async(
                 next_page_token="next_page_token_value",
             )
         )
+
         response = await client.list_recommendations(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.ListRecommendationsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListRecommendationsAsyncPager)
+
     assert response.next_page_token == "next_page_token_value"
 
 
@@ -1357,7 +1393,6 @@ def test_list_recommendations_field_headers():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = recommender_service.ListRecommendationsRequest()
-
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -1365,6 +1400,7 @@ def test_list_recommendations_field_headers():
         type(client.transport.list_recommendations), "__call__"
     ) as call:
         call.return_value = recommender_service.ListRecommendationsResponse()
+
         client.list_recommendations(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1384,7 +1420,6 @@ async def test_list_recommendations_field_headers_async():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = recommender_service.ListRecommendationsRequest()
-
     request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -1394,6 +1429,7 @@ async def test_list_recommendations_field_headers_async():
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             recommender_service.ListRecommendationsResponse()
         )
+
         await client.list_recommendations(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1415,6 +1451,7 @@ def test_list_recommendations_flattened():
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = recommender_service.ListRecommendationsResponse()
+
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.list_recommendations(
@@ -1425,7 +1462,9 @@ def test_list_recommendations_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].parent == "parent_value"
+
         assert args[0].filter == "filter_value"
 
 
@@ -1466,7 +1505,9 @@ async def test_list_recommendations_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].parent == "parent_value"
+
         assert args[0].filter == "filter_value"
 
 
@@ -1676,18 +1717,25 @@ def test_get_recommendation(
             recommender_subtype="recommender_subtype_value",
             etag="etag_value",
         )
+
         response = client.get_recommendation(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.GetRecommendationRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, recommendation.Recommendation)
+
     assert response.name == "name_value"
+
     assert response.description == "description_value"
+
     assert response.recommender_subtype == "recommender_subtype_value"
+
     assert response.etag == "etag_value"
 
 
@@ -1709,6 +1757,7 @@ def test_get_recommendation_empty_call():
         client.get_recommendation()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.GetRecommendationRequest()
 
 
@@ -1738,18 +1787,24 @@ async def test_get_recommendation_async(
                 etag="etag_value",
             )
         )
+
         response = await client.get_recommendation(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.GetRecommendationRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, recommendation.Recommendation)
+
     assert response.name == "name_value"
+
     assert response.description == "description_value"
+
     assert response.recommender_subtype == "recommender_subtype_value"
+
     assert response.etag == "etag_value"
 
 
@@ -1764,7 +1819,6 @@ def test_get_recommendation_field_headers():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = recommender_service.GetRecommendationRequest()
-
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -1772,6 +1826,7 @@ def test_get_recommendation_field_headers():
         type(client.transport.get_recommendation), "__call__"
     ) as call:
         call.return_value = recommendation.Recommendation()
+
         client.get_recommendation(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1791,7 +1846,6 @@ async def test_get_recommendation_field_headers_async():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = recommender_service.GetRecommendationRequest()
-
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -1801,6 +1855,7 @@ async def test_get_recommendation_field_headers_async():
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             recommendation.Recommendation()
         )
+
         await client.get_recommendation(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1822,6 +1877,7 @@ def test_get_recommendation_flattened():
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = recommendation.Recommendation()
+
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.get_recommendation(name="name_value",)
@@ -1830,6 +1886,7 @@ def test_get_recommendation_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].name == "name_value"
 
 
@@ -1866,6 +1923,7 @@ async def test_get_recommendation_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].name == "name_value"
 
 
@@ -1904,18 +1962,25 @@ def test_mark_recommendation_claimed(
             recommender_subtype="recommender_subtype_value",
             etag="etag_value",
         )
+
         response = client.mark_recommendation_claimed(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.MarkRecommendationClaimedRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, recommendation.Recommendation)
+
     assert response.name == "name_value"
+
     assert response.description == "description_value"
+
     assert response.recommender_subtype == "recommender_subtype_value"
+
     assert response.etag == "etag_value"
 
 
@@ -1937,6 +2002,7 @@ def test_mark_recommendation_claimed_empty_call():
         client.mark_recommendation_claimed()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.MarkRecommendationClaimedRequest()
 
 
@@ -1966,18 +2032,24 @@ async def test_mark_recommendation_claimed_async(
                 etag="etag_value",
             )
         )
+
         response = await client.mark_recommendation_claimed(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.MarkRecommendationClaimedRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, recommendation.Recommendation)
+
     assert response.name == "name_value"
+
     assert response.description == "description_value"
+
     assert response.recommender_subtype == "recommender_subtype_value"
+
     assert response.etag == "etag_value"
 
 
@@ -1992,7 +2064,6 @@ def test_mark_recommendation_claimed_field_headers():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = recommender_service.MarkRecommendationClaimedRequest()
-
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -2000,6 +2071,7 @@ def test_mark_recommendation_claimed_field_headers():
         type(client.transport.mark_recommendation_claimed), "__call__"
     ) as call:
         call.return_value = recommendation.Recommendation()
+
         client.mark_recommendation_claimed(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2019,7 +2091,6 @@ async def test_mark_recommendation_claimed_field_headers_async():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = recommender_service.MarkRecommendationClaimedRequest()
-
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -2029,6 +2100,7 @@ async def test_mark_recommendation_claimed_field_headers_async():
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             recommendation.Recommendation()
         )
+
         await client.mark_recommendation_claimed(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2050,6 +2122,7 @@ def test_mark_recommendation_claimed_flattened():
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = recommendation.Recommendation()
+
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.mark_recommendation_claimed(
@@ -2062,8 +2135,11 @@ def test_mark_recommendation_claimed_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].name == "name_value"
+
         assert args[0].state_metadata == {"key_value": "value_value"}
+
         assert args[0].etag == "etag_value"
 
 
@@ -2107,8 +2183,11 @@ async def test_mark_recommendation_claimed_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].name == "name_value"
+
         assert args[0].state_metadata == {"key_value": "value_value"}
+
         assert args[0].etag == "etag_value"
 
 
@@ -2150,18 +2229,25 @@ def test_mark_recommendation_succeeded(
             recommender_subtype="recommender_subtype_value",
             etag="etag_value",
         )
+
         response = client.mark_recommendation_succeeded(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.MarkRecommendationSucceededRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, recommendation.Recommendation)
+
     assert response.name == "name_value"
+
     assert response.description == "description_value"
+
     assert response.recommender_subtype == "recommender_subtype_value"
+
     assert response.etag == "etag_value"
 
 
@@ -2183,6 +2269,7 @@ def test_mark_recommendation_succeeded_empty_call():
         client.mark_recommendation_succeeded()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.MarkRecommendationSucceededRequest()
 
 
@@ -2212,18 +2299,24 @@ async def test_mark_recommendation_succeeded_async(
                 etag="etag_value",
             )
         )
+
         response = await client.mark_recommendation_succeeded(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.MarkRecommendationSucceededRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, recommendation.Recommendation)
+
     assert response.name == "name_value"
+
     assert response.description == "description_value"
+
     assert response.recommender_subtype == "recommender_subtype_value"
+
     assert response.etag == "etag_value"
 
 
@@ -2238,7 +2331,6 @@ def test_mark_recommendation_succeeded_field_headers():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = recommender_service.MarkRecommendationSucceededRequest()
-
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -2246,6 +2338,7 @@ def test_mark_recommendation_succeeded_field_headers():
         type(client.transport.mark_recommendation_succeeded), "__call__"
     ) as call:
         call.return_value = recommendation.Recommendation()
+
         client.mark_recommendation_succeeded(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2265,7 +2358,6 @@ async def test_mark_recommendation_succeeded_field_headers_async():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = recommender_service.MarkRecommendationSucceededRequest()
-
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -2275,6 +2367,7 @@ async def test_mark_recommendation_succeeded_field_headers_async():
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             recommendation.Recommendation()
         )
+
         await client.mark_recommendation_succeeded(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2296,6 +2389,7 @@ def test_mark_recommendation_succeeded_flattened():
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = recommendation.Recommendation()
+
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.mark_recommendation_succeeded(
@@ -2308,8 +2402,11 @@ def test_mark_recommendation_succeeded_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].name == "name_value"
+
         assert args[0].state_metadata == {"key_value": "value_value"}
+
         assert args[0].etag == "etag_value"
 
 
@@ -2353,8 +2450,11 @@ async def test_mark_recommendation_succeeded_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].name == "name_value"
+
         assert args[0].state_metadata == {"key_value": "value_value"}
+
         assert args[0].etag == "etag_value"
 
 
@@ -2396,18 +2496,25 @@ def test_mark_recommendation_failed(
             recommender_subtype="recommender_subtype_value",
             etag="etag_value",
         )
+
         response = client.mark_recommendation_failed(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.MarkRecommendationFailedRequest()
 
     # Establish that the response is the type that we expect.
+
     assert isinstance(response, recommendation.Recommendation)
+
     assert response.name == "name_value"
+
     assert response.description == "description_value"
+
     assert response.recommender_subtype == "recommender_subtype_value"
+
     assert response.etag == "etag_value"
 
 
@@ -2429,6 +2536,7 @@ def test_mark_recommendation_failed_empty_call():
         client.mark_recommendation_failed()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.MarkRecommendationFailedRequest()
 
 
@@ -2458,18 +2566,24 @@ async def test_mark_recommendation_failed_async(
                 etag="etag_value",
             )
         )
+
         response = await client.mark_recommendation_failed(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0] == recommender_service.MarkRecommendationFailedRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, recommendation.Recommendation)
+
     assert response.name == "name_value"
+
     assert response.description == "description_value"
+
     assert response.recommender_subtype == "recommender_subtype_value"
+
     assert response.etag == "etag_value"
 
 
@@ -2484,7 +2598,6 @@ def test_mark_recommendation_failed_field_headers():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = recommender_service.MarkRecommendationFailedRequest()
-
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -2492,6 +2605,7 @@ def test_mark_recommendation_failed_field_headers():
         type(client.transport.mark_recommendation_failed), "__call__"
     ) as call:
         call.return_value = recommendation.Recommendation()
+
         client.mark_recommendation_failed(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2511,7 +2625,6 @@ async def test_mark_recommendation_failed_field_headers_async():
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = recommender_service.MarkRecommendationFailedRequest()
-
     request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
@@ -2521,6 +2634,7 @@ async def test_mark_recommendation_failed_field_headers_async():
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             recommendation.Recommendation()
         )
+
         await client.mark_recommendation_failed(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2542,6 +2656,7 @@ def test_mark_recommendation_failed_flattened():
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = recommendation.Recommendation()
+
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.mark_recommendation_failed(
@@ -2554,8 +2669,11 @@ def test_mark_recommendation_failed_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].name == "name_value"
+
         assert args[0].state_metadata == {"key_value": "value_value"}
+
         assert args[0].etag == "etag_value"
 
 
@@ -2599,8 +2717,11 @@ async def test_mark_recommendation_failed_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].name == "name_value"
+
         assert args[0].state_metadata == {"key_value": "value_value"}
+
         assert args[0].etag == "etag_value"
 
 
@@ -2727,32 +2848,10 @@ def test_recommender_base_transport():
             getattr(transport, method)(request=object())
 
 
-@requires_google_auth_gte_1_25_0
 def test_recommender_base_transport_with_credentials_file():
     # Instantiate the base transport with a credentials file
     with mock.patch.object(
-        auth, "load_credentials_from_file", autospec=True
-    ) as load_creds, mock.patch(
-        "google.cloud.recommender_v1.services.recommender.transports.RecommenderTransport._prep_wrapped_messages"
-    ) as Transport:
-        Transport.return_value = None
-        load_creds.return_value = (credentials.AnonymousCredentials(), None)
-        transport = transports.RecommenderTransport(
-            credentials_file="credentials.json", quota_project_id="octopus",
-        )
-        load_creds.assert_called_once_with(
-            "credentials.json",
-            scopes=None,
-            default_scopes=("https://www.googleapis.com/auth/cloud-platform",),
-            quota_project_id="octopus",
-        )
-
-
-@requires_google_auth_lt_1_25_0
-def test_recommender_base_transport_with_credentials_file_old_google_auth():
-    # Instantiate the base transport with a credentials file
-    with mock.patch.object(
-        auth, "load_credentials_from_file", autospec=True
+        auth, "load_credentials_from_file"
     ) as load_creds, mock.patch(
         "google.cloud.recommender_v1.services.recommender.transports.RecommenderTransport._prep_wrapped_messages"
     ) as Transport:
@@ -2770,7 +2869,7 @@ def test_recommender_base_transport_with_credentials_file_old_google_auth():
 
 def test_recommender_base_transport_with_adc():
     # Test the default credentials are used if credentials and credentials_file are None.
-    with mock.patch.object(auth, "default", autospec=True) as adc, mock.patch(
+    with mock.patch.object(auth, "default") as adc, mock.patch(
         "google.cloud.recommender_v1.services.recommender.transports.RecommenderTransport._prep_wrapped_messages"
     ) as Transport:
         Transport.return_value = None
@@ -2779,23 +2878,9 @@ def test_recommender_base_transport_with_adc():
         adc.assert_called_once()
 
 
-@requires_google_auth_gte_1_25_0
 def test_recommender_auth_adc():
     # If no credentials are provided, we should use ADC credentials.
-    with mock.patch.object(auth, "default", autospec=True) as adc:
-        adc.return_value = (credentials.AnonymousCredentials(), None)
-        RecommenderClient()
-        adc.assert_called_once_with(
-            scopes=None,
-            default_scopes=("https://www.googleapis.com/auth/cloud-platform",),
-            quota_project_id=None,
-        )
-
-
-@requires_google_auth_lt_1_25_0
-def test_recommender_auth_adc_old_google_auth():
-    # If no credentials are provided, we should use ADC credentials.
-    with mock.patch.object(auth, "default", autospec=True) as adc:
+    with mock.patch.object(auth, "default") as adc:
         adc.return_value = (credentials.AnonymousCredentials(), None)
         RecommenderClient()
         adc.assert_called_once_with(
@@ -2804,141 +2889,17 @@ def test_recommender_auth_adc_old_google_auth():
         )
 
 
-@pytest.mark.parametrize(
-    "transport_class",
-    [transports.RecommenderGrpcTransport, transports.RecommenderGrpcAsyncIOTransport,],
-)
-@requires_google_auth_gte_1_25_0
-def test_recommender_transport_auth_adc(transport_class):
+def test_recommender_transport_auth_adc():
     # If credentials and host are not provided, the transport class should use
     # ADC credentials.
-    with mock.patch.object(auth, "default", autospec=True) as adc:
+    with mock.patch.object(auth, "default") as adc:
         adc.return_value = (credentials.AnonymousCredentials(), None)
-        transport_class(quota_project_id="octopus", scopes=["1", "2"])
-        adc.assert_called_once_with(
-            scopes=["1", "2"],
-            default_scopes=("https://www.googleapis.com/auth/cloud-platform",),
-            quota_project_id="octopus",
+        transports.RecommenderGrpcTransport(
+            host="squid.clam.whelk", quota_project_id="octopus"
         )
-
-
-@pytest.mark.parametrize(
-    "transport_class",
-    [transports.RecommenderGrpcTransport, transports.RecommenderGrpcAsyncIOTransport,],
-)
-@requires_google_auth_lt_1_25_0
-def test_recommender_transport_auth_adc_old_google_auth(transport_class):
-    # If credentials and host are not provided, the transport class should use
-    # ADC credentials.
-    with mock.patch.object(auth, "default", autospec=True) as adc:
-        adc.return_value = (credentials.AnonymousCredentials(), None)
-        transport_class(quota_project_id="octopus")
         adc.assert_called_once_with(
             scopes=("https://www.googleapis.com/auth/cloud-platform",),
             quota_project_id="octopus",
-        )
-
-
-@pytest.mark.parametrize(
-    "transport_class,grpc_helpers",
-    [
-        (transports.RecommenderGrpcTransport, grpc_helpers),
-        (transports.RecommenderGrpcAsyncIOTransport, grpc_helpers_async),
-    ],
-)
-@requires_api_core_gte_1_26_0
-def test_recommender_transport_create_channel(transport_class, grpc_helpers):
-    # If credentials and host are not provided, the transport class should use
-    # ADC credentials.
-    with mock.patch.object(auth, "default", autospec=True) as adc, mock.patch.object(
-        grpc_helpers, "create_channel", autospec=True
-    ) as create_channel:
-        creds = credentials.AnonymousCredentials()
-        adc.return_value = (creds, None)
-        transport_class(quota_project_id="octopus", scopes=["1", "2"])
-
-        create_channel.assert_called_with(
-            "recommender.googleapis.com",
-            credentials=creds,
-            credentials_file=None,
-            quota_project_id="octopus",
-            default_scopes=("https://www.googleapis.com/auth/cloud-platform",),
-            scopes=["1", "2"],
-            default_host="recommender.googleapis.com",
-            ssl_credentials=None,
-            options=[
-                ("grpc.max_send_message_length", -1),
-                ("grpc.max_receive_message_length", -1),
-            ],
-        )
-
-
-@pytest.mark.parametrize(
-    "transport_class,grpc_helpers",
-    [
-        (transports.RecommenderGrpcTransport, grpc_helpers),
-        (transports.RecommenderGrpcAsyncIOTransport, grpc_helpers_async),
-    ],
-)
-@requires_api_core_lt_1_26_0
-def test_recommender_transport_create_channel_old_api_core(
-    transport_class, grpc_helpers
-):
-    # If credentials and host are not provided, the transport class should use
-    # ADC credentials.
-    with mock.patch.object(auth, "default", autospec=True) as adc, mock.patch.object(
-        grpc_helpers, "create_channel", autospec=True
-    ) as create_channel:
-        creds = credentials.AnonymousCredentials()
-        adc.return_value = (creds, None)
-        transport_class(quota_project_id="octopus")
-
-        create_channel.assert_called_with(
-            "recommender.googleapis.com",
-            credentials=creds,
-            credentials_file=None,
-            quota_project_id="octopus",
-            scopes=("https://www.googleapis.com/auth/cloud-platform",),
-            ssl_credentials=None,
-            options=[
-                ("grpc.max_send_message_length", -1),
-                ("grpc.max_receive_message_length", -1),
-            ],
-        )
-
-
-@pytest.mark.parametrize(
-    "transport_class,grpc_helpers",
-    [
-        (transports.RecommenderGrpcTransport, grpc_helpers),
-        (transports.RecommenderGrpcAsyncIOTransport, grpc_helpers_async),
-    ],
-)
-@requires_api_core_lt_1_26_0
-def test_recommender_transport_create_channel_user_scopes(
-    transport_class, grpc_helpers
-):
-    # If credentials and host are not provided, the transport class should use
-    # ADC credentials.
-    with mock.patch.object(auth, "default", autospec=True) as adc, mock.patch.object(
-        grpc_helpers, "create_channel", autospec=True
-    ) as create_channel:
-        creds = credentials.AnonymousCredentials()
-        adc.return_value = (creds, None)
-
-        transport_class(quota_project_id="octopus", scopes=["1", "2"])
-
-        create_channel.assert_called_with(
-            "recommender.googleapis.com",
-            credentials=creds,
-            credentials_file=None,
-            quota_project_id="octopus",
-            scopes=["1", "2"],
-            ssl_credentials=None,
-            options=[
-                ("grpc.max_send_message_length", -1),
-                ("grpc.max_receive_message_length", -1),
-            ],
         )
 
 
@@ -3125,6 +3086,7 @@ def test_insight_path():
     location = "clam"
     insight_type = "whelk"
     insight = "octopus"
+
     expected = "projects/{project}/locations/{location}/insightTypes/{insight_type}/insights/{insight}".format(
         project=project, location=location, insight_type=insight_type, insight=insight,
     )
@@ -3150,6 +3112,7 @@ def test_insight_type_path():
     project = "winkle"
     location = "nautilus"
     insight_type = "scallop"
+
     expected = "projects/{project}/locations/{location}/insightTypes/{insight_type}".format(
         project=project, location=location, insight_type=insight_type,
     )
@@ -3175,6 +3138,7 @@ def test_recommendation_path():
     location = "octopus"
     recommender = "oyster"
     recommendation = "nudibranch"
+
     expected = "projects/{project}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}".format(
         project=project,
         location=location,
@@ -3205,6 +3169,7 @@ def test_recommender_path():
     project = "scallop"
     location = "abalone"
     recommender = "squid"
+
     expected = "projects/{project}/locations/{location}/recommenders/{recommender}".format(
         project=project, location=location, recommender=recommender,
     )
@@ -3227,6 +3192,7 @@ def test_parse_recommender_path():
 
 def test_common_billing_account_path():
     billing_account = "oyster"
+
     expected = "billingAccounts/{billing_account}".format(
         billing_account=billing_account,
     )
@@ -3247,6 +3213,7 @@ def test_parse_common_billing_account_path():
 
 def test_common_folder_path():
     folder = "cuttlefish"
+
     expected = "folders/{folder}".format(folder=folder,)
     actual = RecommenderClient.common_folder_path(folder)
     assert expected == actual
@@ -3265,6 +3232,7 @@ def test_parse_common_folder_path():
 
 def test_common_organization_path():
     organization = "winkle"
+
     expected = "organizations/{organization}".format(organization=organization,)
     actual = RecommenderClient.common_organization_path(organization)
     assert expected == actual
@@ -3283,6 +3251,7 @@ def test_parse_common_organization_path():
 
 def test_common_project_path():
     project = "scallop"
+
     expected = "projects/{project}".format(project=project,)
     actual = RecommenderClient.common_project_path(project)
     assert expected == actual
@@ -3302,6 +3271,7 @@ def test_parse_common_project_path():
 def test_common_location_path():
     project = "squid"
     location = "clam"
+
     expected = "projects/{project}/locations/{location}".format(
         project=project, location=location,
     )
