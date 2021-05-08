@@ -119,7 +119,7 @@ class InsightStateInfo(proto.Message):
         DISMISSED = 3
 
     state = proto.Field(proto.ENUM, number=1, enum=State,)
-    state_metadata = proto.MapField(proto.STRING, proto.STRING, number=2)
+    state_metadata = proto.MapField(proto.STRING, proto.STRING, number=2,)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

@@ -238,9 +238,7 @@ class RecommenderGrpcAsyncIOTransport(RecommenderTransport):
         [recommender_service.ListInsightsRequest],
         Awaitable[recommender_service.ListInsightsResponse],
     ]:
-        r"""Return a callable for the
-        list insights
-          method over gRPC.
+        r"""Return a callable for the list insights method over gRPC.
 
         Lists insights for a Cloud project. Requires the
         recommender.*.list IAM permission for the specified insight
@@ -268,9 +266,7 @@ class RecommenderGrpcAsyncIOTransport(RecommenderTransport):
     def get_insight(
         self,
     ) -> Callable[[recommender_service.GetInsightRequest], Awaitable[insight.Insight]]:
-        r"""Return a callable for the
-        get insight
-          method over gRPC.
+        r"""Return a callable for the get insight method over gRPC.
 
         Gets the requested insight. Requires the recommender.*.get IAM
         permission for the specified insight type.
@@ -299,9 +295,7 @@ class RecommenderGrpcAsyncIOTransport(RecommenderTransport):
     ) -> Callable[
         [recommender_service.MarkInsightAcceptedRequest], Awaitable[insight.Insight]
     ]:
-        r"""Return a callable for the
-        mark insight accepted
-          method over gRPC.
+        r"""Return a callable for the mark insight accepted method over gRPC.
 
         Marks the Insight State as Accepted. Users can use this method
         to indicate to the Recommender API that they have applied some
@@ -337,9 +331,7 @@ class RecommenderGrpcAsyncIOTransport(RecommenderTransport):
         [recommender_service.ListRecommendationsRequest],
         Awaitable[recommender_service.ListRecommendationsResponse],
     ]:
-        r"""Return a callable for the
-        list recommendations
-          method over gRPC.
+        r"""Return a callable for the list recommendations method over gRPC.
 
         Lists recommendations for a Cloud project. Requires the
         recommender.*.list IAM permission for the specified recommender.
@@ -369,9 +361,7 @@ class RecommenderGrpcAsyncIOTransport(RecommenderTransport):
         [recommender_service.GetRecommendationRequest],
         Awaitable[recommendation.Recommendation],
     ]:
-        r"""Return a callable for the
-        get recommendation
-          method over gRPC.
+        r"""Return a callable for the get recommendation method over gRPC.
 
         Gets the requested recommendation. Requires the
         recommender.*.get IAM permission for the specified recommender.
@@ -401,9 +391,7 @@ class RecommenderGrpcAsyncIOTransport(RecommenderTransport):
         [recommender_service.MarkRecommendationClaimedRequest],
         Awaitable[recommendation.Recommendation],
     ]:
-        r"""Return a callable for the
-        mark recommendation claimed
-          method over gRPC.
+        r"""Return a callable for the mark recommendation claimed method over gRPC.
 
         Marks the Recommendation State as Claimed. Users can use this
         method to indicate to the Recommender API that they are starting
@@ -442,9 +430,7 @@ class RecommenderGrpcAsyncIOTransport(RecommenderTransport):
         [recommender_service.MarkRecommendationSucceededRequest],
         Awaitable[recommendation.Recommendation],
     ]:
-        r"""Return a callable for the
-        mark recommendation succeeded
-          method over gRPC.
+        r"""Return a callable for the mark recommendation succeeded method over gRPC.
 
         Marks the Recommendation State as Succeeded. Users can use this
         method to indicate to the Recommender API that they have applied
@@ -485,9 +471,7 @@ class RecommenderGrpcAsyncIOTransport(RecommenderTransport):
         [recommender_service.MarkRecommendationFailedRequest],
         Awaitable[recommendation.Recommendation],
     ]:
-        r"""Return a callable for the
-        mark recommendation failed
-          method over gRPC.
+        r"""Return a callable for the mark recommendation failed method over gRPC.
 
         Marks the Recommendation State as Failed. Users can use this
         method to indicate to the Recommender API that they have applied
