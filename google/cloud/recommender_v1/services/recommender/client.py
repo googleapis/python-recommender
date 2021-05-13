@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 from collections import OrderedDict
 from distutils import util
 import os
@@ -23,10 +21,10 @@ from typing import Callable, Dict, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib  # type: ignore
-from google.api_core import exceptions  # type: ignore
+from google.api_core import exceptions as core_exceptions  # type: ignore
 from google.api_core import gapic_v1  # type: ignore
 from google.api_core import retry as retries  # type: ignore
-from google.auth import credentials  # type: ignore
+from google.auth import credentials as ga_credentials  # type: ignore
 from google.auth.transport import mtls  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 from google.auth.exceptions import MutualTLSChannelError  # type: ignore
@@ -36,10 +34,9 @@ from google.cloud.recommender_v1.services.recommender import pagers
 from google.cloud.recommender_v1.types import insight
 from google.cloud.recommender_v1.types import recommendation
 from google.cloud.recommender_v1.types import recommender_service
-from google.protobuf import duration_pb2 as duration  # type: ignore
-from google.protobuf import struct_pb2 as struct  # type: ignore
-from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
-
+from google.protobuf import duration_pb2  # type: ignore
+from google.protobuf import struct_pb2  # type: ignore
+from google.protobuf import timestamp_pb2  # type: ignore
 from .transports.base import RecommenderTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc import RecommenderGrpcTransport
 from .transports.grpc_asyncio import RecommenderGrpcAsyncIOTransport
@@ -299,7 +296,7 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
     def __init__(
         self,
         *,
-        credentials: Optional[credentials.Credentials] = None,
+        credentials: Optional[ga_credentials.Credentials] = None,
         transport: Union[str, RecommenderTransport, None] = None,
         client_options: Optional[client_options_lib.ClientOptions] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
@@ -442,7 +439,6 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -473,10 +469,8 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
         # there are no flattened fields.
         if not isinstance(request, recommender_service.ListInsightsRequest):
             request = recommender_service.ListInsightsRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
 
@@ -522,7 +516,6 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -553,10 +546,8 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
         # there are no flattened fields.
         if not isinstance(request, recommender_service.GetInsightRequest):
             request = recommender_service.GetInsightRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
 
@@ -621,7 +612,6 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
                 This corresponds to the ``etag`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -652,10 +642,8 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
         # there are no flattened fields.
         if not isinstance(request, recommender_service.MarkInsightAcceptedRequest):
             request = recommender_service.MarkInsightAcceptedRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
             if state_metadata is not None:
@@ -721,7 +709,6 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
                 This corresponds to the ``filter`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -752,10 +739,8 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
         # there are no flattened fields.
         if not isinstance(request, recommender_service.ListRecommendationsRequest):
             request = recommender_service.ListRecommendationsRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
             if filter is not None:
@@ -804,7 +789,6 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -835,10 +819,8 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
         # there are no flattened fields.
         if not isinstance(request, recommender_service.GetRecommendationRequest):
             request = recommender_service.GetRecommendationRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
 
@@ -909,7 +891,6 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
                 This corresponds to the ``etag`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -942,10 +923,8 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
             request, recommender_service.MarkRecommendationClaimedRequest
         ):
             request = recommender_service.MarkRecommendationClaimedRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
             if state_metadata is not None:
@@ -1022,7 +1001,6 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
                 This corresponds to the ``etag`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1055,10 +1033,8 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
             request, recommender_service.MarkRecommendationSucceededRequest
         ):
             request = recommender_service.MarkRecommendationSucceededRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
             if state_metadata is not None:
@@ -1135,7 +1111,6 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
                 This corresponds to the ``etag`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1166,10 +1141,8 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
         # there are no flattened fields.
         if not isinstance(request, recommender_service.MarkRecommendationFailedRequest):
             request = recommender_service.MarkRecommendationFailedRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
             if state_metadata is not None:
