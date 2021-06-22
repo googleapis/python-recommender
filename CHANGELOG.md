@@ -4,6 +4,13 @@
 
 [1]: https://pypi.org/project/google-cloud-recommender/#history
 
+### [2.2.1](https://www.github.com/googleapis/python-recommender/compare/v2.2.0...v2.2.1) (2021-06-22)
+
+
+### Documentation
+
+* omit mention of Python 2.7 in 'CONTRIBUTING.rst' ([#1127](https://www.github.com/googleapis/python-recommender/issues/1127)) ([#97](https://www.github.com/googleapis/python-recommender/issues/97)) ([f00fab2](https://www.github.com/googleapis/python-recommender/commit/f00fab2d3064c3a87823b444f556cce6cdccfab6)), closes [#1126](https://www.github.com/googleapis/python-recommender/issues/1126)
+
 ## [2.2.0](https://www.github.com/googleapis/python-recommender/compare/v2.1.0...v2.2.0) (2021-05-28)
 
 
