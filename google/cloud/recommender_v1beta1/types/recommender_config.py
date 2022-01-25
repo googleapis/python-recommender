@@ -20,27 +20,24 @@ from google.protobuf import timestamp_pb2  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package='google.cloud.recommender.v1beta1',
-    manifest={
-        'InsightTypeConfig',
-        'InsightTypeGenerationConfig',
-    },
+    package="google.cloud.recommender.v1beta1",
+    manifest={"RecommenderConfig", "RecommenderGenerationConfig",},
 )
 
 
-class InsightTypeConfig(proto.Message):
-    r"""Configuration for an InsightType.
+class RecommenderConfig(proto.Message):
+    r"""Configuration for a Recommender.
 
     Attributes:
         name (str):
-            Name of insight type config. Eg,
-            projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
-        insight_type_generation_config (google.cloud.recommender_v1beta1.types.InsightTypeGenerationConfig):
-            InsightTypeGenerationConfig which configures
-            the generation of insights for this insight
-            type.
+            Name of recommender config. Eg,
+            projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
+        recommender_generation_config (google.cloud.recommender_v1beta1.types.RecommenderGenerationConfig):
+            RecommenderGenerationConfig which configures
+            the Generation of recommendations for this
+            recommender.
         etag (str):
-            Fingerprint of the InsightTypeConfig.
+            Fingerprint of the RecommenderConfig.
             Provides optimistic locking when updating.
         update_time (google.protobuf.timestamp_pb2.Timestamp):
             Last time when the config was updated.
@@ -49,7 +46,7 @@ class InsightTypeConfig(proto.Message):
             the config. A new revision is committed whenever
             the config is changed in any way. The format is
             an 8-character hexadecimal string.
-        annotations (Sequence[google.cloud.recommender_v1beta1.types.InsightTypeConfig.AnnotationsEntry]):
+        annotations (Sequence[google.cloud.recommender_v1beta1.types.RecommenderConfig.AnnotationsEntry]):
             Allows clients to store small amounts of arbitrary data.
             Annotations must follow the Kubernetes syntax. The total
             size of all keys and values combined is limited to 256k. Key
@@ -63,56 +60,30 @@ class InsightTypeConfig(proto.Message):
             eadable name to be used in user interfaces.
     """
 
-    name = proto.Field(
-        proto.STRING,
-        number=1,
+    name = proto.Field(proto.STRING, number=1,)
+    recommender_generation_config = proto.Field(
+        proto.MESSAGE, number=2, message="RecommenderGenerationConfig",
     )
-    insight_type_generation_config = proto.Field(
-        proto.MESSAGE,
-        number=2,
-        message='InsightTypeGenerationConfig',
-    )
-    etag = proto.Field(
-        proto.STRING,
-        number=3,
-    )
-    update_time = proto.Field(
-        proto.MESSAGE,
-        number=4,
-        message=timestamp_pb2.Timestamp,
-    )
-    revision_id = proto.Field(
-        proto.STRING,
-        number=5,
-    )
-    annotations = proto.MapField(
-        proto.STRING,
-        proto.STRING,
-        number=6,
-    )
-    display_name = proto.Field(
-        proto.STRING,
-        number=7,
-    )
+    etag = proto.Field(proto.STRING, number=3,)
+    update_time = proto.Field(proto.MESSAGE, number=4, message=timestamp_pb2.Timestamp,)
+    revision_id = proto.Field(proto.STRING, number=5,)
+    annotations = proto.MapField(proto.STRING, proto.STRING, number=6,)
+    display_name = proto.Field(proto.STRING, number=7,)
 
 
-class InsightTypeGenerationConfig(proto.Message):
-    r"""A configuration to customize the generation of insights.
-    Eg, customizing the lookback period considered when generating a
-    insight.
+class RecommenderGenerationConfig(proto.Message):
+    r"""A Configuration to customize the generation of
+    recommendations. Eg, customizing the lookback period considered
+    when generating a recommendation.
 
     Attributes:
         params (google.protobuf.struct_pb2.Struct):
             Parameters for this
-            InsightTypeGenerationConfig. These configs can
+            RecommenderGenerationConfig. These configs can
             be used by or are applied to all subtypes.
     """
 
-    params = proto.Field(
-        proto.MESSAGE,
-        number=1,
-        message=struct_pb2.Struct,
-    )
+    params = proto.Field(proto.MESSAGE, number=1, message=struct_pb2.Struct,)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))
