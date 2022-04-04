@@ -382,7 +382,9 @@ _MARKINSIGHTACCEPTEDREQUEST = _descriptor.Descriptor(
         ),
     ],
     extensions=[],
-    nested_types=[_MARKINSIGHTACCEPTEDREQUEST_STATEMETADATAENTRY,],
+    nested_types=[
+        _MARKINSIGHTACCEPTEDREQUEST_STATEMETADATAENTRY,
+    ],
     enum_types=[],
     serialized_options=None,
     is_extendable=False,
@@ -719,7 +721,9 @@ _MARKRECOMMENDATIONCLAIMEDREQUEST = _descriptor.Descriptor(
         ),
     ],
     extensions=[],
-    nested_types=[_MARKRECOMMENDATIONCLAIMEDREQUEST_STATEMETADATAENTRY,],
+    nested_types=[
+        _MARKRECOMMENDATIONCLAIMEDREQUEST_STATEMETADATAENTRY,
+    ],
     enum_types=[],
     serialized_options=None,
     is_extendable=False,
@@ -857,7 +861,9 @@ _MARKRECOMMENDATIONSUCCEEDEDREQUEST = _descriptor.Descriptor(
         ),
     ],
     extensions=[],
-    nested_types=[_MARKRECOMMENDATIONSUCCEEDEDREQUEST_STATEMETADATAENTRY,],
+    nested_types=[
+        _MARKRECOMMENDATIONSUCCEEDEDREQUEST_STATEMETADATAENTRY,
+    ],
     enum_types=[],
     serialized_options=None,
     is_extendable=False,
@@ -995,7 +1001,9 @@ _MARKRECOMMENDATIONFAILEDREQUEST = _descriptor.Descriptor(
         ),
     ],
     extensions=[],
-    nested_types=[_MARKRECOMMENDATIONFAILEDREQUEST_STATEMETADATAENTRY,],
+    nested_types=[
+        _MARKRECOMMENDATIONFAILEDREQUEST_STATEMETADATAENTRY,
+    ],
     enum_types=[],
     serialized_options=None,
     is_extendable=False,
