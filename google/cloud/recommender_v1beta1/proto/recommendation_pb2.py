@@ -410,7 +410,9 @@ _RECOMMENDATION = _descriptor.Descriptor(
         ),
     ],
     extensions=[],
-    nested_types=[_RECOMMENDATION_INSIGHTREFERENCE,],
+    nested_types=[
+        _RECOMMENDATION_INSIGHTREFERENCE,
+    ],
     enum_types=[],
     serialized_options=b"\352A\220\001\n)recommender.googleapis.com/Recommendation\022cprojects/{project}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}",
     is_extendable=False,
@@ -822,7 +824,10 @@ _OPERATION = _descriptor.Descriptor(
         ),
     ],
     extensions=[],
-    nested_types=[_OPERATION_PATHFILTERSENTRY, _OPERATION_PATHVALUEMATCHERSENTRY,],
+    nested_types=[
+        _OPERATION_PATHFILTERSENTRY,
+        _OPERATION_PATHVALUEMATCHERSENTRY,
+    ],
     enum_types=[],
     serialized_options=None,
     is_extendable=False,
@@ -1002,7 +1007,9 @@ _IMPACT = _descriptor.Descriptor(
     ],
     extensions=[],
     nested_types=[],
-    enum_types=[_IMPACT_CATEGORY,],
+    enum_types=[
+        _IMPACT_CATEGORY,
+    ],
     serialized_options=None,
     is_extendable=False,
     syntax="proto3",
@@ -1129,8 +1136,12 @@ _RECOMMENDATIONSTATEINFO = _descriptor.Descriptor(
         ),
     ],
     extensions=[],
-    nested_types=[_RECOMMENDATIONSTATEINFO_STATEMETADATAENTRY,],
-    enum_types=[_RECOMMENDATIONSTATEINFO_STATE,],
+    nested_types=[
+        _RECOMMENDATIONSTATEINFO_STATEMETADATAENTRY,
+    ],
+    enum_types=[
+        _RECOMMENDATIONSTATEINFO_STATE,
+    ],
     serialized_options=None,
     is_extendable=False,
     syntax="proto3",
