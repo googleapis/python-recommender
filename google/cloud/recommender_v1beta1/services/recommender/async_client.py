@@ -479,9 +479,7 @@ class RecommenderAsyncClient:
         request: Union[recommender_service.MarkInsightAcceptedRequest, dict] = None,
         *,
         name: str = None,
-        state_metadata: Sequence[
-            recommender_service.MarkInsightAcceptedRequest.StateMetadataEntry
-        ] = None,
+        state_metadata: Mapping[str, str] = None,
         etag: str = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
         timeout: float = None,
@@ -526,7 +524,7 @@ class RecommenderAsyncClient:
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            state_metadata (:class:`Sequence[google.cloud.recommender_v1beta1.types.MarkInsightAcceptedRequest.StateMetadataEntry]`):
+            state_metadata (:class:`Mapping[str, str]`):
                 Optional. State properties user wish to include with
                 this state. Full replace of the current state_metadata.
 
@@ -879,9 +877,7 @@ class RecommenderAsyncClient:
         ] = None,
         *,
         name: str = None,
-        state_metadata: Sequence[
-            recommender_service.MarkRecommendationClaimedRequest.StateMetadataEntry
-        ] = None,
+        state_metadata: Mapping[str, str] = None,
         etag: str = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
         timeout: float = None,
@@ -929,7 +925,7 @@ class RecommenderAsyncClient:
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            state_metadata (:class:`Sequence[google.cloud.recommender_v1beta1.types.MarkRecommendationClaimedRequest.StateMetadataEntry]`):
+            state_metadata (:class:`Mapping[str, str]`):
                 State properties to include with this state. Overwrites
                 any existing ``state_metadata``. Keys must match the
                 regex ``/^[a-z0-9][a-z0-9_.-]{0,62}$/``. Values must
@@ -1014,9 +1010,7 @@ class RecommenderAsyncClient:
         ] = None,
         *,
         name: str = None,
-        state_metadata: Sequence[
-            recommender_service.MarkRecommendationSucceededRequest.StateMetadataEntry
-        ] = None,
+        state_metadata: Mapping[str, str] = None,
         etag: str = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
         timeout: float = None,
@@ -1064,7 +1058,7 @@ class RecommenderAsyncClient:
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            state_metadata (:class:`Sequence[google.cloud.recommender_v1beta1.types.MarkRecommendationSucceededRequest.StateMetadataEntry]`):
+            state_metadata (:class:`Mapping[str, str]`):
                 State properties to include with this state. Overwrites
                 any existing ``state_metadata``. Keys must match the
                 regex ``/^[a-z0-9][a-z0-9_.-]{0,62}$/``. Values must
@@ -1149,9 +1143,7 @@ class RecommenderAsyncClient:
         ] = None,
         *,
         name: str = None,
-        state_metadata: Sequence[
-            recommender_service.MarkRecommendationFailedRequest.StateMetadataEntry
-        ] = None,
+        state_metadata: Mapping[str, str] = None,
         etag: str = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
         timeout: float = None,
@@ -1199,7 +1191,7 @@ class RecommenderAsyncClient:
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            state_metadata (:class:`Sequence[google.cloud.recommender_v1beta1.types.MarkRecommendationFailedRequest.StateMetadataEntry]`):
+            state_metadata (:class:`Mapping[str, str]`):
                 State properties to include with this state. Overwrites
                 any existing ``state_metadata``. Keys must match the
                 regex ``/^[a-z0-9][a-z0-9_.-]{0,62}$/``. Values must
