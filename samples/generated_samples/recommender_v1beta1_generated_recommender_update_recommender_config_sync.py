@@ -41,4 +41,44 @@ def sample_update_recommender_config():
     # Handle the response
     print(response)
 
+def sample_update_recommender_config_decrement_idle_vm_obs_period(project_id):
+
+    # Create a client
+    client = recommender_v1beta1.RecommenderClient()    
+
+     # Initialize request argument(s)
+    name="projects/{0}/locations/us-west1-b/recommenders/google.compute.instance.IdleResourceRecommender/config".format(project_id)    
+
+    # Create the get request from the name
+    get_request = recommender_v1beta1.GetRecommenderConfigRequest(name=name)    
+
+    # Make the get request, assign results to config object
+    recommender_config = client.get_recommender_config(request=get_request)
+
+    # Get the current value for the target config key
+    observation_period = recommender_config.recommender_generation_config.params["observation_period"][0:-1]
+    print("Observation period prior to update:" + observation_period)    
+
+    # Create the new value for the target config key
+    observation_period = int(observation_period) - 1
+    observation_period = str(observation_period) + "s"
+
+    # Update the config object with the new value
+    recommender_config.recommender_generation_config.params["observation_period"]=observation_period
+
+    # Create the update request object from the updated config
+    update_request = recommender_v1beta1.UpdateRecommenderConfigRequest(
+        recommender_config=recommender_config,
+    )
+
+    # Make the update request
+    update_response = client.update_recommender_config(request=update_request)
+
+    # Remake the get request, assign results to config object
+    recommender_config = client.get_recommender_config(request=get_request)
+
+    # Get and print the current value
+    observation_period = recommender_config.recommender_generation_config.params["observation_period"][0:-1]
+    print("Observation period after update:" + observation_period)
+
 # [END recommender_v1beta1_generated_Recommender_UpdateRecommenderConfig_sync]
