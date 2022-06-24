@@ -13,34 +13,32 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import proto  # type: ignore
-
 from google.protobuf import struct_pb2  # type: ignore
 from google.protobuf import timestamp_pb2  # type: ignore
-
+import proto  # type: ignore
 
 __protobuf__ = proto.module(
-    package='google.cloud.recommender.v1',
+    package="google.cloud.recommender.v1",
     manifest={
-        'InsightTypeConfig',
-        'InsightTypeGenerationConfig',
+        "RecommenderConfig",
+        "RecommenderGenerationConfig",
     },
 )
 
 
-class InsightTypeConfig(proto.Message):
-    r"""Configuration for an InsightType.
+class RecommenderConfig(proto.Message):
+    r"""Configuration for a Recommender.
 
     Attributes:
         name (str):
-            Name of insight type config. Eg,
-            projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
-        insight_type_generation_config (google.cloud.recommender_v1.types.InsightTypeGenerationConfig):
-            InsightTypeGenerationConfig which configures
-            the generation of insights for this insight
-            type.
+            Name of recommender config. Eg,
+            projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config
+        recommender_generation_config (google.cloud.recommender_v1.types.RecommenderGenerationConfig):
+            RecommenderGenerationConfig which configures
+            the Generation of recommendations for this
+            recommender.
         etag (str):
-            Fingerprint of the InsightTypeConfig.
+            Fingerprint of the RecommenderConfig.
             Provides optimistic locking when updating.
         update_time (google.protobuf.timestamp_pb2.Timestamp):
             Last time when the config was updated.
@@ -68,10 +66,10 @@ class InsightTypeConfig(proto.Message):
         proto.STRING,
         number=1,
     )
-    insight_type_generation_config = proto.Field(
+    recommender_generation_config = proto.Field(
         proto.MESSAGE,
         number=2,
-        message='InsightTypeGenerationConfig',
+        message="RecommenderGenerationConfig",
     )
     etag = proto.Field(
         proto.STRING,
@@ -97,15 +95,15 @@ class InsightTypeConfig(proto.Message):
     )
 
 
-class InsightTypeGenerationConfig(proto.Message):
-    r"""A configuration to customize the generation of insights.
-    Eg, customizing the lookback period considered when generating a
-    insight.
+class RecommenderGenerationConfig(proto.Message):
+    r"""A Configuration to customize the generation of
+    recommendations. Eg, customizing the lookback period considered
+    when generating a recommendation.
 
     Attributes:
         params (google.protobuf.struct_pb2.Struct):
             Parameters for this
-            InsightTypeGenerationConfig. These configs can
+            RecommenderGenerationConfig. These configs can
             be used by or are applied to all subtypes.
     """
 
