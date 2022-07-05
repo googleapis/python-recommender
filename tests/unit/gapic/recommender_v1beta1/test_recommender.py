@@ -4518,7 +4518,6 @@ def test_recommender_transport_auth_adc(transport_class):
     [
         transports.RecommenderGrpcTransport,
         transports.RecommenderGrpcAsyncIOTransport,
-        transports.RecommenderRestTransport,
     ],
 )
 def test_recommender_transport_auth_gdch_credentials(transport_class):
