@@ -3,7 +3,7 @@ Python Client for Cloud Recommender API API
 
 |stable| |pypi| |versions|
 
-`Cloud Recommender API API`_: 
+`Cloud Recommender API API`_: delivers highly personalized product recommendations at scale.
 
 - `Client Library Documentation`_
 - `Product Documentation`_
