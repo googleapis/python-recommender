@@ -16,7 +16,18 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 
 from google.api_core import client_options as client_options_lib
 from google.api_core import exceptions as core_exceptions
@@ -71,7 +82,7 @@ class RecommenderClientMeta(type):
 
     def get_transport_class(
         cls,
-        label: str = None,
+        label: Optional[str] = None,
     ) -> Type[RecommenderTransport]:
         """Returns an appropriate transport class.
 
@@ -467,8 +478,8 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
         self,
         *,
         credentials: Optional[ga_credentials.Credentials] = None,
-        transport: Union[str, RecommenderTransport, None] = None,
-        client_options: Optional[client_options_lib.ClientOptions] = None,
+        transport: Optional[Union[str, RecommenderTransport]] = None,
+        client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
         """Instantiates the recommender client.
@@ -482,7 +493,7 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
             transport (Union[str, RecommenderTransport]): The
                 transport to use. If set to None, a transport is chosen
                 automatically.
-            client_options (google.api_core.client_options.ClientOptions): Custom options for the
+            client_options (Optional[Union[google.api_core.client_options.ClientOptions, dict]]): Custom options for the
                 client. It won't take effect if a ``transport`` instance is provided.
                 (1) The ``api_endpoint`` property can be used to override the
                 default endpoint provided by the client. GOOGLE_API_USE_MTLS_ENDPOINT
@@ -512,6 +523,7 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
             client_options = client_options_lib.from_dict(client_options)
         if client_options is None:
             client_options = client_options_lib.ClientOptions()
+        client_options = cast(client_options_lib.ClientOptions, client_options)
 
         api_endpoint, client_cert_source_func = self.get_mtls_endpoint_and_cert_source(
             client_options
@@ -564,11 +576,11 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
     def list_insights(
         self,
-        request: Union[recommender_service.ListInsightsRequest, dict] = None,
+        request: Optional[Union[recommender_service.ListInsightsRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListInsightsPager:
         r"""Lists insights for the specified Cloud Resource. Requires the
@@ -577,6 +589,13 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from google.cloud import recommender_v1beta1
 
             def sample_list_insights():
@@ -688,11 +707,11 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
     def get_insight(
         self,
-        request: Union[recommender_service.GetInsightRequest, dict] = None,
+        request: Optional[Union[recommender_service.GetInsightRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> insight.Insight:
         r"""Gets the requested insight. Requires the recommender.*.get IAM
@@ -700,6 +719,13 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from google.cloud import recommender_v1beta1
 
             def sample_get_insight():
@@ -783,13 +809,15 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
     def mark_insight_accepted(
         self,
-        request: Union[recommender_service.MarkInsightAcceptedRequest, dict] = None,
+        request: Optional[
+            Union[recommender_service.MarkInsightAcceptedRequest, dict]
+        ] = None,
         *,
-        name: str = None,
-        state_metadata: Mapping[str, str] = None,
-        etag: str = None,
+        name: Optional[str] = None,
+        state_metadata: Optional[MutableMapping[str, str]] = None,
+        etag: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> insight.Insight:
         r"""Marks the Insight State as Accepted. Users can use this method
@@ -803,6 +831,13 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from google.cloud import recommender_v1beta1
 
             def sample_mark_insight_accepted():
@@ -830,7 +865,7 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            state_metadata (Mapping[str, str]):
+            state_metadata (MutableMapping[str, str]):
                 Optional. State properties user wish to include with
                 this state. Full replace of the current state_metadata.
 
@@ -906,12 +941,14 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
     def list_recommendations(
         self,
-        request: Union[recommender_service.ListRecommendationsRequest, dict] = None,
+        request: Optional[
+            Union[recommender_service.ListRecommendationsRequest, dict]
+        ] = None,
         *,
-        parent: str = None,
-        filter: str = None,
+        parent: Optional[str] = None,
+        filter: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListRecommendationsPager:
         r"""Lists recommendations for the specified Cloud Resource. Requires
@@ -920,6 +957,13 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from google.cloud import recommender_v1beta1
 
             def sample_list_recommendations():
@@ -1059,11 +1103,13 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
     def get_recommendation(
         self,
-        request: Union[recommender_service.GetRecommendationRequest, dict] = None,
+        request: Optional[
+            Union[recommender_service.GetRecommendationRequest, dict]
+        ] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> recommendation.Recommendation:
         r"""Gets the requested recommendation. Requires the
@@ -1071,6 +1117,13 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from google.cloud import recommender_v1beta1
 
             def sample_get_recommendation():
@@ -1155,15 +1208,15 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
     def mark_recommendation_claimed(
         self,
-        request: Union[
-            recommender_service.MarkRecommendationClaimedRequest, dict
+        request: Optional[
+            Union[recommender_service.MarkRecommendationClaimedRequest, dict]
         ] = None,
         *,
-        name: str = None,
-        state_metadata: Mapping[str, str] = None,
-        etag: str = None,
+        name: Optional[str] = None,
+        state_metadata: Optional[MutableMapping[str, str]] = None,
+        etag: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> recommendation.Recommendation:
         r"""Marks the Recommendation State as Claimed. Users can use this
@@ -1180,6 +1233,13 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from google.cloud import recommender_v1beta1
 
             def sample_mark_recommendation_claimed():
@@ -1207,7 +1267,7 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            state_metadata (Mapping[str, str]):
+            state_metadata (MutableMapping[str, str]):
                 State properties to include with this state. Overwrites
                 any existing ``state_metadata``. Keys must match the
                 regex ``/^[a-z0-9][a-z0-9_.-]{0,62}$/``. Values must
@@ -1290,15 +1350,15 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
     def mark_recommendation_succeeded(
         self,
-        request: Union[
-            recommender_service.MarkRecommendationSucceededRequest, dict
+        request: Optional[
+            Union[recommender_service.MarkRecommendationSucceededRequest, dict]
         ] = None,
         *,
-        name: str = None,
-        state_metadata: Mapping[str, str] = None,
-        etag: str = None,
+        name: Optional[str] = None,
+        state_metadata: Optional[MutableMapping[str, str]] = None,
+        etag: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> recommendation.Recommendation:
         r"""Marks the Recommendation State as Succeeded. Users can use this
@@ -1315,6 +1375,13 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from google.cloud import recommender_v1beta1
 
             def sample_mark_recommendation_succeeded():
@@ -1342,7 +1409,7 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            state_metadata (Mapping[str, str]):
+            state_metadata (MutableMapping[str, str]):
                 State properties to include with this state. Overwrites
                 any existing ``state_metadata``. Keys must match the
                 regex ``/^[a-z0-9][a-z0-9_.-]{0,62}$/``. Values must
@@ -1425,15 +1492,15 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
     def mark_recommendation_failed(
         self,
-        request: Union[
-            recommender_service.MarkRecommendationFailedRequest, dict
+        request: Optional[
+            Union[recommender_service.MarkRecommendationFailedRequest, dict]
         ] = None,
         *,
-        name: str = None,
-        state_metadata: Mapping[str, str] = None,
-        etag: str = None,
+        name: Optional[str] = None,
+        state_metadata: Optional[MutableMapping[str, str]] = None,
+        etag: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> recommendation.Recommendation:
         r"""Marks the Recommendation State as Failed. Users can use this
@@ -1450,6 +1517,13 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from google.cloud import recommender_v1beta1
 
             def sample_mark_recommendation_failed():
@@ -1477,7 +1551,7 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            state_metadata (Mapping[str, str]):
+            state_metadata (MutableMapping[str, str]):
                 State properties to include with this state. Overwrites
                 any existing ``state_metadata``. Keys must match the
                 regex ``/^[a-z0-9][a-z0-9_.-]{0,62}$/``. Values must
@@ -1558,11 +1632,13 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
     def get_recommender_config(
         self,
-        request: Union[recommender_service.GetRecommenderConfigRequest, dict] = None,
+        request: Optional[
+            Union[recommender_service.GetRecommenderConfigRequest, dict]
+        ] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> recommender_config.RecommenderConfig:
         r"""Gets the requested Recommender Config. There is only
@@ -1570,6 +1646,13 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from google.cloud import recommender_v1beta1
 
             def sample_get_recommender_config():
@@ -1659,12 +1742,14 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
     def update_recommender_config(
         self,
-        request: Union[recommender_service.UpdateRecommenderConfigRequest, dict] = None,
+        request: Optional[
+            Union[recommender_service.UpdateRecommenderConfigRequest, dict]
+        ] = None,
         *,
-        recommender_config: gcr_recommender_config.RecommenderConfig = None,
-        update_mask: field_mask_pb2.FieldMask = None,
+        recommender_config: Optional[gcr_recommender_config.RecommenderConfig] = None,
+        update_mask: Optional[field_mask_pb2.FieldMask] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> gcr_recommender_config.RecommenderConfig:
         r"""Updates a Recommender Config. This will create a new
@@ -1672,6 +1757,13 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from google.cloud import recommender_v1beta1
 
             def sample_update_recommender_config():
@@ -1764,11 +1856,13 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
     def get_insight_type_config(
         self,
-        request: Union[recommender_service.GetInsightTypeConfigRequest, dict] = None,
+        request: Optional[
+            Union[recommender_service.GetInsightTypeConfigRequest, dict]
+        ] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> insight_type_config.InsightTypeConfig:
         r"""Gets the requested InsightTypeConfig. There is only
@@ -1776,6 +1870,13 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from google.cloud import recommender_v1beta1
 
             def sample_get_insight_type_config():
@@ -1865,12 +1966,14 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
     def update_insight_type_config(
         self,
-        request: Union[recommender_service.UpdateInsightTypeConfigRequest, dict] = None,
+        request: Optional[
+            Union[recommender_service.UpdateInsightTypeConfigRequest, dict]
+        ] = None,
         *,
-        insight_type_config: gcr_insight_type_config.InsightTypeConfig = None,
-        update_mask: field_mask_pb2.FieldMask = None,
+        insight_type_config: Optional[gcr_insight_type_config.InsightTypeConfig] = None,
+        update_mask: Optional[field_mask_pb2.FieldMask] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> gcr_insight_type_config.InsightTypeConfig:
         r"""Updates an InsightTypeConfig change. This will create
@@ -1878,6 +1981,13 @@ class RecommenderClient(metaclass=RecommenderClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from google.cloud import recommender_v1beta1
 
             def sample_update_insight_type_config():
