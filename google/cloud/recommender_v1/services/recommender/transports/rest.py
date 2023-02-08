@@ -14,24 +14,21 @@
 # limitations under the License.
 #
 
-from google.auth.transport.requests import AuthorizedSession  # type: ignore
-import json  # type: ignore
-import grpc  # type: ignore
-from google.auth.transport.grpc import SslCredentials  # type: ignore
-from google.auth import credentials as ga_credentials  # type: ignore
-from google.api_core import exceptions as core_exceptions
-from google.api_core import retry as retries
-from google.api_core import rest_helpers
-from google.api_core import rest_streaming
-from google.api_core import path_template
-from google.api_core import gapic_v1
-
-from google.protobuf import json_format
-from requests import __version__ as requests_version
 import dataclasses
+import json  # type: ignore
 import re
 from typing import Callable, Dict, List, Optional, Sequence, Tuple, Union
 import warnings
+
+from google.api_core import gapic_v1, path_template, rest_helpers, rest_streaming
+from google.api_core import exceptions as core_exceptions
+from google.api_core import retry as retries
+from google.auth import credentials as ga_credentials  # type: ignore
+from google.auth.transport.grpc import SslCredentials  # type: ignore
+from google.auth.transport.requests import AuthorizedSession  # type: ignore
+from google.protobuf import json_format
+import grpc  # type: ignore
+from requests import __version__ as requests_version
 
 try:
     OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault]
@@ -39,16 +36,20 @@ except AttributeError:  # pragma: NO COVER
     OptionalRetry = Union[retries.Retry, object]  # type: ignore
 
 
-from google.cloud.recommender_v1beta1.types import insight
-from google.cloud.recommender_v1beta1.types import insight_type_config
-from google.cloud.recommender_v1beta1.types import insight_type_config as gcr_insight_type_config
-from google.cloud.recommender_v1beta1.types import recommendation
-from google.cloud.recommender_v1beta1.types import recommender_config
-from google.cloud.recommender_v1beta1.types import recommender_config as gcr_recommender_config
-from google.cloud.recommender_v1beta1.types import recommender_service
+from google.cloud.recommender_v1.types import (
+    insight_type_config as gcr_insight_type_config,
+)
+from google.cloud.recommender_v1.types import (
+    recommender_config as gcr_recommender_config,
+)
+from google.cloud.recommender_v1.types import insight
+from google.cloud.recommender_v1.types import insight_type_config
+from google.cloud.recommender_v1.types import recommendation
+from google.cloud.recommender_v1.types import recommender_config
+from google.cloud.recommender_v1.types import recommender_service
 
-from .base import RecommenderTransport, DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
-
+from .base import DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
+from .base import RecommenderTransport
 
 DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
     gapic_version=BASE_DEFAULT_CLIENT_INFO.gapic_version,
@@ -173,7 +174,12 @@ class RecommenderRestInterceptor:
 
 
     """
-    def pre_get_insight(self, request: recommender_service.GetInsightRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[recommender_service.GetInsightRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_insight(
+        self,
+        request: recommender_service.GetInsightRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[recommender_service.GetInsightRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_insight
 
         Override in a subclass to manipulate the request or metadata
@@ -189,7 +195,14 @@ class RecommenderRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_insight_type_config(self, request: recommender_service.GetInsightTypeConfigRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[recommender_service.GetInsightTypeConfigRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_insight_type_config(
+        self,
+        request: recommender_service.GetInsightTypeConfigRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        recommender_service.GetInsightTypeConfigRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for get_insight_type_config
 
         Override in a subclass to manipulate the request or metadata
@@ -197,7 +210,9 @@ class RecommenderRestInterceptor:
         """
         return request, metadata
 
-    def post_get_insight_type_config(self, response: insight_type_config.InsightTypeConfig) -> insight_type_config.InsightTypeConfig:
+    def post_get_insight_type_config(
+        self, response: insight_type_config.InsightTypeConfig
+    ) -> insight_type_config.InsightTypeConfig:
         """Post-rpc interceptor for get_insight_type_config
 
         Override in a subclass to manipulate the response
@@ -205,7 +220,12 @@ class RecommenderRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_recommendation(self, request: recommender_service.GetRecommendationRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[recommender_service.GetRecommendationRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_recommendation(
+        self,
+        request: recommender_service.GetRecommendationRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[recommender_service.GetRecommendationRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_recommendation
 
         Override in a subclass to manipulate the request or metadata
@@ -213,7 +233,9 @@ class RecommenderRestInterceptor:
         """
         return request, metadata
 
-    def post_get_recommendation(self, response: recommendation.Recommendation) -> recommendation.Recommendation:
+    def post_get_recommendation(
+        self, response: recommendation.Recommendation
+    ) -> recommendation.Recommendation:
         """Post-rpc interceptor for get_recommendation
 
         Override in a subclass to manipulate the response
@@ -221,7 +243,14 @@ class RecommenderRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_recommender_config(self, request: recommender_service.GetRecommenderConfigRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[recommender_service.GetRecommenderConfigRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_recommender_config(
+        self,
+        request: recommender_service.GetRecommenderConfigRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        recommender_service.GetRecommenderConfigRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for get_recommender_config
 
         Override in a subclass to manipulate the request or metadata
@@ -229,7 +258,9 @@ class RecommenderRestInterceptor:
         """
         return request, metadata
 
-    def post_get_recommender_config(self, response: recommender_config.RecommenderConfig) -> recommender_config.RecommenderConfig:
+    def post_get_recommender_config(
+        self, response: recommender_config.RecommenderConfig
+    ) -> recommender_config.RecommenderConfig:
         """Post-rpc interceptor for get_recommender_config
 
         Override in a subclass to manipulate the response
@@ -237,7 +268,12 @@ class RecommenderRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_insights(self, request: recommender_service.ListInsightsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[recommender_service.ListInsightsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_insights(
+        self,
+        request: recommender_service.ListInsightsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[recommender_service.ListInsightsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_insights
 
         Override in a subclass to manipulate the request or metadata
@@ -245,7 +281,9 @@ class RecommenderRestInterceptor:
         """
         return request, metadata
 
-    def post_list_insights(self, response: recommender_service.ListInsightsResponse) -> recommender_service.ListInsightsResponse:
+    def post_list_insights(
+        self, response: recommender_service.ListInsightsResponse
+    ) -> recommender_service.ListInsightsResponse:
         """Post-rpc interceptor for list_insights
 
         Override in a subclass to manipulate the response
@@ -253,7 +291,14 @@ class RecommenderRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_recommendations(self, request: recommender_service.ListRecommendationsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[recommender_service.ListRecommendationsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_recommendations(
+        self,
+        request: recommender_service.ListRecommendationsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        recommender_service.ListRecommendationsRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for list_recommendations
 
         Override in a subclass to manipulate the request or metadata
@@ -261,7 +306,9 @@ class RecommenderRestInterceptor:
         """
         return request, metadata
 
-    def post_list_recommendations(self, response: recommender_service.ListRecommendationsResponse) -> recommender_service.ListRecommendationsResponse:
+    def post_list_recommendations(
+        self, response: recommender_service.ListRecommendationsResponse
+    ) -> recommender_service.ListRecommendationsResponse:
         """Post-rpc interceptor for list_recommendations
 
         Override in a subclass to manipulate the response
@@ -269,7 +316,14 @@ class RecommenderRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_mark_insight_accepted(self, request: recommender_service.MarkInsightAcceptedRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[recommender_service.MarkInsightAcceptedRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_mark_insight_accepted(
+        self,
+        request: recommender_service.MarkInsightAcceptedRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        recommender_service.MarkInsightAcceptedRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for mark_insight_accepted
 
         Override in a subclass to manipulate the request or metadata
@@ -285,7 +339,14 @@ class RecommenderRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_mark_recommendation_claimed(self, request: recommender_service.MarkRecommendationClaimedRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[recommender_service.MarkRecommendationClaimedRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_mark_recommendation_claimed(
+        self,
+        request: recommender_service.MarkRecommendationClaimedRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        recommender_service.MarkRecommendationClaimedRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for mark_recommendation_claimed
 
         Override in a subclass to manipulate the request or metadata
@@ -293,7 +354,9 @@ class RecommenderRestInterceptor:
         """
         return request, metadata
 
-    def post_mark_recommendation_claimed(self, response: recommendation.Recommendation) -> recommendation.Recommendation:
+    def post_mark_recommendation_claimed(
+        self, response: recommendation.Recommendation
+    ) -> recommendation.Recommendation:
         """Post-rpc interceptor for mark_recommendation_claimed
 
         Override in a subclass to manipulate the response
@@ -301,7 +364,14 @@ class RecommenderRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_mark_recommendation_failed(self, request: recommender_service.MarkRecommendationFailedRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[recommender_service.MarkRecommendationFailedRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_mark_recommendation_failed(
+        self,
+        request: recommender_service.MarkRecommendationFailedRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        recommender_service.MarkRecommendationFailedRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for mark_recommendation_failed
 
         Override in a subclass to manipulate the request or metadata
@@ -309,7 +379,9 @@ class RecommenderRestInterceptor:
         """
         return request, metadata
 
-    def post_mark_recommendation_failed(self, response: recommendation.Recommendation) -> recommendation.Recommendation:
+    def post_mark_recommendation_failed(
+        self, response: recommendation.Recommendation
+    ) -> recommendation.Recommendation:
         """Post-rpc interceptor for mark_recommendation_failed
 
         Override in a subclass to manipulate the response
@@ -317,7 +389,15 @@ class RecommenderRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_mark_recommendation_succeeded(self, request: recommender_service.MarkRecommendationSucceededRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[recommender_service.MarkRecommendationSucceededRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_mark_recommendation_succeeded(
+        self,
+        request: recommender_service.MarkRecommendationSucceededRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        recommender_service.MarkRecommendationSucceededRequest,
+        Sequence[Tuple[str, str]],
+    ]:
         """Pre-rpc interceptor for mark_recommendation_succeeded
 
         Override in a subclass to manipulate the request or metadata
@@ -325,7 +405,9 @@ class RecommenderRestInterceptor:
         """
         return request, metadata
 
-    def post_mark_recommendation_succeeded(self, response: recommendation.Recommendation) -> recommendation.Recommendation:
+    def post_mark_recommendation_succeeded(
+        self, response: recommendation.Recommendation
+    ) -> recommendation.Recommendation:
         """Post-rpc interceptor for mark_recommendation_succeeded
 
         Override in a subclass to manipulate the response
@@ -333,7 +415,14 @@ class RecommenderRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_insight_type_config(self, request: recommender_service.UpdateInsightTypeConfigRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[recommender_service.UpdateInsightTypeConfigRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_insight_type_config(
+        self,
+        request: recommender_service.UpdateInsightTypeConfigRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        recommender_service.UpdateInsightTypeConfigRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for update_insight_type_config
 
         Override in a subclass to manipulate the request or metadata
@@ -341,7 +430,9 @@ class RecommenderRestInterceptor:
         """
         return request, metadata
 
-    def post_update_insight_type_config(self, response: gcr_insight_type_config.InsightTypeConfig) -> gcr_insight_type_config.InsightTypeConfig:
+    def post_update_insight_type_config(
+        self, response: gcr_insight_type_config.InsightTypeConfig
+    ) -> gcr_insight_type_config.InsightTypeConfig:
         """Post-rpc interceptor for update_insight_type_config
 
         Override in a subclass to manipulate the response
@@ -349,7 +440,14 @@ class RecommenderRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_recommender_config(self, request: recommender_service.UpdateRecommenderConfigRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[recommender_service.UpdateRecommenderConfigRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_recommender_config(
+        self,
+        request: recommender_service.UpdateRecommenderConfigRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[
+        recommender_service.UpdateRecommenderConfigRequest, Sequence[Tuple[str, str]]
+    ]:
         """Pre-rpc interceptor for update_recommender_config
 
         Override in a subclass to manipulate the request or metadata
@@ -357,7 +455,9 @@ class RecommenderRestInterceptor:
         """
         return request, metadata
 
-    def post_update_recommender_config(self, response: gcr_recommender_config.RecommenderConfig) -> gcr_recommender_config.RecommenderConfig:
+    def post_update_recommender_config(
+        self, response: gcr_recommender_config.RecommenderConfig
+    ) -> gcr_recommender_config.RecommenderConfig:
         """Post-rpc interceptor for update_recommender_config
 
         Override in a subclass to manipulate the response
@@ -391,20 +491,21 @@ class RecommenderRestTransport(RecommenderTransport):
 
     """
 
-    def __init__(self, *,
-            host: str = 'recommender.googleapis.com',
-            credentials: Optional[ga_credentials.Credentials] = None,
-            credentials_file: Optional[str] = None,
-            scopes: Optional[Sequence[str]] = None,
-            client_cert_source_for_mtls: Optional[Callable[[
-                ], Tuple[bytes, bytes]]] = None,
-            quota_project_id: Optional[str] = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            always_use_jwt_access: Optional[bool] = False,
-            url_scheme: str = 'https',
-            interceptor: Optional[RecommenderRestInterceptor] = None,
-            api_audience: Optional[str] = None,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        host: str = "recommender.googleapis.com",
+        credentials: Optional[ga_credentials.Credentials] = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        client_cert_source_for_mtls: Optional[Callable[[], Tuple[bytes, bytes]]] = None,
+        quota_project_id: Optional[str] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+        always_use_jwt_access: Optional[bool] = False,
+        url_scheme: str = "https",
+        interceptor: Optional[RecommenderRestInterceptor] = None,
+        api_audience: Optional[str] = None,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -443,7 +544,9 @@ class RecommenderRestTransport(RecommenderTransport):
         # credentials object
         maybe_url_match = re.match("^(?P<scheme>http(?:s)?://)?(?P<host>.*)$", host)
         if maybe_url_match is None:
-            raise ValueError(f"Unexpected hostname structure: {host}")  # pragma: NO COVER
+            raise ValueError(
+                f"Unexpected hostname structure: {host}"
+            )  # pragma: NO COVER
 
         url_match_items = maybe_url_match.groupdict()
 
@@ -454,10 +557,11 @@ class RecommenderRestTransport(RecommenderTransport):
             credentials=credentials,
             client_info=client_info,
             always_use_jwt_access=always_use_jwt_access,
-            api_audience=api_audience
+            api_audience=api_audience,
         )
         self._session = AuthorizedSession(
-            self._credentials, default_host=self.DEFAULT_HOST)
+            self._credentials, default_host=self.DEFAULT_HOST
+        )
         if client_cert_source_for_mtls:
             self._session.configure_mtls_channel(client_cert_source_for_mtls)
         self._interceptor = interceptor or RecommenderRestInterceptor()
@@ -467,19 +571,24 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("GetInsight")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: recommender_service.GetInsightRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> insight.Insight:
+        def __call__(
+            self,
+            request: recommender_service.GetInsightRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> insight.Insight:
             r"""Call the get insight method over HTTP.
 
             Args:
@@ -500,49 +609,52 @@ class RecommenderRestTransport(RecommenderTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta1/{name=projects/*/locations/*/insightTypes/*/insights/*}',
-            },
-{
-                'method': 'get',
-                'uri': '/v1beta1/{name=billingAccounts/*/locations/*/insightTypes/*/insights/*}',
-            },
-{
-                'method': 'get',
-                'uri': '/v1beta1/{name=folders/*/locations/*/insightTypes/*/insights/*}',
-            },
-{
-                'method': 'get',
-                'uri': '/v1beta1/{name=organizations/*/locations/*/insightTypes/*/insights/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/insightTypes/*/insights/*}",
+                },
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=billingAccounts/*/locations/*/insightTypes/*/insights/*}",
+                },
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=folders/*/locations/*/insightTypes/*/insights/*}",
+                },
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=organizations/*/locations/*/insightTypes/*/insights/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_insight(request, metadata)
             pb_request = recommender_service.GetInsightRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -561,19 +673,24 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("GetInsightTypeConfig")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: recommender_service.GetInsightTypeConfigRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> insight_type_config.InsightTypeConfig:
+        def __call__(
+            self,
+            request: recommender_service.GetInsightTypeConfigRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> insight_type_config.InsightTypeConfig:
             r"""Call the get insight type config method over HTTP.
 
             Args:
@@ -590,41 +707,46 @@ class RecommenderRestTransport(RecommenderTransport):
                     Configuration for an InsightType.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta1/{name=projects/*/locations/*/insightTypes/*/config}',
-            },
-{
-                'method': 'get',
-                'uri': '/v1beta1/{name=organizations/*/locations/*/insightTypes/*/config}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/insightTypes/*/config}",
+                },
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=organizations/*/locations/*/insightTypes/*/config}",
+                },
             ]
-            request, metadata = self._interceptor.pre_get_insight_type_config(request, metadata)
+            request, metadata = self._interceptor.pre_get_insight_type_config(
+                request, metadata
+            )
             pb_request = recommender_service.GetInsightTypeConfigRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -643,19 +765,24 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("GetRecommendation")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: recommender_service.GetRecommendationRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> recommendation.Recommendation:
+        def __call__(
+            self,
+            request: recommender_service.GetRecommendationRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> recommendation.Recommendation:
             r"""Call the get recommendation method over HTTP.
 
             Args:
@@ -676,49 +803,54 @@ class RecommenderRestTransport(RecommenderTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta1/{name=projects/*/locations/*/recommenders/*/recommendations/*}',
-            },
-{
-                'method': 'get',
-                'uri': '/v1beta1/{name=billingAccounts/*/locations/*/recommenders/*/recommendations/*}',
-            },
-{
-                'method': 'get',
-                'uri': '/v1beta1/{name=folders/*/locations/*/recommenders/*/recommendations/*}',
-            },
-{
-                'method': 'get',
-                'uri': '/v1beta1/{name=organizations/*/locations/*/recommenders/*/recommendations/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/recommenders/*/recommendations/*}",
+                },
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=billingAccounts/*/locations/*/recommenders/*/recommendations/*}",
+                },
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=folders/*/locations/*/recommenders/*/recommendations/*}",
+                },
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=organizations/*/locations/*/recommenders/*/recommendations/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_get_recommendation(request, metadata)
+            request, metadata = self._interceptor.pre_get_recommendation(
+                request, metadata
+            )
             pb_request = recommender_service.GetRecommendationRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -737,19 +869,24 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("GetRecommenderConfig")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: recommender_service.GetRecommenderConfigRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> recommender_config.RecommenderConfig:
+        def __call__(
+            self,
+            request: recommender_service.GetRecommenderConfigRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> recommender_config.RecommenderConfig:
             r"""Call the get recommender config method over HTTP.
 
             Args:
@@ -766,41 +903,46 @@ class RecommenderRestTransport(RecommenderTransport):
                     Configuration for a Recommender.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta1/{name=projects/*/locations/*/recommenders/*/config}',
-            },
-{
-                'method': 'get',
-                'uri': '/v1beta1/{name=organizations/*/locations/*/recommenders/*/config}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/recommenders/*/config}",
+                },
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=organizations/*/locations/*/recommenders/*/config}",
+                },
             ]
-            request, metadata = self._interceptor.pre_get_recommender_config(request, metadata)
+            request, metadata = self._interceptor.pre_get_recommender_config(
+                request, metadata
+            )
             pb_request = recommender_service.GetRecommenderConfigRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -819,19 +961,24 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("ListInsights")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: recommender_service.ListInsightsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> recommender_service.ListInsightsResponse:
+        def __call__(
+            self,
+            request: recommender_service.ListInsightsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> recommender_service.ListInsightsResponse:
             r"""Call the list insights method over HTTP.
 
             Args:
@@ -848,49 +995,52 @@ class RecommenderRestTransport(RecommenderTransport):
                     Response to the ``ListInsights`` method.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta1/{parent=projects/*/locations/*/insightTypes/*}/insights',
-            },
-{
-                'method': 'get',
-                'uri': '/v1beta1/{parent=billingAccounts/*/locations/*/insightTypes/*}/insights',
-            },
-{
-                'method': 'get',
-                'uri': '/v1beta1/{parent=folders/*/locations/*/insightTypes/*}/insights',
-            },
-{
-                'method': 'get',
-                'uri': '/v1beta1/{parent=organizations/*/locations/*/insightTypes/*}/insights',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*/insightTypes/*}/insights",
+                },
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=billingAccounts/*/locations/*/insightTypes/*}/insights",
+                },
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=folders/*/locations/*/insightTypes/*}/insights",
+                },
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=organizations/*/locations/*/insightTypes/*}/insights",
+                },
             ]
             request, metadata = self._interceptor.pre_list_insights(request, metadata)
             pb_request = recommender_service.ListInsightsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -909,19 +1059,24 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("ListRecommendations")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: recommender_service.ListRecommendationsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> recommender_service.ListRecommendationsResponse:
+        def __call__(
+            self,
+            request: recommender_service.ListRecommendationsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> recommender_service.ListRecommendationsResponse:
             r"""Call the list recommendations method over HTTP.
 
             Args:
@@ -938,49 +1093,54 @@ class RecommenderRestTransport(RecommenderTransport):
                     Response to the ``ListRecommendations`` method.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1beta1/{parent=projects/*/locations/*/recommenders/*}/recommendations',
-            },
-{
-                'method': 'get',
-                'uri': '/v1beta1/{parent=billingAccounts/*/locations/*/recommenders/*}/recommendations',
-            },
-{
-                'method': 'get',
-                'uri': '/v1beta1/{parent=folders/*/locations/*/recommenders/*}/recommendations',
-            },
-{
-                'method': 'get',
-                'uri': '/v1beta1/{parent=organizations/*/locations/*/recommenders/*}/recommendations',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*/recommenders/*}/recommendations",
+                },
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=billingAccounts/*/locations/*/recommenders/*}/recommendations",
+                },
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=folders/*/locations/*/recommenders/*}/recommendations",
+                },
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=organizations/*/locations/*/recommenders/*}/recommendations",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_recommendations(request, metadata)
+            request, metadata = self._interceptor.pre_list_recommendations(
+                request, metadata
+            )
             pb_request = recommender_service.ListRecommendationsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -999,19 +1159,24 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("MarkInsightAccepted")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: recommender_service.MarkInsightAcceptedRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> insight.Insight:
+        def __call__(
+            self,
+            request: recommender_service.MarkInsightAcceptedRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> insight.Insight:
             r"""Call the mark insight accepted method over HTTP.
 
             Args:
@@ -1032,61 +1197,66 @@ class RecommenderRestTransport(RecommenderTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1beta1/{name=projects/*/locations/*/insightTypes/*/insights/*}:markAccepted',
-                'body': '*',
-            },
-{
-                'method': 'post',
-                'uri': '/v1beta1/{name=billingAccounts/*/locations/*/insightTypes/*/insights/*}:markAccepted',
-                'body': '*',
-            },
-{
-                'method': 'post',
-                'uri': '/v1beta1/{name=folders/*/locations/*/insightTypes/*/insights/*}:markAccepted',
-                'body': '*',
-            },
-{
-                'method': 'post',
-                'uri': '/v1beta1/{name=organizations/*/locations/*/insightTypes/*/insights/*}:markAccepted',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=projects/*/locations/*/insightTypes/*/insights/*}:markAccepted",
+                    "body": "*",
+                },
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=billingAccounts/*/locations/*/insightTypes/*/insights/*}:markAccepted",
+                    "body": "*",
+                },
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=folders/*/locations/*/insightTypes/*/insights/*}:markAccepted",
+                    "body": "*",
+                },
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=organizations/*/locations/*/insightTypes/*/insights/*}:markAccepted",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_mark_insight_accepted(request, metadata)
+            request, metadata = self._interceptor.pre_mark_insight_accepted(
+                request, metadata
+            )
             pb_request = recommender_service.MarkInsightAcceptedRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1105,95 +1275,107 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("MarkRecommendationClaimed")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: recommender_service.MarkRecommendationClaimedRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> recommendation.Recommendation:
+        def __call__(
+            self,
+            request: recommender_service.MarkRecommendationClaimedRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> recommendation.Recommendation:
             r"""Call the mark recommendation
-        claimed method over HTTP.
+            claimed method over HTTP.
 
-            Args:
-                request (~.recommender_service.MarkRecommendationClaimedRequest):
-                    The request object. Request for the ``MarkRecommendationClaimed`` Method.
-                retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                    should be retried.
-                timeout (float): The timeout for this request.
-                metadata (Sequence[Tuple[str, str]]): Strings which should be
-                    sent along with the request as metadata.
+                Args:
+                    request (~.recommender_service.MarkRecommendationClaimedRequest):
+                        The request object. Request for the ``MarkRecommendationClaimed`` Method.
+                    retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                        should be retried.
+                    timeout (float): The timeout for this request.
+                    metadata (Sequence[Tuple[str, str]]): Strings which should be
+                        sent along with the request as metadata.
 
-            Returns:
-                ~.recommendation.Recommendation:
-                    A recommendation along with a
-                suggested action. E.g., a rightsizing
-                recommendation for an underutilized VM,
-                IAM role recommendations, etc
+                Returns:
+                    ~.recommendation.Recommendation:
+                        A recommendation along with a
+                    suggested action. E.g., a rightsizing
+                    recommendation for an underutilized VM,
+                    IAM role recommendations, etc
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1beta1/{name=projects/*/locations/*/recommenders/*/recommendations/*}:markClaimed',
-                'body': '*',
-            },
-{
-                'method': 'post',
-                'uri': '/v1beta1/{name=billingAccounts/*/locations/*/recommenders/*/recommendations/*}:markClaimed',
-                'body': '*',
-            },
-{
-                'method': 'post',
-                'uri': '/v1beta1/{name=folders/*/locations/*/recommenders/*/recommendations/*}:markClaimed',
-                'body': '*',
-            },
-{
-                'method': 'post',
-                'uri': '/v1beta1/{name=organizations/*/locations/*/recommenders/*/recommendations/*}:markClaimed',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=projects/*/locations/*/recommenders/*/recommendations/*}:markClaimed",
+                    "body": "*",
+                },
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=billingAccounts/*/locations/*/recommenders/*/recommendations/*}:markClaimed",
+                    "body": "*",
+                },
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=folders/*/locations/*/recommenders/*/recommendations/*}:markClaimed",
+                    "body": "*",
+                },
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=organizations/*/locations/*/recommenders/*/recommendations/*}:markClaimed",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_mark_recommendation_claimed(request, metadata)
-            pb_request = recommender_service.MarkRecommendationClaimedRequest.pb(request)
+            request, metadata = self._interceptor.pre_mark_recommendation_claimed(
+                request, metadata
+            )
+            pb_request = recommender_service.MarkRecommendationClaimedRequest.pb(
+                request
+            )
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1212,95 +1394,105 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("MarkRecommendationFailed")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: recommender_service.MarkRecommendationFailedRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> recommendation.Recommendation:
+        def __call__(
+            self,
+            request: recommender_service.MarkRecommendationFailedRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> recommendation.Recommendation:
             r"""Call the mark recommendation
-        failed method over HTTP.
+            failed method over HTTP.
 
-            Args:
-                request (~.recommender_service.MarkRecommendationFailedRequest):
-                    The request object. Request for the ``MarkRecommendationFailed`` Method.
-                retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                    should be retried.
-                timeout (float): The timeout for this request.
-                metadata (Sequence[Tuple[str, str]]): Strings which should be
-                    sent along with the request as metadata.
+                Args:
+                    request (~.recommender_service.MarkRecommendationFailedRequest):
+                        The request object. Request for the ``MarkRecommendationFailed`` Method.
+                    retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                        should be retried.
+                    timeout (float): The timeout for this request.
+                    metadata (Sequence[Tuple[str, str]]): Strings which should be
+                        sent along with the request as metadata.
 
-            Returns:
-                ~.recommendation.Recommendation:
-                    A recommendation along with a
-                suggested action. E.g., a rightsizing
-                recommendation for an underutilized VM,
-                IAM role recommendations, etc
+                Returns:
+                    ~.recommendation.Recommendation:
+                        A recommendation along with a
+                    suggested action. E.g., a rightsizing
+                    recommendation for an underutilized VM,
+                    IAM role recommendations, etc
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1beta1/{name=projects/*/locations/*/recommenders/*/recommendations/*}:markFailed',
-                'body': '*',
-            },
-{
-                'method': 'post',
-                'uri': '/v1beta1/{name=billingAccounts/*/locations/*/recommenders/*/recommendations/*}:markFailed',
-                'body': '*',
-            },
-{
-                'method': 'post',
-                'uri': '/v1beta1/{name=folders/*/locations/*/recommenders/*/recommendations/*}:markFailed',
-                'body': '*',
-            },
-{
-                'method': 'post',
-                'uri': '/v1beta1/{name=organizations/*/locations/*/recommenders/*/recommendations/*}:markFailed',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=projects/*/locations/*/recommenders/*/recommendations/*}:markFailed",
+                    "body": "*",
+                },
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=billingAccounts/*/locations/*/recommenders/*/recommendations/*}:markFailed",
+                    "body": "*",
+                },
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=folders/*/locations/*/recommenders/*/recommendations/*}:markFailed",
+                    "body": "*",
+                },
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=organizations/*/locations/*/recommenders/*/recommendations/*}:markFailed",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_mark_recommendation_failed(request, metadata)
+            request, metadata = self._interceptor.pre_mark_recommendation_failed(
+                request, metadata
+            )
             pb_request = recommender_service.MarkRecommendationFailedRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1319,95 +1511,107 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("MarkRecommendationSucceeded")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: recommender_service.MarkRecommendationSucceededRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> recommendation.Recommendation:
+        def __call__(
+            self,
+            request: recommender_service.MarkRecommendationSucceededRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> recommendation.Recommendation:
             r"""Call the mark recommendation
-        succeeded method over HTTP.
+            succeeded method over HTTP.
 
-            Args:
-                request (~.recommender_service.MarkRecommendationSucceededRequest):
-                    The request object. Request for the ``MarkRecommendationSucceeded`` Method.
-                retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                    should be retried.
-                timeout (float): The timeout for this request.
-                metadata (Sequence[Tuple[str, str]]): Strings which should be
-                    sent along with the request as metadata.
+                Args:
+                    request (~.recommender_service.MarkRecommendationSucceededRequest):
+                        The request object. Request for the ``MarkRecommendationSucceeded`` Method.
+                    retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                        should be retried.
+                    timeout (float): The timeout for this request.
+                    metadata (Sequence[Tuple[str, str]]): Strings which should be
+                        sent along with the request as metadata.
 
-            Returns:
-                ~.recommendation.Recommendation:
-                    A recommendation along with a
-                suggested action. E.g., a rightsizing
-                recommendation for an underutilized VM,
-                IAM role recommendations, etc
+                Returns:
+                    ~.recommendation.Recommendation:
+                        A recommendation along with a
+                    suggested action. E.g., a rightsizing
+                    recommendation for an underutilized VM,
+                    IAM role recommendations, etc
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1beta1/{name=projects/*/locations/*/recommenders/*/recommendations/*}:markSucceeded',
-                'body': '*',
-            },
-{
-                'method': 'post',
-                'uri': '/v1beta1/{name=billingAccounts/*/locations/*/recommenders/*/recommendations/*}:markSucceeded',
-                'body': '*',
-            },
-{
-                'method': 'post',
-                'uri': '/v1beta1/{name=folders/*/locations/*/recommenders/*/recommendations/*}:markSucceeded',
-                'body': '*',
-            },
-{
-                'method': 'post',
-                'uri': '/v1beta1/{name=organizations/*/locations/*/recommenders/*/recommendations/*}:markSucceeded',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=projects/*/locations/*/recommenders/*/recommendations/*}:markSucceeded",
+                    "body": "*",
+                },
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=billingAccounts/*/locations/*/recommenders/*/recommendations/*}:markSucceeded",
+                    "body": "*",
+                },
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=folders/*/locations/*/recommenders/*/recommendations/*}:markSucceeded",
+                    "body": "*",
+                },
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=organizations/*/locations/*/recommenders/*/recommendations/*}:markSucceeded",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_mark_recommendation_succeeded(request, metadata)
-            pb_request = recommender_service.MarkRecommendationSucceededRequest.pb(request)
+            request, metadata = self._interceptor.pre_mark_recommendation_succeeded(
+                request, metadata
+            )
+            pb_request = recommender_service.MarkRecommendationSucceededRequest.pb(
+                request
+            )
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1426,81 +1630,91 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("UpdateInsightTypeConfig")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: recommender_service.UpdateInsightTypeConfigRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> gcr_insight_type_config.InsightTypeConfig:
+        def __call__(
+            self,
+            request: recommender_service.UpdateInsightTypeConfigRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> gcr_insight_type_config.InsightTypeConfig:
             r"""Call the update insight type
-        config method over HTTP.
+            config method over HTTP.
 
-            Args:
-                request (~.recommender_service.UpdateInsightTypeConfigRequest):
-                    The request object. Request for the ``UpdateInsightTypeConfig`` method.
-                retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                    should be retried.
-                timeout (float): The timeout for this request.
-                metadata (Sequence[Tuple[str, str]]): Strings which should be
-                    sent along with the request as metadata.
+                Args:
+                    request (~.recommender_service.UpdateInsightTypeConfigRequest):
+                        The request object. Request for the ``UpdateInsightTypeConfig`` method.
+                    retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                        should be retried.
+                    timeout (float): The timeout for this request.
+                    metadata (Sequence[Tuple[str, str]]): Strings which should be
+                        sent along with the request as metadata.
 
-            Returns:
-                ~.gcr_insight_type_config.InsightTypeConfig:
-                    Configuration for an InsightType.
+                Returns:
+                    ~.gcr_insight_type_config.InsightTypeConfig:
+                        Configuration for an InsightType.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1beta1/{insight_type_config.name=projects/*/locations/*/insightTypes/*/config}',
-                'body': 'insight_type_config',
-            },
-{
-                'method': 'post',
-                'uri': '/v1beta1/{insight_type_config.name=organizations/*/locations/*/insightTypes/*/config}',
-                'body': 'insight_type_config',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{insight_type_config.name=projects/*/locations/*/insightTypes/*/config}",
+                    "body": "insight_type_config",
+                },
+                {
+                    "method": "patch",
+                    "uri": "/v1/{insight_type_config.name=organizations/*/locations/*/insightTypes/*/config}",
+                    "body": "insight_type_config",
+                },
             ]
-            request, metadata = self._interceptor.pre_update_insight_type_config(request, metadata)
+            request, metadata = self._interceptor.pre_update_insight_type_config(
+                request, metadata
+            )
             pb_request = recommender_service.UpdateInsightTypeConfigRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1519,19 +1733,24 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("UpdateRecommenderConfig")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: recommender_service.UpdateRecommenderConfigRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> gcr_recommender_config.RecommenderConfig:
+        def __call__(
+            self,
+            request: recommender_service.UpdateRecommenderConfigRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> gcr_recommender_config.RecommenderConfig:
             r"""Call the update recommender config method over HTTP.
 
             Args:
@@ -1548,51 +1767,56 @@ class RecommenderRestTransport(RecommenderTransport):
                     Configuration for a Recommender.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1beta1/{recommender_config.name=projects/*/locations/*/recommenders/*/config}',
-                'body': 'recommender_config',
-            },
-{
-                'method': 'post',
-                'uri': '/v1beta1/{recommender_config.name=organizations/*/locations/*/recommenders/*/config}',
-                'body': 'recommender_config',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{recommender_config.name=projects/*/locations/*/recommenders/*/config}",
+                    "body": "recommender_config",
+                },
+                {
+                    "method": "patch",
+                    "uri": "/v1/{recommender_config.name=organizations/*/locations/*/recommenders/*/config}",
+                    "body": "recommender_config",
+                },
             ]
-            request, metadata = self._interceptor.pre_update_recommender_config(request, metadata)
+            request, metadata = self._interceptor.pre_update_recommender_config(
+                request, metadata
+            )
             pb_request = recommender_service.UpdateRecommenderConfigRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1608,100 +1832,129 @@ class RecommenderRestTransport(RecommenderTransport):
             return resp
 
     @property
-    def get_insight(self) -> Callable[
-            [recommender_service.GetInsightRequest],
-            insight.Insight]:
+    def get_insight(
+        self,
+    ) -> Callable[[recommender_service.GetInsightRequest], insight.Insight]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetInsight(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetInsight(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_insight_type_config(self) -> Callable[
-            [recommender_service.GetInsightTypeConfigRequest],
-            insight_type_config.InsightTypeConfig]:
+    def get_insight_type_config(
+        self,
+    ) -> Callable[
+        [recommender_service.GetInsightTypeConfigRequest],
+        insight_type_config.InsightTypeConfig,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetInsightTypeConfig(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetInsightTypeConfig(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_recommendation(self) -> Callable[
-            [recommender_service.GetRecommendationRequest],
-            recommendation.Recommendation]:
+    def get_recommendation(
+        self,
+    ) -> Callable[
+        [recommender_service.GetRecommendationRequest], recommendation.Recommendation
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetRecommendation(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetRecommendation(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_recommender_config(self) -> Callable[
-            [recommender_service.GetRecommenderConfigRequest],
-            recommender_config.RecommenderConfig]:
+    def get_recommender_config(
+        self,
+    ) -> Callable[
+        [recommender_service.GetRecommenderConfigRequest],
+        recommender_config.RecommenderConfig,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetRecommenderConfig(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetRecommenderConfig(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_insights(self) -> Callable[
-            [recommender_service.ListInsightsRequest],
-            recommender_service.ListInsightsResponse]:
+    def list_insights(
+        self,
+    ) -> Callable[
+        [recommender_service.ListInsightsRequest],
+        recommender_service.ListInsightsResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListInsights(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListInsights(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_recommendations(self) -> Callable[
-            [recommender_service.ListRecommendationsRequest],
-            recommender_service.ListRecommendationsResponse]:
+    def list_recommendations(
+        self,
+    ) -> Callable[
+        [recommender_service.ListRecommendationsRequest],
+        recommender_service.ListRecommendationsResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListRecommendations(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListRecommendations(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def mark_insight_accepted(self) -> Callable[
-            [recommender_service.MarkInsightAcceptedRequest],
-            insight.Insight]:
+    def mark_insight_accepted(
+        self,
+    ) -> Callable[[recommender_service.MarkInsightAcceptedRequest], insight.Insight]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._MarkInsightAccepted(self._session, self._host, self._interceptor) # type: ignore
+        return self._MarkInsightAccepted(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def mark_recommendation_claimed(self) -> Callable[
-            [recommender_service.MarkRecommendationClaimedRequest],
-            recommendation.Recommendation]:
+    def mark_recommendation_claimed(
+        self,
+    ) -> Callable[
+        [recommender_service.MarkRecommendationClaimedRequest],
+        recommendation.Recommendation,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._MarkRecommendationClaimed(self._session, self._host, self._interceptor) # type: ignore
+        return self._MarkRecommendationClaimed(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def mark_recommendation_failed(self) -> Callable[
-            [recommender_service.MarkRecommendationFailedRequest],
-            recommendation.Recommendation]:
+    def mark_recommendation_failed(
+        self,
+    ) -> Callable[
+        [recommender_service.MarkRecommendationFailedRequest],
+        recommendation.Recommendation,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._MarkRecommendationFailed(self._session, self._host, self._interceptor) # type: ignore
+        return self._MarkRecommendationFailed(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def mark_recommendation_succeeded(self) -> Callable[
-            [recommender_service.MarkRecommendationSucceededRequest],
-            recommendation.Recommendation]:
+    def mark_recommendation_succeeded(
+        self,
+    ) -> Callable[
+        [recommender_service.MarkRecommendationSucceededRequest],
+        recommendation.Recommendation,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._MarkRecommendationSucceeded(self._session, self._host, self._interceptor) # type: ignore
+        return self._MarkRecommendationSucceeded(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_insight_type_config(self) -> Callable[
-            [recommender_service.UpdateInsightTypeConfigRequest],
-            gcr_insight_type_config.InsightTypeConfig]:
+    def update_insight_type_config(
+        self,
+    ) -> Callable[
+        [recommender_service.UpdateInsightTypeConfigRequest],
+        gcr_insight_type_config.InsightTypeConfig,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateInsightTypeConfig(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateInsightTypeConfig(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_recommender_config(self) -> Callable[
-            [recommender_service.UpdateRecommenderConfigRequest],
-            gcr_recommender_config.RecommenderConfig]:
+    def update_recommender_config(
+        self,
+    ) -> Callable[
+        [recommender_service.UpdateRecommenderConfigRequest],
+        gcr_recommender_config.RecommenderConfig,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateRecommenderConfig(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateRecommenderConfig(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
     def kind(self) -> str:
@@ -1711,6 +1964,4 @@ class RecommenderRestTransport(RecommenderTransport):
         self._session.close()
 
 
-__all__=(
-    'RecommenderRestTransport',
-)
+__all__ = ("RecommenderRestTransport",)
