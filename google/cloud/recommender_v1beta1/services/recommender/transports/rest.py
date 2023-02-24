@@ -17,7 +17,7 @@
 import dataclasses
 import json  # type: ignore
 import re
-from typing import Callable, Dict, List, Optional, Sequence, Tuple, Union
+from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple, Union
 import warnings
 
 from google.api_core import gapic_v1, path_template, rest_helpers, rest_streaming
@@ -571,7 +571,7 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("GetInsight")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -673,7 +673,7 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("GetInsightTypeConfig")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -765,7 +765,7 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("GetRecommendation")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -869,7 +869,7 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("GetRecommenderConfig")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -961,7 +961,7 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("ListInsights")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -1059,7 +1059,7 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("ListRecommendations")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -1159,7 +1159,7 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("MarkInsightAccepted")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -1275,7 +1275,7 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("MarkRecommendationClaimed")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -1394,7 +1394,7 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("MarkRecommendationFailed")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -1511,7 +1511,7 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("MarkRecommendationSucceeded")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -1630,7 +1630,7 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("UpdateInsightTypeConfig")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
@@ -1733,7 +1733,7 @@ class RecommenderRestTransport(RecommenderTransport):
         def __hash__(self):
             return hash("UpdateRecommenderConfig")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, Any] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
